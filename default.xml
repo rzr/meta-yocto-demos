@@ -3,10 +3,14 @@
   <remote fetch="git://git.yoctoproject.org/" name="yocto"/>
   <remote fetch="git://github.com/TizenTeam/" name="tizenteam"/>
   <remote fetch="git://github.com/openembedded" name="oe"/>
+  <remote fetch="git://github.com/meta-qt5" name="qt"/>
+  <remote fetch="git://github.com/linux4sam" name="atmel"/>
   <remote fetch="git://git.tizen.org/" name="tizen"/>
   <remote fetch="git://git.s-osg.org/" name="s-osg" />
 
   <project name="poky" path="sources/poky" remote="yocto" revision="dizzy"/>
   <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="dizzy"/>
-
+  <project name="meta-openembedded" path="sources/meta-openembedded" remote="oe" revision="dizzy"/>
+  <project name="meta-qt5" path="sources/meta-qt5" remote="qt" revision="dizzy"/>
+  <project name="meta-atmel" path="sources/meta-atmel" remote="atmel" revision="dizzy"/>
 </manifest>
