@@ -4,6 +4,6 @@
   <remote fetch="git://github.com/TizenTeam/" name="tizenteam"/>
 
   <project name="tizen-distro" path="sources/tizen-distro" remote="tizen" revision="tizen"/>
-  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="tizen"/>
+  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="sandbox/pcoval/oic"/>
 
 </manifest>
