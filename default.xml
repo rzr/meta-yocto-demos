@@ -9,5 +9,4 @@
   <project name="tizen-distro" path="sources/tizen-distro" remote="tizenteam" revision="master"/>
   <project name="meta-oic" path="sources/meta-oic" remote="yocto" revision="master"/>
   <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="sandbox/pcoval/oic"/>
-/>
 </manifest>
