@@ -6,7 +6,7 @@ MACHINE?=qemux86
 machine?=${MACHINE}
 
 branch?=tizen
-repo_branch_name?=oic
+repo_branch_name?=${branch}-oic-${machine}
 repo_branch?=sandbox/pcoval/${repo_branch_name}
 
 distro?=${branch}-distro
