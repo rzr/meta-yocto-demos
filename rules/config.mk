@@ -10,7 +10,7 @@ version?=0.0.$(shell date -u +%Y%m%d)${user}
 repo?=$(shell which repo || echo ${CURDIR}/repo)
 repo_url?=https://storage.googleapis.com/git-repo-downloads/repo
 
-branch?=master
+branch?=dizzy
 repo_branch?=${branch}
 distro?=poky
 init_name?=oe
