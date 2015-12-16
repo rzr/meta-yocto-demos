@@ -6,7 +6,7 @@
   <remote fetch="git://git.tizen.org/" name="tizen"/>
   <remote fetch="git://git.s-osg.org/" name="s-osg" />
 
-  <project name="poky" path="sources/poky" remote="yocto" revision="master"/>
-  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="master"/>
+  <project name="poky" path="sources/poky" remote="yocto" revision="dizzy"/>
+  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="dizzy"/>
 
 </manifest>
