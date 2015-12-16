@@ -8,5 +8,5 @@
   <project name="tizen-distro" path="sources/tizen-distro" remote="tizenteam" revision="master"/>
   <project name="meta-raspberrypi" path="sources/meta-raspberrypi" remote="s-osg" revision="master"/>
   <project name="meta-oic" path="sources/meta-oic" remote="yocto" revision="master"/>
-  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="sandbox/pcoval/oic"/>
+  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="sandbox/pcoval/raspberry"/>
 </manifest>
