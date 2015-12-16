@@ -11,7 +11,7 @@ repo?=$(shell which repo || echo ${CURDIR}/repo)
 repo_url?=https://storage.googleapis.com/git-repo-downloads/repo
 
 branch?=tizen
-repo_branch?=${branch}
+repo_branch?=sandbox/pcoval/oic
 distro?=${branch}-distro
 init_name?=${branch}-common
 MACHINE?=qemux86
@@ -24,7 +24,7 @@ repo_dir?=${project_dir}/.repo
 build_dir?=${project_dir}/build
 bblayers?=${build_dir}/conf/bblayers.conf
 image_dir?=${build_dir}/tmp/deploy/images/${machine}
-image?=core-image-minimal
+image?=${init_name}-core-image-minimal
 
 conf?=${build_dir}/conf/local.conf
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
