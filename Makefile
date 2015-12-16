@@ -12,5 +12,6 @@ bblayers?=${build_dir}/conf/bblayers.conf
 
 include rules/config.mk
 -include rules/machine/${MACHINE}/conf-bsp.mk
+include rules/layers.mk
 include rules/tasks.mk
 
