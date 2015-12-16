@@ -10,10 +10,10 @@ version?=0.0.$(shell date -u +%Y%m%d)${user}
 repo?=$(shell which repo || echo ${CURDIR}/repo)
 repo_url?=https://storage.googleapis.com/git-repo-downloads/repo
 
-branch?=dizzy
+branch?=tizen
 repo_branch?=${branch}
-distro?=poky
-init_name?=oe
+distro?=${branch}-distro
+init_name?=${branch}-common
 MACHINE?=qemux86
 machine?=${MACHINE}
 
