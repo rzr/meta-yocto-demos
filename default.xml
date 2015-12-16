@@ -2,8 +2,7 @@
 <manifest>
   <remote fetch="git://git.yoctoproject.org/" name="yocto"/>
   <remote fetch="git://github.com/TizenTeam/" name="tizenteam"/>
-
-  <project name="poky" path="sources/poky" remote="yocto" revision="dizzy"/>
-  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="dizzy"/>
-
+  <remote fetch="git://git.tizen.org/" name="tizen"/>
+  <project name="scm/bb/tizen-distro" path="sources/tizen-distro" remote="tizen" revision="tizen"/>
+  <project name="meta-yocto-demo" path="sources/meta-yocto-demo" remote="tizenteam" revision="tizen"/>
 </manifest>
