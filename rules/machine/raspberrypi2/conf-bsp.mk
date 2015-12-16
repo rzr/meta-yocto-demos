@@ -1,5 +1,6 @@
 bsp?=raspberrypi
 MACHINE?=${bsp}2
+repo_branch?=sandbox/pcoval/${bsp}
 repo_branch?=machine/${MACHINE}
 branch?=tizen
 #image?=rpi-hwup-image
