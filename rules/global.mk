@@ -10,6 +10,7 @@ version?=0.0.$(shell date -u +%Y%m%d)${user}
 repo?=$(shell which repo || echo ${CURDIR}/repo)
 repo_url?=https://storage.googleapis.com/git-repo-downloads/repo
 
+
 project_dir?=${CURDIR}
 sources_dir?=${project_dir}/sources
 sources_layers?=$(wildcard sources/meta-*)
