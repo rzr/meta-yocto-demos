@@ -7,7 +7,7 @@ branch?=tizen
 image?=tizen-base-image
 distro?=tizen-distro
 bsp_dir?=${CURDIR}/sources/meta-${bsp}
-
+conf?=${build_dir}/conf/local.conf
 
 define BBLAYERS
 "\
@@ -21,24 +21,15 @@ BBLAYERS_NON_REMOVABLE += \"\
 endef
 export BBLAYERS
 
+rule/configure/machine: ${done_dir}/rule/configure/machine/${machine}.done
 
-rule/configure/machine: tmp/bblayers-stamp tmp/local-stamp rule/build_dir  tmp/post-build-stamp
+rule/configure/machine/${machine}: ${done_dir}/rule/configure/machine/${machine}/bblayers.done ${done_dir}/rule/configure/machine/${machine}/conf.done
 
-
-tmp/post-build-stamp:
-
-
-tmp/bblayers-stamp: ${bblayers}
+rule/configure/machine/${machine}/bblayers: ${bblayers}
 	echo "BBLAYERS += \" ${bsp_dir} \"" >> $<
 	echo "BBLAYERS_NON_REMOVABLE += \" ${bsp_dir} \"" >> $<
 	cp -v ${CURDIR}/machine/${MACHINE}/${<F} $<
 	mkdir -p "$@{D}" ; touch $@
 
-tmp/local-stamp: ${build_dir}/conf/local.conf
-	cp -v ${CURDIR}/machine/${MACHINE}/${<F} $<
-	mkdir -p "$@{D}" ; touch $@
-
-
-tmp/post-build-stamp-debian: ${bsp_dir}/../${distro}
-	cd $< && git pull . remotes/s-osg/tizen-debianhost
-	@echo "TODO"
+rule/configure/machine/${machine}/conf: ${conf}
+	sed -e 's|^MACHINE ??=.*|MACHINE ??= "raspberrypi2"|g' -i $<
