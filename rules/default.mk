@@ -2,9 +2,9 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-branch?=tizen
+branch?=master
 repo_branch?=${branch}
-distro?=${branch}-distro
+distro?=poky
 init_name?=${branch}
 MACHINE?=qemux86
 machine?=${MACHINE}
