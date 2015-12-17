@@ -14,10 +14,9 @@ rule/help: ${SELF}
 	@echo "# existing rules"
 	@grep -o -e '^.*:' $<
 
-rule/all: rule/configure rule/env/image
+rule/all: ${done_dir}/rule/setup.done
+	${MAKE} rule/configure rule/env/image
 
-
-test: rule/tmp.done
 
 ${repo_dir}: ${repo} default.xml
 	mkdir -p $@ && cd $@/.. && ${repo} init -u . -b ${repo_branch}
@@ -49,12 +48,19 @@ rule/bblayers: ${bblayers}
 
 rule/build_dir: ${build_dir}
 
-rule/configure/machine:
+rule/setup: rule/build_dir
 
-rule/configure: rule/configure/machine
+rule/configure/layer/%: % ${bblayers}
+	echo "BBLAYERS += \"${CURDIR}/${<}\"" >> ${bblayers}
+	echo "BBLAYERS_NON_REMOVABLE += \"${CURDIR}/${<}\"" >> ${bblayers}
 
-rule/setup: ${sources_dir}
-	for dir in $(wildcard sources/* | sort) ; do make rule/$${dir}/configure ; done
+
+rule/configure: ${sources_dir} rule/configure/machine
+	for dir in ${sources_layers} ; do make rule/configure/layer/$${dir} ; done
+
+rule/configure/machine: ${conf}
+	sed -e "s|^MACHINE ??=.*|MACHINE ??= \"${MACHINE}\"|g" -i $<
+
 
 rule/image: ${build_dir}
 	cd $< && time bitbake "${image}"
