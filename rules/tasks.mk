@@ -14,16 +14,13 @@ rule/help: ${SELF}
 	@echo "# existing rules"
 	@grep -o -e '^.*:' $<
 
+
 ${done_dir}/%.done: %
 	mkdir -p ${@D}
 	touch $@
 
 rule/all: ${done_dir}/rule/setup.done
 	${MAKE} rule/configure rule/env/image
-
-
-
-test: rule/tmp.done
 
 ${repo_dir}: ${repo} default.xml
 	mkdir -p $@ && cd $@/.. && ${repo} init -u . -b ${repo_branch}
@@ -69,12 +66,25 @@ rule/configure/layer/.:
 rule/configure: ${sources_dir} rule/configure/machine
 	for dir in . ${sources_layers} ; do make $@/layer/$${dir} ; done
 
+<<<<<<< HEAD
 rule/configure/machine: ${conf}
 	sed -e "s|^MACHINE ??=.*|MACHINE ??= \"${MACHINE}\"|g" -i $<
 
+=======
+rule/setup: rule/build_dir
 
-rule/setup: ${sources_dir}
-	for dir in $(wildcard sources/* | sort) ; do make rule/$${dir}/configure ; done
+rule/configure/layer/%: % ${bblayers}
+	echo "BBLAYERS += \"${CURDIR}/${<}\"" >> ${bblayers}
+	echo "BBLAYERS_NON_REMOVABLE += \"${CURDIR}/${<}\"" >> ${bblayers}
+
+
+rule/configure: ${sources_dir} rule/configure/machine
+	for dir in ${sources_layers} ; do make rule/configure/layer/$${dir} ; done
+
+rule/configure/machine: ${conf}
+	sed -e "s|^MACHINE ??=.*|MACHINE ??= \"${MACHINE}\"|g" -i $<
+>>>>>>> e150ec4... wip: mod: rules/tasks.mk (sandbox/pcoval/raspberrypi)
+
 
 rule/image: ${build_dir}
 	cd $< && time bitbake "${image}"
