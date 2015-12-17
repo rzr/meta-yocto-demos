@@ -6,5 +6,5 @@ cache*/
 project*/
 repo
 sources/
-tmp/*
 tmp*
+tmp/*
