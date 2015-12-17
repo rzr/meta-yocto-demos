@@ -22,6 +22,13 @@ rule/all: ${done_dir}/rule/setup.done
 	${MAKE} rule/configure rule/env/image
 
 
+
+test: rule/tmp.done
+
+${done_dir}%.done: %
+	mkdir -p ${@D}
+	touch $@
+
 ${repo_dir}: ${repo} default.xml
 	mkdir -p $@ && cd $@/.. && ${repo} init -u . -b ${repo_branch}
 
