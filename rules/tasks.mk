@@ -14,7 +14,13 @@ rule/help: ${SELF}
 	@echo "# existing rules"
 	@grep -o -e '^.*:' $<
 
-rule/all: rule/configure rule/env/image
+${done_dir}/%.done: %
+	mkdir -p ${@D}
+	touch $@
+
+rule/all: ${done_dir}/rule/setup.done
+	${MAKE} rule/configure rule/env/image
+
 
 ${repo_dir}: ${repo} default.xml
 	mkdir -p $@ && cd $@/.. && ${repo} init -u . -b ${repo_branch}
@@ -46,9 +52,20 @@ rule/bblayers: ${bblayers}
 
 rule/build_dir: ${build_dir}
 
-rule/configure/machine:
+rule/setup: rule/build_dir
 
-rule/configure: rule/configure/machine
+rule/configure/layer/%: % ${bblayers}
+	echo "BBLAYERS += \"${CURDIR}/${<}\"" >> ${bblayers}
+	echo "BBLAYERS_NON_REMOVABLE += \"${CURDIR}/${<}\"" >> ${bblayers}
+
+rule/configure/layer/.:
+
+rule/configure: ${sources_dir} rule/configure/machine
+	for dir in . ${sources_layers} ; do make $@/layer/$${dir} ; done
+
+rule/configure/machine: ${conf}
+	sed -e "s|^MACHINE ??=.*|MACHINE ??= \"${MACHINE}\"|g" -i $<
+
 
 rule/image: ${build_dir}
 	cd $< && time bitbake "${image}"
@@ -69,5 +86,4 @@ rule/distclean: rule/clean
 
 rule/purge: rule/distclean
 	rm -rf -- ${repo_dir} ${sources_dir} build* tmp repo
-
 
