@@ -9,7 +9,7 @@ project_dir?=${CURDIR}
 build_dir?=${project_dir}/build
 bblayers?=${build_dir}/conf/bblayers.conf
 
-
+include rules/global.mk
 -include rules/machine/${MACHINE}/conf-bsp.mk
 include rules/config.mk
 #include rules/machine.mk
