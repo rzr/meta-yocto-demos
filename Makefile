@@ -10,8 +10,8 @@ build_dir?=${project_dir}/build
 bblayers?=${build_dir}/conf/bblayers.conf
 
 include rules/global.mk
--include rules/layers/meta-raspberry/rules.mk
--include rules/layers/meta-oic/rule/rules.mk
+-include rules/sources/meta-raspberry/rules.mk
+-include rules/sources/meta-oic/rules.mk
 include rules/config.mk
 include rules/tasks.mk
 
