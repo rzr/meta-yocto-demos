@@ -11,7 +11,7 @@ repo_branch?=sandbox/pcoval/${repo_branch_name}
 
 distro?=${branch}-distro
 init_name?=${branch}-common
-image?=${branch}-${repo_branch_name}
+image?=${branch}-${repo_branch_name}-image
 
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
 
