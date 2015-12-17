@@ -16,6 +16,13 @@ rule/help: ${SELF}
 
 rule/all: rule/configure rule/env/image
 
+
+test: rule/tmp.done
+
+${done_dir}%.done: %
+	mkdir -p ${@D}
+	touch $@
+
 ${repo_dir}: ${repo} default.xml
 	mkdir -p $@ && cd $@/.. && ${repo} init -u . -b ${repo_branch}
 
@@ -69,5 +76,4 @@ rule/distclean: rule/clean
 
 rule/purge: rule/distclean
 	rm -rf -- ${repo_dir} ${sources_dir} build* tmp repo
-
 
