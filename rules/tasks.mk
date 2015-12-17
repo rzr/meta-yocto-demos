@@ -69,7 +69,7 @@ rule/configure/machine: ${conf}
 	sed -e "s|^MACHINE ??=.*|MACHINE ??= \"${MACHINE}\"|g" -i $<
 
 rule/configure/downloads: ${build_dir}
-	[ "" = "${DL_DIR}" ] || ln -fs "${DLDIR}" $</downloads
+	[ "" = "${DL_DIR}" ] || ln -fs "${DL_DIR}" $</downloads
 
 rule/image: ${build_dir}
 	cd $< && time bitbake "${image}"
