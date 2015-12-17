@@ -53,6 +53,9 @@ rule/configure/machine:
 
 rule/configure: rule/configure/machine
 
+rule/setup: ${sources_dir}
+	for dir in $(wildcard sources/* | sort) ; do make rule/$${dir}/configure ; done
+
 rule/image: ${build_dir}
 	cd $< && time bitbake "${image}"
 
