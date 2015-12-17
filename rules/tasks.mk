@@ -50,9 +50,12 @@ rule/init_build_env: ${init_build_env}
 
 rule/bblayers: ${bblayers}
 
-rule/build_dir: ${build_dir}
+rule/sources: ${sources_dir}
 
-rule/setup: rule/build_dir
+rule/build: ${build_dir}
+
+
+rule/setup: rule/build
 
 rule/configure/layer/%: % ${bblayers}
 	echo "BBLAYERS += \"${CURDIR}/${<}\"" >> ${bblayers}
