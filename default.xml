@@ -3,6 +3,8 @@
   <remote fetch="git://git.yoctoproject.org/" name="yocto"/>
   <remote fetch="git://github.com/TizenTeam/" name="tizenteam"/>
   <remote fetch="git://git.tizen.org/" name="tizen"/>
+  <remote fetch="git://git.s-osg.org/" name="s-osg" />
   <project name="scm/bb/tizen-distro" path="sources/tizen-distro" remote="tizen" revision="tizen"/>
-  <project name="meta-yocto-demo" path="sources/meta-yocto-demo" remote="tizenteam" revision="tizen"/>
+  <project name="meta-raspberrypi" path="sources/meta-rasbberrypi" remote="s-osg" revision="master"/>
+  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="tizen-raspberrypi"/>
 </manifest>
