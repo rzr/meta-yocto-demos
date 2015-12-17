@@ -3,16 +3,22 @@
 # ex: set tabstop=4 noexpandtab:
 SELF?=${CURDIR}/rules/tasks.mk
 
+default: rule/help
+
 rule/help: ${SELF}
-	@echo "Usage: "
+	@echo "Usage:"
 	@echo "# make rule/all"
+	@echo ""
+	@echo "Env:"
+	@echo "MACHINE=${MACHINE}"
 	@echo "USER=${USER}"
-	@echo "BBLAYERS=${BBLAYERS}"
+	@echo "DL_DIR=${DL_DIR}"
 	@echo "image_dir=${image_dir}"
 	@echo "sources_dir=${sources_dir}"
 	@echo "distro=${distro}"
+	@echo ""
 	@echo "# existing rules"
-	@grep -o -e '^.*:' $<
+	@grep -o -e '^[^# 	]*:' $< | grep -v '\$$'
 
 ${done_dir}/%.done: %
 	mkdir -p ${@D}
