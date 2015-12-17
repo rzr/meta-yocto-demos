@@ -68,7 +68,6 @@ rule/configure: ${sources_dir} rule/configure/machine
 rule/configure/machine: ${conf}
 	sed -e "s|^MACHINE ??=.*|MACHINE ??= \"${MACHINE}\"|g" -i $<
 
-
 rule/image: ${build_dir}
 	cd $< && time bitbake "${image}"
 
