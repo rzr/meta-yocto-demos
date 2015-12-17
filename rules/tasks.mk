@@ -62,11 +62,14 @@ rule/configure/layer/%: % ${bblayers}
 
 rule/configure/layer/.:
 
-rule/configure: ${sources_dir} rule/configure/machine
+rule/configure: ${sources_dir} rule/configure/machine rule/configure/downloads
 	for dir in . ${sources_layers} ; do make $@/layer/$${dir} ; done
 
 rule/configure/machine: ${conf}
 	sed -e "s|^MACHINE ??=.*|MACHINE ??= \"${MACHINE}\"|g" -i $<
+
+rule/configure/downloads: ${build_dir}
+	[ "" = "${DL_DIR}" ] || ln -fs "${DLDIR}" $</downloads
 
 rule/image: ${build_dir}
 	cd $< && time bitbake "${image}"
