@@ -21,7 +21,6 @@ ${done_dir}/%.done: %
 rule/all: ${done_dir}/rule/setup.done
 	${MAKE} rule/configure rule/env/image
 
-
 ${repo_dir}: ${repo} default.xml
 	mkdir -p $@ && cd $@/.. && ${repo} init -u . -b ${repo_branch}
 
