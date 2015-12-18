@@ -9,7 +9,7 @@
   <remote fetch="git://git.s-osg.org/" name="s-osg" />
 
   <project name="poky" path="sources/poky" remote="yocto" revision="dizzy"/>
-  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="dizzy"/>
+  <project name="meta-yocto-demos" path="sources/meta-yocto" remote="tizenteam" revision="dizzy"/>
   <project name="meta-openembedded" path="sources/meta-openembedded" remote="oe" revision="dizzy"/>
   <project name="meta-qt5" path="sources/meta-qt5" remote="qt" revision="dizzy"/>
   <project name="meta-atmel" path="sources/meta-atmel" remote="atmel" revision="dizzy"/>
