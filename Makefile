@@ -1,9 +1,10 @@
 #! /usr/bin/make -f
-# Author: Philippe Coval <philippe.coval@open.eurogiciel.org>
+# Author: Philippe Coval <philippe.coval.pro@gmail.com>
 # ex: set tabstop=4 noexpandtab:
 
 SHELL?=/bin/bash
-
+layer_name?=meta-yocto-demos
+layer_name?=meta-sama5d4-xplained
 branch?=dizzy
 repo_branch?=${branch}
 image?=atmel-xplained-lcd-demo-image
@@ -76,7 +77,7 @@ BBLAYERS += " \"\
   ${TOPDIR}/sources/meta-openembedded/meta-networking \
   ${TOPDIR}/sources/meta-openembedded/meta-ruby \
   ${TOPDIR}/sources/meta-qt5 \
-  ${TOPDIR}/sources/meta-sama5d4-xplained \"\
+  ${TOPDIR}/sources/${layer_name} \"\
 "
 endef
 export BBLAYERS
@@ -133,7 +134,7 @@ checkout:
 	cd "${TOPDIR}/sources/meta-qt5" \
 	&& git checkout -b "${USER}/${branch}" "qt/${branch}"
 
-	cd "${TOPDIR}/sources/meta-${MACHINE}" \
+	cd "${TOPDIR}/sources/${layer_name}" \
 	&& git checkout -b "${USER}/${branch}" "${MACHINE}/${branch}"
 
 	touch $@
