@@ -13,3 +13,6 @@ init_name?=${os}-${os_profile}
 image_type?=core
 image?=rpi-hwup-${os}-${micro}
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
+
+rule/configure:
+sources_layers+=sources/tizen-distro/meta-tizen/meta-tizen-micro
