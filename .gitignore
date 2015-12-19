@@ -1,5 +1,6 @@
 *#
-*-tmp
+*-local.mk
+*.tmp
 *~
 .#*
 .repo
@@ -10,9 +11,9 @@ build-*
 cache*
 project*
 repo
-*-local.mk
+repo
 sources
 sources-*
 tmp*
-tmp*
 tmp-**
+
