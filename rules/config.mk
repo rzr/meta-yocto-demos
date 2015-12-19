@@ -11,9 +11,12 @@ distro?=${os}-distro
 distro_branch?=${os}
 init_name?=${os}-${os_profile}
 image_type?=core
+base_image?=rpi-hwup-image
 image_os_profile?=micro
-image?=rpi-hwup-image-tizen-micro
+image?=${base_image}-tizen-micro
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
+build_dir?=${sources_dir}/${distro}/build
+local_build_dir?=build
 
 rule/configure:
-sources_layers+=sources/tizen-distro/meta-tizen/meta-tizen-micro
+	sources_layers+=sources/tizen-distro/meta-tizen/meta-tizen-micro
