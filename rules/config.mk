@@ -11,5 +11,5 @@ distro?=${os}-distro
 distro_branch?=${os}
 init_name?=${os}-${os_profile}
 image_type?=core
-image?=${init_name}-${image_type}-image-minimal
+image?=rpi-hwup-${os}-${micro}
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
