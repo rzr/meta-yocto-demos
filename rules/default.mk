@@ -22,7 +22,7 @@ distro?=poky
 distro_branch?=${os}
 repo_branch?=${branch}
 repo_src_file?=default.xml
-repo_file?=${repo_src_file}
+repo_file?=${repo_src_file}.tmp
 
 init_name?=${os}-${os_profile}
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
