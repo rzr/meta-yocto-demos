@@ -6,7 +6,7 @@ MACHINE?=qemux86
 machine?=${MACHINE}
 
 distro?=poky
-distro_branch?=master
+distro_branch?=dizzy
 branch?=distro/${distro}/${distro_branch}
 repo_branch?=${branch}
 init_name?=oe
