@@ -18,7 +18,7 @@ machine?=${MACHINE}
 
 os?=${generic}
 os_profile?=${generic}
-distro?=${os}-distro
+distro?=poky
 distro_branch?=${os}
 repo_branch?=${branch}
 repo_src_file?=default.xml
@@ -27,7 +27,7 @@ repo_file?=${tmp_dir}/default.xml
 init_name?=${os}-${os_profile}
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
 image_type?=core
-image?=${init_name}-${image_type}-image
+image?=${image_type}-image-minimal
 
 project_dir?=${CURDIR}
 build_dir?=${project_dir}/build
