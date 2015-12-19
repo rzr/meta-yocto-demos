@@ -33,8 +33,8 @@ ${repo_dir}: ${repo_file} ${repo}
 
 ${sources_dir}/${distro}: rule/sync
 
-#${conf} ${bblayers}: ${tmp_dir}/rule/setup.done
-#	@make rule/env/help
+${conf}: rules/config.mk ${tmp_dir}/rule/setup.done
+	@make rule/env/help
 
 ${sources_dir}: ${repo_dir}
 	cd $</.. && ${repo} sync
@@ -47,9 +47,9 @@ ${repo}:
 ${init_build_env}: ${sources_dir}
 
 ${build_dir}: ${init_build_env}
-	cd ${<D} && ${source} ${<} ${build_dir} && pwd
-	ls ${build_dir} || ln -fs ${<D}/build ${build_dir}
-	ls ${build_dir}/conf
+	cd ${<D} && ${source} ${<} ${local_build_dir} && pwd
+#	ls ${build_dir} || ln -fs ${<D}/build ${build_dir}
+#	ls ${build_dir}/conf
 
 rule/sync: ${repo_dir} ${repo} 
 	cd $</.. && time ${repo} sync && ${repo} list
