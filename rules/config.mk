@@ -4,7 +4,7 @@
 
 
 distro?=poky
-distro_branch?=master
+distro_branch?=dizzy
 branch?=distro/${distro}/${distro_branch}
 init_name?=oe
 image?=core-image-minimal
