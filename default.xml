@@ -5,5 +5,5 @@
   <remote fetch="git://git.yoctoproject.org/" name="yocto"/>
   <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="sandbox/pcoval/tizen-micro"/>
   <project name="tizen-distro" path="sources/tizen-distro" remote="tizenteam" revision="sandbox/pcoval/tizen"/>
-  <project name="meta-raspberrypi" path="sources/meta-raspberrypi" remote="yocto" revision="dizzy"/>
+  <project name="meta-raspberrypi" path="sources/meta-raspberrypi" remote="tizenteam" revision="tizen"/>
 </manifest>
