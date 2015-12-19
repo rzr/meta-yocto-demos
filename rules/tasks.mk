@@ -114,7 +114,7 @@ log/%:
 
 rule/setup/repo: ${repo_file}
 
-${repo_file}.tmp: ${repo_src_file}
+${repo_file}: ${repo_src_file}
 	mkdir -p ${@D}
 	sed -e "s|<project name=\"${project_name}\" path=\"sources/${project_name}\" remote=\"${remote}\" revision=\".*\"/>|<project name=\"${project_name}\" path=\"sources/${project_name}\" remote=\"${remote}\" revision=\"${branch}\"/>|g" < $< > $@
 	cp -av $@ $<
