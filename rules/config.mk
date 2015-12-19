@@ -2,8 +2,8 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-bsp?=generic
-MACHINE?=${bsp}x86
+bsp?=raspberrypi
+MACHINE?=${bsp}2
 
 os?=tizen
 os_profile?=common
