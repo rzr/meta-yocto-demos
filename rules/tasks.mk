@@ -28,7 +28,7 @@ ${tmp_dir}/%.done: %
 rule/all: ${tmp_dir}/rule/setup.done
 	${MAKE} rule/configure rule/env/image
 
-${repo_dir}: ${repo} ${repo_file}
+${repo_dir}: ${repo_file} ${repo}
 	mkdir -p $@ && cd $@/.. && ${repo} init -q -u . -b ${repo_branch}
 
 ${sources_dir}/${distro}: rule/sync
@@ -116,5 +116,5 @@ rule/setup/repo: ${repo_file}
 
 ${repo_file}: ${repo_src_file}
 	mkdir -p ${@D}
-	sed -e "s|<project name=\"${project_name}\" path=\"sources/${project_name}\" remote=\"${remote}\" revision=\".*\"/>|<project name=\"${project_name}\" path=\"sources/${project_name}\" remote=\"${remote}\" revision=\"${branch}\"/>|g" < $< > $@.tmp && mv $@.tmp $@
+	sed -e "s|<project name=\"${project_name}\" path=\"sources/${project_name}\" remote=\"${remote}\" revision=\".*\"/>|<project name=\"${project_name}\" path=\"sources/${project_name}\" remote=\"${remote}\" revision=\"${branch}\"/>|g" < $< > $@.tmpmv $@.tmp $@
 
