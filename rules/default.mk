@@ -31,7 +31,6 @@ image?=${image_type}-image-minimal
 
 project_dir?=${CURDIR}
 build_dir?=${project_dir}/build
-relative_build_dir?=../../../build
 bblayers?=${build_dir}/conf/bblayers.conf
 image_dir?=${build_dir}/tmp/deploy/images/${machine}
 conf?=${build_dir}/conf/local.conf
