@@ -13,6 +13,5 @@ sources_dir?=${project_dir}/sources
 sources_layers?=$(wildcard sources/meta-*)
 repo_dir?=${project_dir}/.repo
 build_dir?=${project_dir}/build
-local_build_dir?=../../build
 bblayers?=${build_dir}/conf/bblayers.conf
 tmp_dir?=tmp
