@@ -11,7 +11,7 @@ distro?=${os}-distro
 distro_branch?=${os}
 init_name?=${os}-common
 base_image?=rpi-hwup
-image?=${base_image}-${os}-${os_profile}
+image?=${base_image}-image-${os}-${os_profile}
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
 
 sources_layers+=sources/${os}-distro/meta-${os}/meta-${os}-${os_profile}
