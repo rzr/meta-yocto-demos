@@ -2,14 +2,17 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-bsp?=generic
-MACHINE?=${bsp}x86
+bsp?=raspberrypi
+MACHINE?=${bsp}2
 
 os?=tizen
 os_profile?=common
 distro?=${os}-distro
 distro_branch?=${os}
+extra?=
 init_name?=${os}-${os_profile}
-image_type?=core
-image?=${init_name}-${image_type}-image-minimal
+base_image?=rpi-hwup-image
+image?=${base_image}
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
+
+SHELL=/bin/bash
