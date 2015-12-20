@@ -28,10 +28,11 @@ ${tmp_dir}/%.done: %
 rule/all: ${tmp_dir}/rule/setup.done
 	${MAKE} rule/configure rule/env/image
 
-${repo_dir}: ${repo_file} ${repo}
+${repo_dir}: ${repo} ${repo_file}
 	mkdir -p $@ && cd $@/.. && ${repo} init -q -u . -b ${repo_branch}
 
-${sources_dir}/${distro}: rule/sync
+${sources_dir}/${distro}: rule/repo/sync
+	ls -l ${@}/conf/combo-layer.conf
 
 ${conf}: rules/config.mk ${tmp_dir}/rule/setup.done
 	@make rule/env/help
@@ -45,11 +46,11 @@ ${repo}:
 	chmod u+rx $@
 
 ${init_build_env}: ${sources_dir}
+	ls -l ${@D}
 
 ${build_dir}: ${init_build_env}
-	cd ${<D} && ${source} ${<} ${local_build_dir} && pwd
-#	ls ${build_dir} || ln -fs ${<D}/build ${build_dir}
-#	ls ${build_dir}/conf
+	cd ${<D} && ${source} ${<} ${build_dir}
+	ls ${build_dir} # workaround a /bin/sh behaviour
 
 rule/sync: ${repo_dir} ${repo} 
 	cd $</.. && time ${repo} sync && ${repo} list
