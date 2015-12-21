@@ -52,8 +52,8 @@ ${build_dir}: ${init_build_env}
 	cd ${<D} && ${source} ${<} ${build_dir}
 	ls ${build_dir} # workaround a /bin/sh behaviour
 
-rule/sync: ${repo_dir} ${repo} 
-	cd $</.. && time ${repo} sync && ${repo} list
+rule/repo/%: ${repo_dir} ${repo} 
+	cd $</.. && time ${repo} ${@F} && ${repo} list
 
 rule/init_build_env: ${init_build_env}
 
