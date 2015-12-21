@@ -86,7 +86,7 @@ rule/configure/layer/%: % ${bblayers}
 rule/configure/layer/.:
 	date
 
-rule/configure: ${sources_dir} rule/configure/machine rule/configure/downloads
+rule/configure: ${sources_dir} rule/configure/conf rule/configure/machine rule/configure/downloads
 	for dir in . ${sources_layers} ; do make $@/layer/$${dir} ; done
 
 # BSPDIR := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) + '/../..')}"
