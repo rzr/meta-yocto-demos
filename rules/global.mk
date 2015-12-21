@@ -4,8 +4,6 @@
 
 SHELL?=/bin/bash
 source?=.
-user?=$(shell echo ${USER})
-version?=0.0.$(shell date -u +%Y%m%d)${user}
 
 repo?=$(shell which repo || echo ${CURDIR}/repo)
 repo_url?=https://storage.googleapis.com/git-repo-downloads/repo
