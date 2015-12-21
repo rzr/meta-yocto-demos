@@ -6,12 +6,14 @@ bsp?=raspberrypi
 MACHINE?=${bsp}2
 
 os?=tizen
-os_profile?=micro
+os_profile?=common
 distro?=${os}-distro
 distro_branch?=${os}
-init_name?=${os}-common
-base_image?=rpi-hwup
-image?=${base_image}-image-${os}-${os_profile}
+extra?=oic
+init_name?=${os}-${os_profile}
+bsp_base_image?=rpi-hwup
+base_image?=${bsp_base_image}-image-${os}-${os_profile}
+image?=${base_image}-${extra}
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
 
 sources_layers+=sources/${os}-distro/meta-${os}/meta-${os}-${os_profile}
