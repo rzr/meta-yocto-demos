@@ -11,8 +11,8 @@ distro?=${os}-distro
 distro_branch?=${os}
 extra?=oic
 init_name?=${os}-common
-base_image?=rpi-hwup
-image?=${base_image}-image-${os}-${os_profile}
+base_image?=wetek-image-minimal
+image?=${base_image}
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
 
 sources_layers+=sources/${os}-distro/meta-${os}/meta-${os}-${os_profile}
