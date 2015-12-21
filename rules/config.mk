@@ -17,3 +17,6 @@ init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
 
 sources_layers+=sources/${os}-distro/meta-${os}/meta-${os}-${os_profile}
 SHELL=/bin/bash
+
+#rule/configure/conf: ${conf_file}
+#	echo "DISTRO_FEATURES_remove = \" x11 wayland \"" >> $<
