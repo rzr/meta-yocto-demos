@@ -12,10 +12,11 @@ distro_branch?=${os}
 extra?=oic
 init_name?=${os}-common
 base_image?=wetek-image-minimal
-image?=${base_image}
+image?=tizen-base-image
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
 
 sources_layers+=sources/${os}-distro/meta-${os}/meta-${os}-${os_profile}
 SHELL=/bin/bash
-cache_dir?=${CURDIR}/
-build_dir?=${cache_dir}build
+
+rule/configure/conf: ${conf_file}
+	echo "DISTRO_FEATURES_remove = \" x11 wayland \"" >> $<
