@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <remote fetch="git://github.com/TizenTeam/" name="tizenteam"/>
-  <remote fetch="git://git.tizen.org/" name="tizen"/>
-  <remote fetch="git://git.yoctoproject.org/" name="yocto"/>
-  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="sandbox/pcoval/tizen-micro"/>
+  <remote fetch="http://github.com/TizenTeam/" name="tizenteam"/>
+  <remote fetch="http://git.tizen.org/git/" name="tizen"/>
+  <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
+  <remote fetch="git://git.s-osg.org/" name="s-osg"/>
+  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="master"/>
   <project name="tizen-distro" path="sources/tizen-distro" remote="tizenteam" revision="sandbox/pcoval/tizen-raspberrypi"/>
   <project name="meta-raspberrypi" path="sources/meta-raspberrypi" remote="tizenteam" revision="tizen"/>
+  <project name="meta-oic" path="sources/meta-oic" remote="yocto" revision="master"/>
 </manifest>
