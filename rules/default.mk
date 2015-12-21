@@ -34,7 +34,7 @@ image?=${image_type}-image-minimal
 
 project_dir?=${CURDIR}
 cache_dir?=${project_dir}/
-build_dir?=${cache_dir}/build
+build_dir?=${cache_dir}build
 bblayers?=${build_dir}/conf/bblayers.conf
 bsp_relative_dir?=../..
 image_dir?=${build_dir}/tmp/deploy/images/${machine}
