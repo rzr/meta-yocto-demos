@@ -9,5 +9,6 @@
   <project name="tizen-distro" path="sources/tizen-distro" remote="tizenteam" revision="sandbox/pcoval/tizen-raspberrypi"/>
   <project name="meta-raspberrypi" path="sources/meta-raspberrypi" remote="yocto" revision="master"/>
   <project name="meta-amlogic" path="sources/meta-amlogic" remote="amlogic" revision="dizzy"/>
+  <project name="meta-amlogic" path="sources/meta-amlogic" remote="teamtizen" revision="master"/>
   <project name="meta-oic" path="sources/meta-oic" remote="yocto" revision="master"/>
 </manifest>
