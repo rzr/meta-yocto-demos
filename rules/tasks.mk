@@ -113,7 +113,7 @@ rule/env/%: ${init_build_env}
 	cd ${<D} && ${source} ${<} ${build_dir} \
 	&& make -C ${CURDIR} rule/${@F} ARGS="${ARGS}"
 
-rule/bitbake: ${sources_dir}/${distro}/${build_dir}
+rule/bitbake: ${build_dir}
 	cd $< && time ${@F} ${ARGS}
 
 rule/clean:
@@ -121,7 +121,7 @@ rule/clean:
 	@echo "# make rule/{cleanall,distclean,purge} to clean more"
 
 rule/cleanall: rule/clean
-	rm -rf build/conf ${sources_dir}
+	rm -rf ${build_dir}/conf ${sources_dir}
 
 rule/distclean: rule/cleanall
 	rm -rfv repo
