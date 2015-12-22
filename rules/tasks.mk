@@ -20,7 +20,7 @@ rule/help: ${SELF}
 	@echo "# build_dir=${build_dir}"
 	@echo "# image_dir=${image_dir}"
 	@echo "# distro=${distro}"
-	@echo "# conf=${conf}"
+	@echo "# conf_file=${conf_file}"
 	@echo "# image=${image}"
 	@echo ""
 	@echo "# Existing rules :"
@@ -39,7 +39,7 @@ ${repo_dir}: ${repo} ${repo_file}
 ${sources_dir}/${distro}: rule/repo/sync
 	ls -l ${@}/conf/combo-layer.conf
 
-${conf} ${bblayers}: ${tmp_dir}/rule/setup.done
+${conf_file} ${bblayers_file}: ${tmp_dir}/rule/setup.done
 	@make rule/env/help
 
 ${sources_dir}: ${repo_dir}
@@ -97,13 +97,13 @@ rule/path: ${bblayers}
 	mv "${<}.tmp" "${<}"
 	grep "${bsp_relative_dir}" ${bblayers}
 
-rule/configure/machine: ${conf}
+rule/configure/machine: ${conf_file}
 	sed -e "s|^MACHINE ??=.*|MACHINE ??= \"${MACHINE}\"|g" -i $<
 
 rule/configure/downloads: ${build_dir}
 	[ "" = "${DL_DIR}" ] || ln -fs "${DL_DIR}" $</downloads
 
-rule/conf: ${conf}
+rule/conf: ${conf_file}
 	@ls -l $<
 
 rule/image: ${build_dir}
