@@ -6,7 +6,6 @@
   <remote fetch="http://github.com/linux-meson/" name="amlogic"/>
   <remote fetch="git://git.s-osg.org/" name="s-osg"/>
   <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="sandbox/pcoval/bsp/amlogic"/>
-  <project name="tizen-distro" path="sources/tizen-distro" remote="tizenteam" revision="sandbox/pcoval/tizen-raspberrypi"/>
+  <project name="tizen-distro" path="sources/tizen-distro" remote="tizenteam" revision="sandbox/pcoval/tizen"/>
   <project name="meta-amlogic" path="sources/meta-amlogic" remote="tizenteam" revision="master"/>
-  <project name="meta-oic" path="sources/meta-oic" remote="yocto" revision="master"/>
 </manifest>
