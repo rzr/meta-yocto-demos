@@ -6,24 +6,20 @@ bsp?=amlogic
 MACHINE?=odroidc1
 
 os?=tizen
-os_profile?=micro
+os_profile?=common
 distro?=${os}-distro
 distro_branch?=${os}
 extra?=oic
 init_name?=${os}-common
-ifeq ("raspberrypi","${os}")
+ifeq (raspberrypi,${MACHINE})
 base_image?=rpi-hwup
 image?=${base_image}-image-${os}-${os_profile}
 endif
-base_image?=wetek-image-minimal
+base_image?=core-image-minimal
 image?=${base_image}
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
 
-sources_layers+=sources/${os}-distro/meta-${os}/meta-${os}-${os_profile}
 SHELL=/bin/bash
-
-#rule/configure/conf: ${conf_file}
-#	echo "DISTRO_FEATURES_remove = \" x11 wayland \"" >> $<
 
 repo_dir?=${project_dir}/.repo2
 build_dir=${project_dir}/build-${MACHINE}
@@ -58,3 +54,7 @@ rule/images:
 	|| echo "$${image}/$${machine}" >> tmp/fail.log ; \
 	done ; \
 	done ;
+
+rule/configure/conf: ${conf_file}
+	ls $<
+#	echo "DISTRO_FEATURES_remove = \" x11 wayland \"" >> $<
