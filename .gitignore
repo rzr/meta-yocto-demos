@@ -9,3 +9,4 @@ sources/
 tmp/*
 tmp*
 *#
+.#*
