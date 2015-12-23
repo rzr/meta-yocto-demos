@@ -43,4 +43,3 @@ rule/configure/conf: ${conf_file}
 	ls $<
 
 sources_layers+=sources/${os}-distro/meta-${root_bsp}/meta-${bsp}
-	ls $</conf
