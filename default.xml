@@ -3,8 +3,7 @@
   <remote fetch="http://github.com/TizenTeam/" name="tizenteam"/>
   <remote fetch="http://git.tizen.org/git/" name="tizen"/>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
-  <remote fetch="http://github.com/linux-meson/" name="amlogic"/>
   <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="sandbox/pcoval/bsp/amlogic"/>
   <project name="tizen-distro" path="sources/tizen-distro" remote="tizenteam" revision="sandbox/pcoval/tizen"/>
-  <project name="meta-amlogic" path="sources/meta-amlogic" remote="tizenteam" revision="sandbox/pcoval/master"/>
+  <project name="fsl-arm" path="sources/fsl-arm" remote="yocto" revision="dizzy"/>
 </manifest>
