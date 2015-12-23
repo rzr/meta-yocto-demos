@@ -166,3 +166,12 @@ ${repo_file}: ${repo_src_file}
 
 rule/repo/file: ${repo_file}
 	grep ${local_name} $<
+
+rule/images:
+	for machine in ${machines} ; do \
+	for image in ${images} ; do \
+	make rule/all MACHINE=$${machine} image=$${image} \
+	|| echo "$${image}/$${machine}" >> tmp/fail.log ; \
+	done ; \
+	done ;
+
