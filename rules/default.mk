@@ -21,15 +21,13 @@ machine?=${MACHINE}
 os?=${generic}
 os_profile?=${generic}
 distro?=poky
-distro_branch?=${os}
-
 repo?=$(shell which repo || echo ${CURDIR}/repo)
 repo_url?=https://storage.googleapis.com/git-repo-downloads/repo
 repo_branch?=${branch}
 repo_src_file?=default.xml
 repo_file?=local.xml
 
-init_name?=${os}-${os_profile}
+init_name?=oe
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
 image_type?=core
 image_base?=${image_type}-image-minimal
@@ -43,8 +41,6 @@ bblayers_file?=${build_dir}/conf/bblayers.conf
 bsp_relative_dir?=../..
 image_dir?=${build_dir}/tmp/deploy/images/${machine}
 conf_file?=${build_dir}/conf/local.conf
-
-images?=${image}
 
 local_name=localhost
 local_url?=file://${CURDIR}/
