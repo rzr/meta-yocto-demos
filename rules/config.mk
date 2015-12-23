@@ -13,7 +13,8 @@ distro_branch?=${os}
 extra?=oic
 init_name?=${os}-common
 base_image?=${os}-${os_profile}-image
-image?=core-image-sato
+#image?=core-image-sato
+image?=tizen-micro-image
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
 
 SHELL=/bin/bash
@@ -42,4 +43,4 @@ rule/test:
 rule/configure/conf: ${conf_file}
 	ls $<
 
-sources_layers+=sources/${os}-distro/meta-${root_bsp}/meta-${bsp}
+sources_layers+=sources/meta-${root_bsp}/meta-${bsp}
