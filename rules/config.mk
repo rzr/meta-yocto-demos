@@ -2,8 +2,9 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-bsp?=fsl-arm
-MACHINE?=imx6qsabresd
+root_bsp=intel
+bsp?=fri2
+MACHINE?=${bsp}-noemgd
 
 os?=tizen
 os_profile?=micro
@@ -37,22 +38,9 @@ rule/test:
 	make rule/bitbake/rebuild/weston MACHINE=genericx86
 	make rule/bitbake/rebuild/weston MACHINE=genericx86-64
 
-images?=core-image-minimal \
- tizen-common-core-image-minimal \
- tizen-base-image
-# tizen-oic-image
-machines?=raspberrypi2 genericx86-64
-
-rule/images:
-	for machine in ${machines} ; do \
-	for image in ${images} ; do \
-	make rule/all MACHINE=$${machine} image=$${image} \
-	|| echo "$${image}/$${machine}" >> tmp/fail.log ; \
-	done ; \
-	done ;
 
 rule/configure/conf: ${conf_file}
 	ls $<
-	echo "TODO: display EULA"
-	echo "ACCEPT_FSL_EULA = \"1\"" >> $<
-#	echo "DISTRO_FEATURES_remove = \" x11 wayland \"" >> $<
+
+sources_layers+=sources/${os}-distro/meta-${root_bsp}/meta-${bsp}
+	ls $</conf
