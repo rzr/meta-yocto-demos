@@ -33,8 +33,10 @@ ${tmp_dir}/%.done: %
 rule/all: ${tmp_dir}/rule/setup.done
 	${MAKE} rule/configure rule/path rule/env/image
 
+manifest_url?=file://${CURDIR}/
+
 ${repo_dir}: ${repo} ${repo_file}
-	mkdir -p $@ && cd $@/.. && ${repo} init -q -u . -b ${repo_branch}
+	mkdir -p $@ && cd $@/.. && ${repo} init -q -u ${manifest_url} -b ${repo_branch}
 
 ${sources_dir}/${distro}: rule/repo/sync
 	ls -l ${@}/conf/combo-layer.conf
@@ -144,7 +146,12 @@ ${tmp_dir}:
 rule/setup/repo: ${repo_file}
 	date
 
+local_url=file://${CURDIR}/../
+local_name=localhost
 ${repo_file}: ${repo_src_file}
 	mkdir -p ${@D}
-	sed -e "s|<project name=\"${project_name}\" path=\"sources/${project_name}\" remote=\"${remote}\" revision=\".*\"/>|<project name=\"${project_name}\" path=\"sources/${project_name}\" remote=\"${remote}\" revision=\"${branch}\"/>|g" < $< > $@
+	cat $< > $@
+	grep ${local_url} $@ \
+	|| sed -e "s|<manifest>|<manifest><remote fetch=\"${local_url}\" name=\"${local_name}\"/>|g" < $< > $@
+	sed -e "s|<project name=\"${project_name}\" path=\"sources/${project_name}\" remote=\"${remote}\" revision=\".*\"/>|<project name=\"${project_name}\" path=\"sources/${project_name}\" remote=\"${local_name}\" revision=\"${branch}\"/>|g" -i $@
 	cp -av $@ $<
