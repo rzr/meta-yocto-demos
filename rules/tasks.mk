@@ -59,7 +59,6 @@ rule/images:
 	done ; \
 	done ;
 
-
 rule/repo/%: ${repo_dir} ${repo} 
 	cd $</.. && time ${repo} ${@F} && ${repo} list
 
@@ -67,6 +66,7 @@ rule/setup/repo: ${repo_file}
 	date
 rule/error:
 	$(error "${ARG}")
+
 ${sources_dir}/${distro}: rule/repo/sync
 	ls $@ || make rule/error ARG="TODO: setup distro in rule/config.mk"
 	@ls -l ${@}/meta
@@ -160,6 +160,7 @@ rule/cleanall: rule/clean
 
 rule/distclean: rule/cleanall
 	rm -rfv repo
+
 rule/distro: ${sources_dir}/${distro}
 	grep ${<F} rules/*.mk
 
@@ -177,3 +178,4 @@ log/%: ${tmp_dir}
 
 ${tmp_dir}:
 	mkdir -p $@
+
