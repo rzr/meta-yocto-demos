@@ -158,8 +158,11 @@ ${repo_file}: ${repo_src_file}
 	mkdir -p ${@D}
 	cat $< > $@
 	grep ${local_url} $@ \
-	|| sed -e "s|<manifest>|<manifest><remote fetch=\"${local_url}\" name=\"${local_name}\"/>|g" < $< > $@
+	|| sed -e "s|<manifest>|<manifest>\n  <remote fetch=\"${local_url}\" name=\"${local_name}\"/>|g" < $< > $@
 	sed -e "s|<project name=\"${project_name}\" path=\"sources/${project_name}\" remote=\"${remote}\" revision=\".*\"/>|<project name=\"${project_name}\" path=\"sources/${project_name}\" remote=\"${local_name}\" revision=\"${branch}\"/>|g" -i $@
 	git add $@ 
 	git commit -sam "WIP: dont push"
 #	cp -av $@ $<
+
+rule/repo/file: ${repo_file}
+	grep ${local_name} $<
