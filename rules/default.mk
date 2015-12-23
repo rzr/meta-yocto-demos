@@ -25,7 +25,8 @@ repo?=$(shell which repo || echo ${CURDIR}/repo)
 repo_url?=https://storage.googleapis.com/git-repo-downloads/repo
 repo_branch?=${branch}
 repo_src_file?=default.xml
-repo_file?=${repo_src_file}.tmp
+repo_file?=local.xml
+#${repo_src_file}.tmp
 
 init_name?=${os}-${os_profile}
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
