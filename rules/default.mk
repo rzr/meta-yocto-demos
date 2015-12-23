@@ -41,6 +41,7 @@ bblayers_file?=${build_dir}/conf/bblayers.conf
 bsp_relative_dir?=../..
 image_dir?=${build_dir}/tmp/deploy/images/${machine}
 conf_file?=${build_dir}/conf/local.conf
+images?=${image}
 
 local_name=localhost
 local_url?=file://${CURDIR}/
