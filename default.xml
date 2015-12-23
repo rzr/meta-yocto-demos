@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest><remote fetch="file:///home/philippe/var/lib/work.sh.dir/tmp/build/url/git/github.com/TizenTeam/meta-yocto-demos/latest/project/meta-yocto-demos/branch/sandbox/pcoval/bsp/fsl/meta-yocto-demos/../" name="localhost"/>
+<manifest>
   <remote fetch="http://github.com/TizenTeam/" name="tizenteam"/>
   <remote fetch="http://git.tizen.org/git/" name="tizen"/>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
