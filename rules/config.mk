@@ -6,16 +6,12 @@ bsp?=amlogic
 MACHINE?=odroidc1
 
 os?=tizen
-os_profile?=common
+os_profile?=micro
 distro?=${os}-distro
 distro_branch?=${os}
 extra?=oic
 init_name?=${os}-common
-ifeq (raspberrypi,${MACHINE})
-base_image?=rpi-hwup
-image?=${base_image}-image-${os}-${os_profile}
-endif
-base_image?=core-image-minimal
+base_image?=${os}-${profile}-image
 image?=${base_image}
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
 
