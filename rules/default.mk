@@ -43,3 +43,8 @@ image_dir?=${build_dir}/tmp/deploy/images/${machine}
 conf_file?=${build_dir}/conf/local.conf
 conf?=${conf_file}
 
+#images?=${image}
+image?=core-image-minimal \
+ tizen-common-core-image-minimal \
+ tizen-base-image \
+ tizen-micro-image
