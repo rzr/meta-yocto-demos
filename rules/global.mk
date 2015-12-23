@@ -19,8 +19,8 @@ tmp_dir?=tmp
 cache_dir?=${CURDIR}/
 build_dir?=${cache_dir}build
 
-conf_file?=${build_dir}/conf/local.conf
 
+conf_file?=${build_dir}/conf/local.conf
 
 rule/configure/conf: ${conf_file}
 	ls -l $^
