@@ -3,7 +3,7 @@
   <remote fetch="http://github.com/TizenTeam/" name="tizenteam"/>
   <remote fetch="http://git.tizen.org/git/" name="tizen"/>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
-  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="localhost" revision="sandbox/pcoval/bsp/fsl-arm"/>
+  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="sandbox/pcoval/bsp/fsl-arm"/>
   <project name="tizen-distro" path="sources/tizen-distro" remote="tizenteam" revision="sandbox/pcoval/tizen"/>
   <project name="meta-fsl-arm" path="sources/meta-fsl-arm" remote="yocto" revision="dizzy"/>
 </manifest>
