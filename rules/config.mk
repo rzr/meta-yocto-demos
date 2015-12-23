@@ -2,8 +2,8 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-bsp?=amlogic
-MACHINE?=odroidc1
+bsp?=fsl-arm
+MACHINE?=imx6qsabresd
 
 os?=tizen
 os_profile?=micro
