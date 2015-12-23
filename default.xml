@@ -5,5 +5,5 @@
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="sandbox/pcoval/bsp/amlogic"/>
   <project name="tizen-distro" path="sources/tizen-distro" remote="tizenteam" revision="sandbox/pcoval/tizen"/>
-  <project name="fsl-arm" path="sources/fsl-arm" remote="yocto" revision="dizzy"/>
+  <project name="meta-fsl-arm" path="sources/fsl-arm" remote="yocto" revision="dizzy"/>
 </manifest>
