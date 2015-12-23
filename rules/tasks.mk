@@ -35,8 +35,8 @@ rule/all: ${tmp_dir}/rule/setup.done
 
 manifest_url?=file://${CURDIR}/
 
-${repo_dir}: ${repo} ${repo_file}
-	mkdir -p $@ && cd $@/.. && ${repo} init -q -u ${manifest_url} -b ${repo_branch}
+${repo_dir}: ${repo_file} ${repo}
+	mkdir -p $@ && cd $@/.. && ${repo} init -q -u ${manifest_url} -b ${repo_branch} -m $<
 
 ${sources_dir}/${distro}: rule/repo/sync
 	ls -l ${@}/conf/combo-layer.conf
@@ -51,6 +51,12 @@ ${repo}:
 	mkdir -p ${@D}
 	wget -nc -O $@ ${repo_url}
 	chmod u+rx $@
+
+rule/repo: ${repo}
+	${<} --help
+
+rule/repo/dir: ${repo_dir}
+	du -hsc $<
 
 ${init_build_env}: ${sources_dir}
 	ls -l ${@D}
@@ -154,4 +160,6 @@ ${repo_file}: ${repo_src_file}
 	grep ${local_url} $@ \
 	|| sed -e "s|<manifest>|<manifest><remote fetch=\"${local_url}\" name=\"${local_name}\"/>|g" < $< > $@
 	sed -e "s|<project name=\"${project_name}\" path=\"sources/${project_name}\" remote=\"${remote}\" revision=\".*\"/>|<project name=\"${project_name}\" path=\"sources/${project_name}\" remote=\"${local_name}\" revision=\"${branch}\"/>|g" -i $@
-	cp -av $@ $<
+	git add $@ 
+	git commit -sam "WIP: dont push"
+#	cp -av $@ $<
