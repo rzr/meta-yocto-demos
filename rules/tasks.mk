@@ -113,7 +113,7 @@ rule/env/%: ${init_build_env}
 	cd ${<D} && ${source} ${<} ${build_dir} \
 	&& make -C ${CURDIR} rule/${@F} ARGS="${ARGS}"
 
-rule/bitbake: ${sources_dir}/${distro}/${build_dir}
+rule/bitbake: ${build_dir}
 	cd $< && time ${@F} ${ARGS}
 
 rule/clean:
