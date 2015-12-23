@@ -11,7 +11,7 @@ distro?=${os}-distro
 distro_branch?=${os}
 extra?=oic
 init_name?=${os}-common
-base_image?=${os}-${profile}-image
+base_image?=${os}-${os_profile}-image
 image?=${base_image}
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
 
