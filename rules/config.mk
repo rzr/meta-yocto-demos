@@ -13,7 +13,7 @@ distro_branch?=${os}
 extra?=oic
 init_name?=${os}-common
 base_image?=${os}-${os_profile}-image
-image?=${base_image}
+image?=core-image-sato
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
 
 SHELL=/bin/bash
