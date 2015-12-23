@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
+  <remote fetch="http://github.com/linux-meson/" name="amlogic"/>
+  <project name="poky" remote="yocto" revision="master"/>
+  <project name="meta-amlogic" remote="amlogic" revision="master"/>
+</manifest>
