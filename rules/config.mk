@@ -53,4 +53,6 @@ rule/images:
 
 rule/configure/conf: ${conf_file}
 	ls $<
+	echo "TODO: display EULA"
+	echo "ACCEPT_FSL_EULA = \"1\"" >> $<
 #	echo "DISTRO_FEATURES_remove = \" x11 wayland \"" >> $<
