@@ -21,18 +21,17 @@ machine?=${MACHINE}
 os?=${generic}
 os_profile?=${generic}
 distro?=poky
+
 repo?=$(shell which repo || echo ${CURDIR}/repo)
 repo_url?=https://storage.googleapis.com/git-repo-downloads/repo
 repo_branch?=${branch}
 repo_src_file?=default.xml
 repo_file?=local.xml
 
-init_name?=oe
+init_name?=${os}-${os_profile}
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
 image_type?=core
-image_base?=${image_type}-image-minimal
-image?=${image_base}
-images?=${image}
+image?=${image_type}-image-minimal
 
 project_dir?=${CURDIR}
 cache_dir?=${project_dir}/
@@ -41,7 +40,12 @@ bblayers_file?=${build_dir}/conf/bblayers.conf
 bsp_relative_dir?=../..
 image_dir?=${build_dir}/tmp/deploy/images/${machine}
 conf_file?=${build_dir}/conf/local.conf
-images?=${image}
+
+
+image?=core-image-minimal \
+ tizen-common-core-image-minimal \
+ tizen-base-image \
+ tizen-micro-image
 
 local_name=localhost
 local_url?=file://${CURDIR}/
