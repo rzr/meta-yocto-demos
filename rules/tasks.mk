@@ -59,8 +59,9 @@ rule/images:
 	done ; \
 	done ;
 
-rule/repo/%: ${repo_dir} ${repo} 
-	cd $</.. && time ${repo} ${@F} && ${repo} list
+rule/repo/%: ${repo_file} ${repo_dir} ${repo}
+	cd ${<D} && time ${repo} ${@F} && ${repo} list
+	-git rm --cached $<
 
 rule/setup/repo: ${repo_file}
 	date

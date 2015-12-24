@@ -15,11 +15,3 @@ repo_dir?=${project_dir}/.repo
 build_dir?=${project_dir}/build
 bblayers?=${build_dir}/conf/bblayers.conf
 tmp_dir?=tmp
-
-cache_dir?=${CURDIR}/
-build_dir?=${cache_dir}build
-
-conf_file?=${build_dir}/conf/local.conf
-
-rule/configure/conf: ${conf_file}
-	ls -l $^
