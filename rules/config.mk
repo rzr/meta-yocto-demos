@@ -5,9 +5,9 @@
 SHELL=/bin/bash
 V=1
 
-root_bsp=intel
-bsp?=fri2
-MACHINE?=${bsp}-noemgd
+root_bsp=sunxi
+bsp?=${root_bsp}
+MACHINE?=olinuxino-a20
 
 os?=tizen
 os_profile?=common
@@ -15,9 +15,7 @@ distro?=${os}-distro
 extra?=
 init_name?=${os}-${os_profile}
 base_image?=core-image-minimal
-image?=${os}-${base_image} \
- ${os}-${os_profile}-core-image-minimal \
- ${os}-${os_profile}-core-image-crosswalk
+image?=${base_image}
 
 sources_layers?=$(sort $(wildcard sources/meta-*))
-sources_layers+=sources/meta-${root_bsp}/meta-${bsp}
+
