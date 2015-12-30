@@ -2,7 +2,7 @@
 <manifest>
   <remote fetch="http://github.com/TizenTeam/" name="tizenteam"/>
   <remote fetch="http://git.tizen.org/git/" name="tizen"/>
-  <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
+  <remote fetch="https://github.com/linux-sunxi/" name="sunxi"/>
   <project name="tizen-distro" path="sources/tizen-distro" remote="tizenteam" revision="sandbox/pcoval/tizen"/>
-  <project name="meta-intel" path="sources/meta-intel" remote="yocto" revision="dizzy"/>
+  <project name="meta-sunxi" path="sources/meta-sunxi" remote="sunxi" revision="dizzy"/>
 </manifest>
