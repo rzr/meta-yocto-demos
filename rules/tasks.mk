@@ -61,7 +61,7 @@ ${repo}:
 	chmod u+rx $@
 
 ${sources_dir}/${project_name}: ${sources_dir}
-	ln -fs .. ${sources_dir}/${project_name}
+	ls -l $@ || ln -fs .. $@
 
 ${repo_dir}/.repo: ${repo_file} ${repo}
 	mkdir -p $@ && cd $@/.. \
@@ -150,6 +150,7 @@ sub-configure-rescan: ${sources_dir} rule/configure/machine ${tmp_dir}/sub-confi
 	echo "# remember dont call $@ direcly but configure"
 
 configure: rule/repo/sync ${tmp_dir}/rule/make/rule/sub-configure-rescan.done
+	@echo "processing: $@"
 	ls -l ${bblayers_file}
 
 rule/conf: ${conf_file}
