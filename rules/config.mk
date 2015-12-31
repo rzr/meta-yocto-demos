@@ -23,6 +23,4 @@ sources_layers_conf?=$(sort $(wildcard sources/meta-*/conf/layer.conf))
 sources_layers_dirs?=$(dir ${sources_layers_conf})
 sources_layers?=$(shell dirname $(sources_layers_dirs))
 
-
-sources_layers+=sources/meta-${root_bsp}/meta-${bsp} \
- meta-${root_bsp}/meta-${bsp}
+sources_layers+=sources/meta-${root_bsp}/meta-${bsp} 
