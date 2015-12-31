@@ -25,6 +25,7 @@ rule/help: ${SELF}
 	@echo "# distro=${distro}"
 	@echo "# conf_file=${conf_file}"
 	@echo "# image=${image}"
+	@echo "# sources_layers=${sources_layers}"
 	@echo ""
 	@echo "# Existing rules :"
 	@grep -o -e '^[^# 	]*:' $< | grep -v '\$$'
@@ -32,6 +33,9 @@ rule/help: ${SELF}
 ${tmp_dir}/%.done: %
 	mkdir -p ${@D}
 	touch $@
+
+rule/overide/%: %
+	@echo "$@ not overidden"
 
 rule/make/error:
 	$(error "error: ${ARG}")
@@ -61,7 +65,7 @@ ${repo}:
 	chmod u+rx $@
 
 ${sources_dir}/${project_name}: ${sources_dir}
-	ln -fs .. ${sources_dir}/${project_name}
+	ls -l $@ || ln -fs .. $@
 
 ${repo_dir}/.repo: ${repo_file} ${repo}
 	mkdir -p $@ && cd $@/.. \
@@ -74,13 +78,17 @@ rule/repo: ${repo}
 rule/repo/dir: ${repo_dir}
 	du -hsc $<
 
-${sources_dir}/${distro}: rules/config.mk ${tmp_dir}/rule/repo/sync.done
+${sources_dir}/${distro}: rules/config.mk 
+	ls -l ${tmp_dir}/rule/repo/sync.done || make rule/repo/sync
 	@ls -l ${@}/meta || make rule/make/error ARG="Please set distro var in rules/config.mk"
 
-${sources_dir}: rule/repo/sync
+${sources_dir}: 
+	@(error "TODO: %@")
+	ls -l ${@} || ${MAKE} rule/repo/sync 
 	ls -l ${@}
 
-${conf_file}: ${tmp_dir}/rule/setup.done
+${conf_file}:
+	ls $@ || make ${tmp_dir}/rule/setup.done
 	@make rule/env/help
 
 ${init_build_env}: ${sources_dir}/${distro}
@@ -127,7 +135,7 @@ sub-rule/layer/.: ${sources_dir}/${project_name}
 	ls -l ${bblayers_file}
 	ls -l $<
 
-${bblayers_file}: ${tmp_dir}/configure-layers.done
+${bblayers_file}: ${tmp_dir}/sub-configure-layers.done
 	grep BBLAYERS $@ | wc -l
 
 sub-configure-layers/path: ${bblayers_file}.orig
@@ -149,14 +157,34 @@ sub-configure-rescan: ${sources_dir} rule/configure/machine ${tmp_dir}/sub-confi
 	$(info "log: sources_layers=${sources_layers}")
 	echo "# remember dont call $@ direcly but configure"
 
-configure: rule/repo/sync ${tmp_dir}/rule/make/rule/sub-configure-rescan.done
+configure: rule/sources ${tmp_dir}/rule/make/rule/sub-configure-rescan.done
+	@echo "processing: $@"
 	ls -l ${bblayers_file}
 
 rule/conf: ${conf_file}
 	@ls -l $<
 
-rule/image: ${build_dir}
-	cd $< && time bitbake "${image}"
+rule/env/%: ${init_build_env}
+	cd ${<D}  \
+ && ${source} ${<} ${build_dir} \
+ && make -C ${CURDIR} rule/${@F} ARGS="${ARGS}"
+
+rule/bitbake: ${build_dir}
+	cd $< && time bitbake ${ARGS}
+
+rule/bitbake/task/%: ${bblayers_file} ${conf_file}
+	${MAKE} rule/env/bitbake ARGS="${@F}"
+
+rule/bitbake/cleanall/%:
+	${MAKE} rule/env/bitbake ARGS="-c cleanall ${@F}"
+
+rule/bitbake/clean/%:
+	${MAKE} rule/env/bitbake ARGS="-c clean ${@F}"
+
+rule/bitbake/rebuild/%: rule/bitbake/cleanall/% rule/bitbake/task/%
+	date
+
+rule/image: rule/bitbake/task/${image}
 
 rule/images: ${tmp_dir}
 	for machine in ${machines} ; do \
@@ -165,26 +193,6 @@ rule/images: ${tmp_dir}
 	|| echo "$${image}/$${machine}" >> ${tmp_dir}/fail.log ; \
 	done ; \
 	done ;
-
-rule/env/%: ${init_build_env}
-	cd ${<D}  \
- && ${source} ${<} ${build_dir} \
- && make -C ${CURDIR} rule/${@F} ARGS="${ARGS}"
-
-rule/bitbake: ${build_dir}
-	cd $< && time ${@F} ${ARGS}
-
-rule/bitbake/cleanall/%:
-	${MAKE} rule/env/bitbake ARGS="-c cleanall ${@F}"
-
-rule/bitbake/clean/%:
-	${MAKE} rule/env/bitbake ARGS="-c clean ${@F}"
-
-rule/bitbake/task/%:
-	${MAKE} rule/env/bitbake ARGS="${@F}"
-
-rule/bitbake/rebuild/%: rule/bitbake/cleanall/% rule/bitbake/task/%
-	date
 
 rule/clean:
 	rm -rfv ${build_dir}/tmp *~ .#*
