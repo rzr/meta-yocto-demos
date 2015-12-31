@@ -9,6 +9,7 @@ project_name?=meta-yocto-demos
 remote?=tizenteam
 
 user?=$(shell echo ${USER})
+log_file?=tmp/build.log
 version?=0.0.$(shell date -u +%Y%m%d)${user}
 email?=${USER}@localhost
 name=${USER}
@@ -36,7 +37,9 @@ image_dir?=${build_dir}/tmp/deploy/images/${machine}
 conf_file?=${build_dir}/conf/local.conf
 bblayers_file?=${build_dir}/conf/bblayers.conf
 build_file?=${tmp_dir}/build.log
-sources_layers?=$(sort $(wildcard sources/meta-*))
+sources_layers_conf?=$(sort $(wildcard sources/meta-*/conf/layer.conf))
+sources_layers_dirs?=$(dir ${sources_layers_conf})
+sources_layers?=$(shell dirname $(sources_layers_dirs))
 
 init_name?=oe
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
