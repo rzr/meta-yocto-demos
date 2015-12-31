@@ -83,7 +83,7 @@ ${sources_dir}/${distro}: rules/config.mk
 	@ls -l ${@}/meta || make rule/make/error ARG="Please set distro var in rules/config.mk"
 
 ${sources_dir}: 
-	@(error "TODO: %@")
+	@(warning "TODO: %@")
 	ls -l ${@} || ${MAKE} rule/repo/sync 
 	ls -l ${@}
 
