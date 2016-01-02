@@ -3,5 +3,5 @@
   <remote fetch="http://github.com/TizenTeam/" name="tizenteam"/>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <remote fetch="git://git.tizen.org/" name="tizen"/>
-  <project name="scm/bb/tizen-distro" path="sources/tizen-distro" remote="tizen" revision="tizen"/>
+  <project name="tizen-distro" path="sources/tizen-distro" remote="tizenteam" revision="sandbox/pcoval/tizen"/>
 </manifest>
