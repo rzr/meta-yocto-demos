@@ -4,12 +4,11 @@
 
 SHELL=/bin/bash
 V=1
-root_bsp=generic
+root_bsp=raspberrypi
 bsp?=${root_bsp}
-MACHINE?=${bsp}x86-64
+MACHINE?=${bsp}2
 
-machines?=${machine} \
- ${bsp}x86
+machines?=${machine} 
 
 os?=tizen
 os_profile?=common
@@ -21,5 +20,8 @@ image?=tizen-micro-core-image
 
 images?=${image}
 
+sources_layers_conf?=$(sort $(wildcard sources/meta-*/conf/layer.conf))
+
 sources_layers_conf+=\
  sources/tizen-distro/meta-tizen/meta-tizen-micro/conf/layer.conf
+
