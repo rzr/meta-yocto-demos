@@ -17,13 +17,9 @@ distro?=${os}-distro
 extra?=
 init_name?=${os}-${os_profile}
 base_image?=core-image-minimal
-image?=${base_image}
+image?=tizen-micro-core-image
 
-images?=${image} ${image}-dev \
- ${os}-${os_profile}-${base_image} \
- ${os}-${os_profile}-${base_image}-dev \
- tizen-common-core-image-crosswalk \
- tizen-common-core-image-crosswalk-dev
+images?=${image}
 
-
-sources_layers_conf+=
+sources_layers_conf+=\
+ sources/tizen-distro/meta-tizen/meta-tizen-micro/conf/layer.conf
