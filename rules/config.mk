@@ -6,10 +6,10 @@ SHELL=/bin/bash
 V=1
 root_bsp=generic
 bsp?=${root_bsp}
-MACHINE?=${bsp}x86-64
+MACHINE?=${bsp}x86
 
 machines?=${machine} \
- ${bsp}x86
+ ${bsp}x86-64
 
 os?=tizen
 os_profile?=common
