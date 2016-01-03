@@ -170,7 +170,7 @@ ${bblayers_file}.orig: rules/config.mk
 	mv "${bblayers_file}" "${@}"
 
 
-configure: ${bblayers_file} ${tmp_dir}/rule/make/rule/sub-configure-rescan.done
+configure: ${bblayers_file} ${tmp_dir}/rule/make/rule/sub-configure-rescan.done rule/configure/conf
 	@echo "processing: $@"
 	grep 'BBLAYERS +=' $<
 
