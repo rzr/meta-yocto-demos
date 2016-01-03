@@ -166,7 +166,7 @@ ${bblayers_file}.mine: ${bblayers_file}.orig
 
 ${bblayers_file}.orig: rules/config.mk
 	$(info "log: keep untouched bblayers_file")
-	ls ${bblayers_file} || make ${build_dir}/conf
+	ls ${bblayers_file} || make rule/init_env
 	mv "${bblayers_file}" "${@}"
 
 
