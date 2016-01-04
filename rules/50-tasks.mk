@@ -45,6 +45,8 @@ rule/done/%: ${tmp_dir}/done/%
 	$(info log: one shot: ${@})
 	date
 
+${tmp_dir}/done/rule/repo-sync: default.xml
+
 rule/done/rule/repo-sync: ${tmp_dir}/done/rule/repo-sync
 	$(info log: one shot: ${@})
 	date
