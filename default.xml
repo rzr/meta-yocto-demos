@@ -2,7 +2,7 @@
 <manifest>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <project name="poky" path="sources/poky" remote="yocto" revision="master"/>
-  <!-- project name="meta-openembedded/meta-oe" path="sources/meta-oe" remote="yocto" revision="master" --/>
+  <!-- project name="meta-openembedded/meta-oe" path="sources/meta-oe" remote="yocto" revision="master" -->
   <project name="meta-oic" path="sources/meta-oic" remote="yocto" revision="master"/>
   <project name="meta-intel-iot-middleware" path="sources/meta-intel-iot-middleware" remote="yocto" revision="master"/> 
   <project name="meta-intel-iot-devkit" path="sources/meta-intel-iot-devkit" remote="yocto" revision="master"/>
