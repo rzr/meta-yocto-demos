@@ -45,9 +45,9 @@ rule/done/%: ${tmp_dir}/done/%
 	$(info log: one shot: ${@})
 	date
 
-#rule/done/rule/repo-sync: ${tmp_dir}/done/rule/repo-sync
-#	$(info log: one shot: ${@})
-#	date
+rule/done/rule/repo-sync: ${tmp_dir}/done/rule/repo-sync
+	$(info log: one shot: ${@})
+	date
 
 rule/done/rule/%: ${tmp_dir}/done/rule/%
 	$(info log: one shot: ${@})
