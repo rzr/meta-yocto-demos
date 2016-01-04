@@ -1,0 +1,12 @@
+*.tmp
+*~
+.repo/
+build*/
+cache*/
+project*/
+repo
+sources/
+tmp/*
+tmp*
+*#
+.#*
