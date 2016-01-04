@@ -91,15 +91,13 @@ rule/repo: ${repo}
 	ls ${<}
 	@${<} --help
 
-rule/repo-dir: ${repo_dir}
+rule/repo-dir: ${repo_dir}/.repo
 	du -hsc $<
 
-rule/repo-sync: ${repo_file} ${repo}
+rule/repo-sync: ${repo_dir}/.repo
 	cd ${<D} && time ${repo} sync --force-sync
 
 ${sources_dir}/${distro}: rules/10-config.mk rule/done/rule/repo-sync
-#	@ls -l ${tmp_dir}/rule/repo-sync.done
-#	touch ${tmp_dir}/rule/repo-sync.done
 	@ls -l ${@}/meta || make rule/error ARG="Please set distro var in $<"
 
 rule/distro: ${sources_dir}/${distro}
