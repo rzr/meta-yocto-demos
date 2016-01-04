@@ -10,7 +10,7 @@ MACHINE?=${bsp}x86
 
 os?=oe
 os_profile?=
-distro?=poky
+distro?=core
 extra?=
 init_name?=${os}
 base_image?=core-image-minimal
