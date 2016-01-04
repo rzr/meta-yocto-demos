@@ -15,7 +15,7 @@ extra?=
 init_name?=${os}
 base_image?=core-image-minimal
 image?=oic-core-image
-images?=${image} ${base_image} ${image}-dev
+images?=${image} ${base_image} ${base_image}-dev
 
 sources_layers_conf?=$(sort $(wildcard sources/meta-*/conf/layer.conf))
 
