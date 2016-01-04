@@ -3,9 +3,10 @@
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <remote fetch="git://git.openembedded.org/" name="openembedded" />
   <project name="openembedded-core" path="sources/core" remote="openembedded" revision="master"/>
-  <project name="bitbake" path="sources/core/bitbake" remote="openembedded" revision="master"/>
+  <project name="bitbake" path="sources/core/bitbake" remote="openembedded" revision="dizzy"/>
   <project name="meta-openembedded" path="sources/meta-openembedded" remote="openembedded" revision="master"/>
-  <project name="meta-oic" path="sources/meta-oic" remote="yocto" revision="master"/>
   <project name="meta-intel-iot-middleware" path="sources/meta-intel-iot-middleware" remote="yocto" revision="master"/> 
-  <project name="meta-intel-iot-devkit" path="sources/meta-intel-iot-devkit" remote="yocto" revision="master"/>
+  <project name="meta-intel-iot-middleware" path="sources/meta-intel-iot-middleware" remote="yocto" revision="master"/> 
+  <project name="meta-intel-quark" path="sources/meta-intel-quark" remote="yocto" revision="master"/>
+  <project name="meta-oic" path="sources/meta-oic" remote="yocto" revision="master"/>
 </manifest>
