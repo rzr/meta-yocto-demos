@@ -3,6 +3,7 @@
 # ex: set tabstop=4 noexpandtab:
 SELF?=${CURDIR}/rules/50-tasks.mk
 
+.PHONY: rule/%
 rule/default: rule/overide/rule/help rule/overide/rule/all
 	date
 
@@ -32,13 +33,25 @@ rule/help: ${SELF}
 ${tmp_dir}:
 	mkdir -p $@
 
-${tmp_dir}/%.done: % ${tmp_dir}
+${tmp_dir}/done/%:
 	$(info timestamp for $<)
+	make rule/${@F}
 	mkdir -p ${@D}
 	touch $@
 
-rule/done/%: ${tmp_dir}/%.done
+rule/done/%: ${tmp_dir}/done/%
 	$(info log: one shot: ${@})
+	date
+
+${tmp_dir}/done/rule/repo-sync: default.xml
+
+rule/done/rule/repo-sync: ${tmp_dir}/done/rule/repo-sync
+	$(info log: one shot: ${@})
+	date
+
+rule/done/rule/%: ${tmp_dir}/done/rule/%
+	$(info log: one shot: ${@})
+	date
 
 rule/overide/%: %
 	$(info log: "$<" not overidden)
@@ -78,17 +91,19 @@ rule/repo: ${repo}
 	ls ${<}
 	@${<} --help
 
-rule/repo-dir: ${repo_dir}
+rule/repo-dir: ${repo_dir}/.repo
 	du -hsc $<
 
-rule/repo-sync: ${repo_file} ${repo}
+rule/repo-sync: ${repo_dir}/.repo
 	cd ${<D} && time ${repo} sync --force-sync
 
-${sources_dir}/${distro}: rules/10-config.mk 
-	@ls -l ${tmp_dir}/rule/repo/sync.done || make rule/repo/sync
+${sources_dir}/${distro}: rules/10-config.mk rule/done/rule/repo-sync
 	@ls -l ${@}/meta || make rule/error ARG="Please set distro var in $<"
 
-${sources_dir}: rules ${repo_file}
+rule/distro: ${sources_dir}/${distro}
+	grep ${<F} rules/*.mk
+
+${sources_dir}: rules ${repo_file} rule/done/rule/repo-sync
 	$(warning "TODO: %@")
 	@ls -l ${@} || ${MAKE} rule/repo/sync 
 	ls -l ${@}
@@ -171,9 +186,9 @@ ${bblayers_file}.mine: ${bblayers_file}.orig
 	mv $@.tmp $@
 	grep BBLAYERS $@ | wc -l
 
-${bblayers_file}.orig: rules/10-config.mk
+${bblayers_file}.orig: rules/10-config.mk ${SELF}
 	$(info log: keep untouched bblayers_file)
-	@ls ${bblayers_file} || make ${build_dir}/conf
+	@ls ${bblayers_file} || make rule/init_env
 	mv "${bblayers_file}" "${@}"
 
 rule/configure: ${bblayers_file} Makefile rule/done/rule/make/rule/sub-configure-rescan rule/overide/rule/configure-conf 
@@ -231,9 +246,6 @@ rule/cleanall: rule/overide/rule/clean
 
 rule/distclean: rule/overide/rule/cleanall
 	rm -rfv repo
-
-rule/distro: ${sources_dir}/${distro}
-	grep ${<F} rules/*.mk
 
 rule/purge: rule/overide/rule/distclean
 	rm -rf -- ${repo_dir}/.repo build* tmp
