@@ -105,7 +105,7 @@ ${sources_dir}/${distro}: rules/10-config.mk rule/done/rule/repo-sync
 rule/distro: ${sources_dir}/${distro}
 	grep ${<F} rules/*.mk
 
-${sources_dir}: rules ${repo_file}
+${sources_dir}: rules ${repo_file} rule/done/rule/repo-sync
 	$(warning "TODO: %@")
 	@ls -l ${@} || ${MAKE} rule/repo/sync 
 	ls -l ${@}
