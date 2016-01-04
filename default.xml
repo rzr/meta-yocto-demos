@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
-  <remote fetch="git://git.openembedded.org/" name="openembedded" />
+  <remote fetch="http://git.openembedded.org/git/" name="openembedded" />
   <project name="poky" path="sources/poky" remote="yocto" revision="master"/>
   <project name="meta-openembedded/meta-oe" path="sources/meta-oe" remote="openembedded" revision="master"/>
   <project name="meta-oic" path="sources/meta-oic" remote="yocto" revision="master"/>
