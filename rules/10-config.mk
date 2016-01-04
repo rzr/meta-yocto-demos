@@ -4,7 +4,7 @@
 
 SHELL=/bin/bash
 V=1
-root_bsp=generic
+root_bsp=qemu
 bsp?=${root_bsp}
 MACHINE?=${bsp}x86
 
