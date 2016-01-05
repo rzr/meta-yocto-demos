@@ -4,20 +4,32 @@
 
 SHELL=/bin/bash
 V=1
-root_bsp=generic
+root_bsp=raspberrypi
 bsp?=${root_bsp}
-MACHINE?=${bsp}x86
+MACHINE?=${bsp}
+machine?=${MACHINE}
+machines?=${MACHINE} ${bsp}
 
-os?=oe
-os_profile?=
-distro?=poky
+os?=tizen
+os_profile?=common
+distro?=${os}-distro
 extra?=
-init_name?=${os}
+init_name?=${os}-${os_profile}
 base_image?=core-image-minimal
-image?=${base_image}
-images?=${image} ${image}-dev
+image?=rpi-hwup-image-tizen-micro
+
+images?=\
+ rpi-basic-image  rpi-hwup-image rpi-test-image \
+ ${base-image} ${image} \
+ ${os}-${os_profile}-${base-image} ${os}-${os_profile}-${base-image} \
+ tizen-core-image-minimal \
+ tizen-common-core-image-crosswalk \
+ tizen-common-core-image-crosswalk-dev \
+ tizen-common-core-image-minimal \
+ tizen-common-core-image-minimal-dev
 
 sources_layers_conf?=$(sort $(wildcard sources/meta-*/conf/layer.conf))
 
-sources_layers_conf+=
+sources_layers_conf+=\
+ sources/tizen-distro/meta-tizen/meta-tizen-micro/conf/layer.conf
 
