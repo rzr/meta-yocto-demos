@@ -44,6 +44,7 @@ rule/done/%: ${tmp_dir}/done/%
 	date
 
 ${tmp_dir}/done/rule/repo-sync: default.xml
+	git commit -m 'WIP: ${project} ($@)' $<
 	make rule/${@F}
 	mkdir -p ${@D}
 	touch sources $@
