@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+  <remote fetch="http://github.com/TizenTeam/" name="tizenteam"/>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
-  <project name="poky" path="sources/poky" remote="yocto" revision="master"/>
+  <remote fetch="http://github.com/linux-meson/" name="amlogic"/>
+  <project name="poky" path="sources/poky" remote="yocto" revision="dizzy"/>
+  <project name="meta-amlogic" path="sources/meta-amlogic" remote="amlogic" revision="dizzy"/>
 </manifest>
