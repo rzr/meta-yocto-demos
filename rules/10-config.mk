@@ -4,9 +4,9 @@
 
 SHELL=/bin/bash
 V=1
-root_bsp=generic
+root_bsp=amlogic
 bsp?=${root_bsp}
-MACHINE?=${bsp}x86
+MACHINE?=odroidc1
 
 os?=oe
 os_profile?=
