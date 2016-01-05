@@ -8,12 +8,12 @@ root_bsp=amlogic
 bsp?=${root_bsp}
 MACHINE?=odroidc1
 
-os?=oe
-os_profile?=
-distro?=poky
-extra?=
-init_name?=${os}
-base_image?=core-image-minimal
+os?=tizen
+os_profile?=micro
+distro?=${os}-distro
+distro_branch?=${os}
+init_name?=${os}-common
+base_image?=${os}-${os_profile}-image
 image?=${base_image}
 images?=${image} ${image}-dev
 
