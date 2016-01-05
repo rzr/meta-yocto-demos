@@ -44,6 +44,9 @@ rule/done/%: ${tmp_dir}/done/%
 	date
 
 ${tmp_dir}/done/rule/repo-sync: default.xml
+	make rule/${@F}
+	mkdir -p ${@D}
+	touch sources $@
 
 rule/done/rule/repo-sync: ${tmp_dir}/done/rule/repo-sync
 	$(info log: one shot: ${@})
@@ -97,7 +100,7 @@ rule/repo-dir: ${repo_dir}/.repo
 rule/repo-sync: ${repo_dir}/.repo
 	cd ${<D} && time ${repo} sync --force-sync
 
-${sources_dir}/${distro}: rules/10-config.mk rule/done/rule/repo-sync
+${sources_dir}/${distro}: rules/10-config.mk ${sources_dir}
 	@ls -l ${@}/meta || make rule/error ARG="Please set distro var in $<"
 
 rule/distro: ${sources_dir}/${distro}
@@ -106,7 +109,7 @@ rule/distro: ${sources_dir}/${distro}
 ${sources_dir}: rules ${repo_file} rule/done/rule/repo-sync
 	$(warning "TODO: %@")
 	@ls -l ${@} || ${MAKE} rule/repo/sync 
-	ls -l ${@}
+	touch ${@}
 
 ${conf_file}:
 	@ls $@ || make rule/done/rule/setup
