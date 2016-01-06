@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
-  <project name="poky" path="sources/poky" remote="yocto" revision="master"/>
+  <remote fetch="git://git.tizen.org/" name="tizen"/>
+  <remote fetch="git://git.s-osg.org/" name="s-osg" />
+  <remote fetch="git://github.com/TizenTeam/" name="tizenteam"/>
+  <project name="tizen-distro" path="sources/tizen-distro" remote="tizenteam" revision="sandbox/pcoval/tizen-raspberrypi"/>
+  <project name="meta-raspberrypi" path="sources/meta-raspberrypi" remote="s-osg" revision="master"/>
 </manifest>
