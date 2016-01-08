@@ -1,6 +1,11 @@
 #! /usr/bin/make -f
-include rules/10-config.mk
-include rules/30-default.mk
-include rules/50-tasks.mk
-include rules/70-extra.mk
-include rules/90-overides.mk
+# Author: Philippe Coval <philippe.coval@osg.samsung.com>
+# ex: set tabstop=4 noexpandtab:
+
+
+-include rules/config.mk
+include rules/default.mk
+include rules/tasks.mk
+include rules/extra.mk
+-include rules/overides.mk
+
