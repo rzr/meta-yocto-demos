@@ -107,7 +107,7 @@ rules/80-phony.mk: $(subst rules/80-phony.mk,, ${rules_files})
 	grep '^rule/.*:' rules/*.mk | grep -v '%' | cut -d: -f2| sort | sed -e 's|$$| \\|g' >> $@
 	@echo ' #eol' >> $@
 
-rule/all: rule/done/configure rule/overide/image rule/list/images
+rule/all: rule/done/configure rule/print/images rule/overide/image rule/list/images
 
 rule/repo/%: ${repo_dir}/.repo ${repo}
 	cd ${<D} && time ${repo} ${@F} && ${repo} list
@@ -345,6 +345,10 @@ rule/show-recipes:
 #TODO/WIP
 rule/show:
 	${MAKE} rule/env-exec/bb ARGS="show DISTRO DISTRO_FEATURES"
+
+rule/show-recipes:
+	${MAKE} rule/env-exec/bitbake-layers ARGS="show-recipes"
+
 
 # aliases
 
