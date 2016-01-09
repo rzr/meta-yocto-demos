@@ -43,7 +43,7 @@ ${tmp_dir}:
 	mkdir -p $@
 
 ${tmp_dir}/done/%:
-	$(info timestamp for $<)
+	$(info timestamp for $<  rules/10-config.mk rules/10-tasks.mk)
 	make rule/${@F}
 	mkdir -p ${@D}
 	touch $@
@@ -81,7 +81,7 @@ rule/log/%: ${tmp_dir}
 rules/10-config.mk:
 	@echo "#distro?=TODO" > $@
 
-rule/all: rule/done/configure rule/print/images rule/overide/rule/env/image
+rule/all: rule/done/configure rule/print/images rule/overide/rule/env/image rule/list/images
 
 rule/repo/%: ${repo_dir}/.repo ${repo}
 	cd ${<D} && time ${repo} ${@F} && ${repo} list
@@ -295,6 +295,10 @@ rule/print/images: ${build_dir}/conf ${sources_dir}
 
 rule/ui/image:
 	${MAKE} rule/env-exec/bitbake ARGS="${image} -g -u depexp"
+
+rule/show-recipes:
+	${MAKE} rule/env-exec/bitbake-layers ARGS="show-recipes"
+
 
 # aliases
 
