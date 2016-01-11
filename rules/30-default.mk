@@ -33,7 +33,7 @@ cache_dir?=${project_dir}/
 build_dir?=${cache_dir}build-${machine}
 project_relative_dir?=../../
 sources_dir?=${project_dir}/sources
-tmp_dir?=tmp
+tmp_dir?=tmp/${MACHINE}
 
 image_dir?=${build_dir}/tmp/deploy/images/${machine}
 conf_file?=${build_dir}/conf/local.conf
