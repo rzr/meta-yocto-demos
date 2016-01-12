@@ -1,4 +1,4 @@
-require recipes-image/images/tizen-common-core-image-minimal-dev.bb
+require recipes-image/images/tizen-micro-core-image.bb
 
 IMAGE_INSTALL += "mraa"
 
