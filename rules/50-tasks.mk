@@ -123,7 +123,7 @@ ${sources_dir}: rules ${repo_file} rule/done/rule/repo-sync
 	@ls -l ${@} || ${MAKE} rule/repo/sync
 	touch ${@}
 
-${conf_file}:
+${conf_file}: rules/90-overides.mk rules/10-config.mk
 	@ls $@ || make rule/done/rule/configure
 	@make rule/env/help
 
@@ -159,7 +159,7 @@ rule/sources: ${sources_dir}
 rule/build: ${build_dir}
 	ls $<
 
-rule/configure-conf: ${conf_file}
+rule/configure-conf: ${conf_file} ${rules_files}
 	grep -i MACHINE ${conf_file}
 
 rule/configure-machine: ${conf_file}
