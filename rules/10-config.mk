@@ -24,4 +24,4 @@ images?=${base_image} \
 
 sources_layers_conf?=$(sort $(wildcard sources/meta-*/conf/layer.conf))
 
-sources_layers_conf+=
+sources_layers_conf+=sources/tizen-distro/meta-tizen/meta-tizen-micro/conf/layer.conf
