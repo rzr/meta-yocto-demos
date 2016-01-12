@@ -4,11 +4,11 @@
 
 SHELL=/bin/bash
 V=1
-root_bsp=generic
+root_bsp=raspberrypi
 bsp?=${root_bsp}
-MACHINE?=${bsp}x86
+MACHINE?=${bsp}
 machine?=${MACHINE}
-machines?=${machine} ${machine}-64
+machines?=${machine} ${machine}2
 os?=tizen
 os_profile?=common
 distro?=${os}-distro
