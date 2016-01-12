@@ -2,6 +2,6 @@
 <manifest>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <remote fetch="git://git.tizen.org/" name="tizen"/>
-  <project name="scm/bb/tizen-distro" path="sources/tizen-distro" remote="tizen" revision="sandbox/pcoval/devel"/>
+  <project name="scm/bb/tizen-distro" path="sources/tizen-distro" remote="tizen" revision="tizen"/>
   <project name="meta-oic" path="sources/meta-oic" remote="yocto" revision="master"/>
 </manifest>
