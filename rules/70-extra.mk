@@ -1,9 +1,10 @@
-sudo?=$(shell which sudo || echo sudo)
-rules?=$(sort $(wildcard rules/??-*.mk))
+#! /usr/bin/make -f
+# Author: Philippe Coval <philippe.coval@osg.samsung.com>
+# ex: set tabstop=4 noexpandtab:
 
 Makefile: rules
 	echo "#! /usr/bin/make -f" > $@
-	for rule in ${rules} ; do echo "include $${rule}" >> $@ ; done
+	for rule in ${rules_files} ; do echo "include $${rule}" >> $@ ; done
 
 /etc/os-release:
 	$(error Unsupported OS please report bug)
