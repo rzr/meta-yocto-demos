@@ -2,7 +2,7 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-# better force in your rule/config.mk
+# better force in your rule/10-config.mk
 SHELL?=/bin/bash
 
 project_name?=meta-yocto-demos
@@ -61,3 +61,6 @@ local_name=localhost
 local_url?=file://${repo_dir}
 
 source?=.
+
+sudo?=$(shell which sudo || echo sudo)
+rules_files?=$(sort $(wildcard rules/??-*.mk))
