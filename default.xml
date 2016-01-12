@@ -4,5 +4,5 @@
   <remote fetch="git://git.tizen.org/" name="tizen"/>
   <project name="scm/bb/tizen-distro" path="sources/tizen-distro" remote="tizen" revision="tizen"/>
   <project name="meta-oic" path="sources/meta-oic" remote="yocto" revision="master"/>
-  <project name="meta-rasberrypi" path="sources/meta-raspberrypi" remote="yocto" revision="dizzy"/>
+  <project name="meta-raspberrypi" path="sources/meta-raspberrypi" remote="yocto" revision="dizzy"/>
 </manifest>
