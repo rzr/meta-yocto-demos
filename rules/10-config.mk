@@ -4,9 +4,15 @@
 
 SHELL=/bin/bash
 V=1
-root_bsp=generic
+
+root_bsp=atmel
 bsp?=${root_bsp}
-MACHINE?=${bsp}x86
+
+board_vendor?=at91
+board_family?=sama5d4
+board_variant?=xplained
+board_alias?=${board_family}x-ek
+MACHINE?=${board_family}-${board_variant}
 
 os?=oe
 os_profile?=
@@ -14,10 +20,14 @@ distro?=poky
 extra?=
 init_name?=${os}
 base_image?=core-image-minimal
-image?=${base_image}
-images?=${image} ${image}-dev
+image?=${bsp}-${board_variant}-lcd-demo-image
+images?=${image} \
+ core-image-weston
 
 sources_layers_conf?=$(sort $(wildcard sources/meta-*/conf/layer.conf))
 
-sources_layers_conf+=
+sources_layers_conf+= \
+ sources/meta-openembedded/meta-python/conf/layer.conf \
+ sources/meta-openembedded/meta-networking/conf/layer.conf \
+ sources/meta-openembedded/meta-oe/conf/layer.conf
 
