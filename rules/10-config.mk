@@ -20,8 +20,12 @@ images?=${base_image} \
  ${image} ${image}-dev \
  ${os}-${os_profile}-${base_image} \
  tizen-common-core-image-crosswalk \
- tizen-common-core-image-crosswalk-dev
+ tizen-common-core-image-crosswalk-dev \
+ rpi-hwup-image
 
 sources_layers_conf?=$(sort $(wildcard sources/meta-*/conf/layer.conf))
 
-sources_layers_conf+=sources/tizen-distro/meta-tizen/meta-tizen-micro/conf/layer.conf
+sources_layers_conf+= \
+ sources/tizen-distro/meta-tizen/meta-tizen-micro/conf/layer.conf
+
+#TODO: sources/tizen-distro/meta-tizen/meta-tizen-micro/meta-raspberry-pi/conf/layer.conf
