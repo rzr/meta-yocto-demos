@@ -16,6 +16,7 @@ rule/help: ${SELF}
 	@echo "# project_name=${project_name}"
 	@echo "# branch=${branch}"
 	@echo "# MACHINE=${MACHINE}"
+	@echo "# SHELL=${SHELL}"
 	@echo "# USER=${USER}"
 	@echo "# email=${email}"
 	@echo "# version=${version}"
@@ -27,6 +28,7 @@ rule/help: ${SELF}
 	@echo "# distro=${distro}"
 	@echo "# conf_file=${conf_file}"
 	@echo "# image=${image}"
+	@echo "# images=${images}"
 	@echo "# sources_layers=${sources_layers}"
 	@echo "# More in rules/*.mk "
 
@@ -145,7 +147,7 @@ ${build_dir}: ${init_build_env} rule/overide/rule/init_env
 rule/init_env: ${init_build_env}
 	mkdir -p ${build_dir}
 	cd ${build_dir}/.. && ${source} ${<} ${build_dir}
-	ls ${build_dir}/conf
+	grep '^MACHINE.*' ${build_dir}/conf/local.conf
 
 rule/init_build_env: ${init_build_env}
 	ls $<
@@ -211,8 +213,9 @@ rule/env/%: ${init_build_env}
  && ${source} ${<} ${build_dir} \
  && make -C ${CURDIR} rule/${@F} ARGS="${ARGS}"
 
-rule/exec/%: ${build_dir}
-	cd $< && time ${@F} ${ARGS}
+rule/exec/%: ${build_dir} ${conf_file} ${bblayers_file}
+	grep '^MACHINE.*' $</conf/local.conf
+	cd ${<} && time ${@F} ${ARGS}
 
 rule/env-exec/%: ${init_build_env}
 	cd ${<D}  \
