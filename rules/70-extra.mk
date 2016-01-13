@@ -26,6 +26,7 @@ rule/setup/debian: /etc/debian_version
  libattr1-dev \
  libsdl1.2-dev \
  libwayland-dev \
+ nodejs-legacy \
  quilt \
  sudo \
  texinfo \
