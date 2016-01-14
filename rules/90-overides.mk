@@ -8,10 +8,19 @@ rule/machine/${MACHINE}/configure:
 	 sources/tizen-distro/meta-tizen/meta-tizen-micro/recipes-image/raspberrypi2/rpi-hwup-image-tizen-micro.bb \
 	 sources/tizen-distro/meta-tizen/meta-tizen-micro/meta-raspberrypi/recipes-image/tizen-micro-rpi-hwup-image.bb 
 	install -d ../tmp/${CURDIR}
-	-mv -v sources/meta-50-oic/recipes-kernel ../tmp/${CURDIR}
+
+rule/backport/dizzy:
+	-mv -v \
+ sources/meta-oic/recipes-kernel/linux/linux-yocto_3.19.bbappend \
+ sources/meta-oic/recipes-kernel/linux/linux-yocto_3.17.bbappend
+
+	sed -e 's|STAGING_KERNEL_BUILDDIR|STAGING_KERNEL_DIR|g' -i  \
+	 sources/meta-raspberrypi/classes/linux-raspberrypi-base.bbclass
+	sed -e 's|get_kernelversion_file|get_kernelversion|g' -i  \
+	sources/meta-raspberrypi/classes/linux-raspberrypi-base.bbclass
 
 
-rule/overide/rule/configure-conf: rule/configure-conf rule/machine/${MACHINE}/configure
+rule/overide/rule/configure-conf: rule/configure-conf rule/machine/${MACHINE}/configure rule/backport/dizzy
 	ls -l ${conf_file}
 	ls -l sources/meta-*${bsp}/conf/machine/${MACHINE}.conf
 
