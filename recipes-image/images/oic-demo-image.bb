@@ -1,4 +1,4 @@
-require recipes-image/images/tizen-core-image-minimal.bb
+require recipes-image/images/tizen-base-image.bb
 
 IMAGE_INSTALL += " \
 	kernel-modules \
@@ -25,3 +25,7 @@ EXTRA_USERS_PARAMS = "usermod -P password root;"
 
 inherit extrausers
 EXTRA_USERS_PARAMS = "usermod -P password user;"
+
+
+# TODO:
+IMAGE_INSTALL += "libwayland-egl"
