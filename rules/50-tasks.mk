@@ -83,7 +83,7 @@ rule/log/%: ${tmp_dir}
 rules/10-config.mk:
 	@echo "#distro?=TODO" > $@
 
-rule/all: rule/done/configure rule/print/images rule/overide/rule/env/image rule/list/images
+rule/all: rule/done/configure rule/overide/rule/env/image rule/list/images
 
 rule/repo/%: ${repo_dir}/.repo ${repo}
 	cd ${<D} && time ${repo} ${@F} && ${repo} list
