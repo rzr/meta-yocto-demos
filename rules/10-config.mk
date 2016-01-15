@@ -15,7 +15,7 @@ distro?=${os}-distro
 extra?=
 init_name?=${os}-${os_profile}
 base_image?=core-image-minimal
-image?=oic-core-image
+image?=oic-demo-image
 images?=${base_image} \
  ${image} ${image}-dev \
  ${os}-${os_profile}-${base_image} \
@@ -26,7 +26,7 @@ images?=${base_image} \
 sources_layers_conf?=$(sort $(wildcard sources/meta-*/conf/layer.conf))
 
 sources_layers_conf+= \
- sources/tizen-distro/meta-tizen/meta-tizen-micro/conf/layer.conf \
- meta-tizen-raspberrypi/conf/layer.conf
+ # sources/tizen-distro/meta-tizen/meta-tizen-micro/conf/layer.conf \
+ # meta-tizen-raspberrypi/conf/layer.conf
 
 #TODO: sources/tizen-distro/meta-tizen/meta-tizen-micro/meta-raspberry-pi/conf/layer.conf
