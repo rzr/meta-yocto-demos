@@ -4,11 +4,10 @@
 
 SHELL=/bin/bash
 V=1
-root_bsp=generic
+root_bsp=raspberrypi
 bsp?=${root_bsp}
-MACHINE?=${bsp}x86
-machines?=${machine} \
- ${machine}-64
+MACHINE?=raspberrypi2
+machines?=${machine} 
 
 os?=tizen
 os_profile?=common
@@ -16,7 +15,7 @@ distro?=${os}-distro
 extra?=
 init_name?=${os}-${os_profile}
 base_image?=core-image-minimal
-image?=${base_image}
+image?=tizen-oic-image
 images?=${image} ${image}-dev
 
 images?=${image} ${image}-dev \
