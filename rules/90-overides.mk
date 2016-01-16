@@ -69,9 +69,12 @@ rule/wip/cleanall: \
  rule/bitbake/cleanall/config-image \
  rule/bitbake/cleanall/gumd \
  rule/bitbake/cleanall/pam \
- rule/bitbake/cleanall/libtbm \
+ rule/bitbake/cleanall/tlm \
  rule/bitbake/cleanall/weston \
  #eol
+
+rule/wip/rebuild: rule/wip/cleanall \
+ rule/bitbake/tlm
 
 rule/wip: \
  rule/bitbake/cleanall/userland rule/bitbake/task/userland \
