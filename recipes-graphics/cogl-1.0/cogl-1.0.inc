@@ -16,8 +16,8 @@ PACKAGECONFIG += "wayland-egl"
 PACKAGECONFIG += "egl-wayland"
 PACKAGECONFIG += "wayland-client"
 
-CFLAGS_append_raspberrypi +="-I${STAGING_INCDIR}/interface/vcos/pthreads/ -I${STAGING_INCDIR}/interface/vmcs_host/linux/"
-PACKAGECONFIG[wayland-egl] += ",,mesa"
+#CFLAGS_append_raspberrypi +="-I${STAGING_INCDIR}/interface/vcos/pthreads/ -I${STAGING_INCDIR}/interface/vmcs_host/linux/"
+#PACKAGECONFIG[wayland-egl] += ",,"
 
 # Extra DEPENDS for PACKAGECONFIG
 EDEPENDS_GL = "virtual/libgl libdrm"
