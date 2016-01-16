@@ -16,22 +16,34 @@ PACKAGECONFIG ?= ""
 
 
 #PACKAGECONFIG += "egl"
+#CFLAGS_append_raspberrypi +="-I${STAGING_INCDIR}/interface/vcos/pthreads/ -I${STAGING_INCDIR}/interface/vmcs_host/linux/"
 
-CFLAGS_append_raspberrypi +="-I${STAGING_INCDIR}/interface/vcos/pthreads/ -I${STAGING_INCDIR}/interface/vmcs_host/linux/"
+PKG_CONFIG_PATH_raspberrypi += "/opt/vc/lib/pkgconfig/"
 
-PKG_CONFIG_PATH += "/opt/vc/lib/pkgconfig/"
+PACKAGECONFIG += "wayland"
 
-PACKAGECONFIG += "wayland-egl"
-
+#PACKAGECONFIG += "wayland-egl"
 
 PACKAGECONFIG[egl] += " \
-  --enable-drm-compositor --enable-wayland-compositor, \
- --disable-drm-compositor --disable-wayland-compositor, \
- virtual/egl"
+ --enable-egl --enable-simple-egl-clients, \
+ --disable-egl --disable-simple-egl-clients, \
+ virtual/egl \
+"
+
+PACKAGECONFIG[wayland-egl] += " \
+ --enable-drm-compositor --enable-egl-backend, \
+ --disable-drm-compositor --disable-egl-backend, \ 
+ virtual/egl \
+"
 
 PACKAGECONFIG[cairo-glesv2] += "--with-cairo=glesv2, , virtual/libgles2"
 
-PACKAGECONFIG[wayland-egl] += "--enable-egl --enable-simple-egl-clients, --disable-egl --disable-simple-egl-clients,mesa-gl"
+PACKAGECONFIG[wayland] = "--enable-wayland-compositor,--disable-wayland-compositor, wayland"
+
+
+
+DEPENDS[wayland-egl] += "libwayland-egl-dev"
+
 
 EXTRA_OECONF += "   \
                     --disable-vaapi-recorder \
