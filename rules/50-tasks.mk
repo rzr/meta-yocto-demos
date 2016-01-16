@@ -241,7 +241,7 @@ rule/bitbake/rebuild/%: rule/bitbake/cleanall/% rule/bitbake/task/%
 rule/list/images:
 	find ${build_dir}/tmp*/deploy/images/${MACHINE}/ -type l
 
-rule/image: rule/bitbake/task/${image} rule/list/images
+rule/image: rule/done/configure rule/bitbake/task/${image} rule/list/images
 	date
 
 rule/images: ${tmp_dir}
