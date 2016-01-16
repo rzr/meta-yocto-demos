@@ -8,6 +8,8 @@ inherit core-image distro_features_check
 
 REQUIRED_DISTRO_FEATURES = "pam"
 
+DISTRO_FEATURES_remove = "x11"
+
 CORE_IMAGE_BASE_INSTALL += ""
 
 DESCRIPTION = "A basic image for Tizen Headless usage"
@@ -25,9 +27,9 @@ CORE_IMAGE_BASE_INSTALL += "${IMAGECONFIG}"
 
 
 CORE_IMAGE_BASE_INSTALL += "gum-utils"
-CORE_IMAGE_BASE_INSTALL += "meta-common"
+#CORE_IMAGE_BASE_INSTALL += "meta-common"
 CORE_IMAGE_BASE_INSTALL += "pam"
-CORE_IMAGE_BASE_INSTALL += "user-session-units"
+#CORE_IMAGE_BASE_INSTALL += "user-session-units"
 CORE_IMAGE_BASE_INSTALL += "default-ac-domains"
 CORE_IMAGE_BASE_INSTALL += "rpm-security-plugin"
 CORE_IMAGE_BASE_INSTALL += "config-image"
