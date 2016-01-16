@@ -12,25 +12,18 @@ PACKAGES =+ "${PN}-examples \
              libcogl-path libcogl-path-dev"
 AUTOTOOLS_AUXDIR = "${S}/build"
 
-PACKAGECONFIG += "wayland-egl"
-PACKAGECONFIG += "egl-wayland"
-PACKAGECONFIG += "wayland-client"
-
-#CFLAGS_append_raspberrypi +="-I${STAGING_INCDIR}/interface/vcos/pthreads/ -I${STAGING_INCDIR}/interface/vmcs_host/linux/"
-#PACKAGECONFIG[wayland-egl] += ",,"
-
 # Extra DEPENDS for PACKAGECONFIG
 EDEPENDS_GL = "virtual/libgl libdrm"
-EDEPENDS_GLES2 = "virtual/libgles2"
+EDEPENDS_GLES2 = "userland"
 EDEPENDS_KMS = "libdrm virtual/egl"
 EDEPENDS_EGL = "virtual/egl"
 EDEPENDS_X11 = "virtual/libx11 libxcomposite libxfixes libxi libxrandr"
-EDEPENDS_WAYLAND = "virtual/libgl virtual/mesa wayland"
+EDEPENDS_WAYLAND = "wayland"
 
 # Extra RDEPENDS for PACKAGECONFIG
 # This has to be explictly listed, because cogl dlopens the backends
 ERDEPENDS_GL    = "libgl"
-ERDEPENDS_GLES2 = "libgles2"
+ERDEPENDS_GLES2 = "userland"
 
 # GLESv1 is rarely tested, so disable it
 EXTRA_OECONF += "--disable-introspection	\
@@ -60,9 +53,18 @@ PACKAGECONFIG[cogl-pango] = "--enable-cogl-pango,--disable-cogl-pango,pango"
 
 # Respect the DISTRO_FEATURES to pull in GLX or Wayland as appropriate by
 # default.
-PACKAGECONFIG ??= "cogl-pango gles2 \
+PACKAGECONFIG ??= ""
+
+PACKAGECONFIG += "cogl-pango gles2 \
                    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'egl-wayland', '', d)} \
                    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'glx', '', d)}"
+
+PACKAGECONFIG += "egl"
+PACKAGECONFIG += "egl-wayland"
+PACKAGECONFIG += "gles2"
+PACKAGECONFIG += "wayland-egl"
+PACKAGECONFIG += "wayland-client"
+
 
 FILES_${PN}-examples = "${bindir}/* ${datadir}/cogl/examples-data/*"
 FILES_libcogl = "${libdir}/libcogl${SOLIBS}"
