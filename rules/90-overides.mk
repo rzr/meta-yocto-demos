@@ -71,6 +71,8 @@ rule/wip/cleanall: \
  rule/bitbake/cleanall/pam \
  rule/bitbake/cleanall/tlm \
  rule/bitbake/cleanall/weston \
+ rule/bitbake/cleanall/desktop-skin \
+ rule/bitbake/cleanall/rpcbind \
  #eol
 
 rule/wip/rebuild: rule/wip/cleanall \
