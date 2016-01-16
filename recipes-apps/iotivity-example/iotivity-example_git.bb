@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
 hash = "1a69a21646324ea70e0d892d5f26e7978bbf2290"
 
-SRC_URI = "git://notabug.org/tizen/iotivity-example/;branch=sandbox/pcoval/devel;tag=${hash};protocol=git"
+SRC_URI = "git://notabug.org/tizen/iotivity-example/;branch=sandbox/pcoval/devel;tag=${hash};protocol=http"
 
 S = "${WORKDIR}/git"
 
@@ -20,7 +20,7 @@ config_mraa="1"
 DEPENDS += "mraa"
 RDEPENDS_${PN} += "mraa"
 
-DEPENDS_${PN} += "iotivity-resource-dev iotivity-resource-thin-staticdev iotivity-plugins-staticdev iotivity-service-dev iotivity-service-staticdev"
+DEPENDS_${PN} += "iotivity-resource-dev iotivity-resource-thin-staticdev  iotivity-service-dev iotivity-service-staticdev"
 
 BBCLASSEXTEND = "native nativesdk"
 
