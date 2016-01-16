@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
 hash = "1a69a21646324ea70e0d892d5f26e7978bbf2290"
 
-SRC_URI = "git://git@notabug.org/tizen/iotivity-example/;branch=sandbox/pcoval/devel;tag=${hash};protocol=ssh"
+SRC_URI = "git://notabug.org/tizen/iotivity-example/;branch=sandbox/pcoval/devel;tag=${hash};protocol=git"
 
 S = "${WORKDIR}/git"
 
