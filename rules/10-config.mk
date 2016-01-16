@@ -15,9 +15,9 @@ distro?=${os}-distro
 extra?=
 init_name?=${os}-${os_profile}
 base_image?=core-image-minimal
-image?=tizen-base-image
+image?=oic-demo-image
 images?=${base_image} \
- oic-demo-image \
+ tizen-base-image \
  ${image} ${image}-dev \
  ${os}-${os_profile}-${base_image} \
  tizen-common-core-image-crosswalk \
