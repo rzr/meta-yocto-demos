@@ -1,6 +1,6 @@
 # require recipes-image/images/tizen-core-image-minimal.bb
-# require recipes-image/images/tizen-common-core-image-minimal.bb
-require recipes-image/images/tizen-base-image.bb
+require recipes-image/images/tizen-common-core-image-minimal.bb
+#require recipes-image/images/tizen-base-image.bb
 
 IMAGE_INSTALL += " \
 	kernel-modules \
