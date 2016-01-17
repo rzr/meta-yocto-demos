@@ -1,5 +1,4 @@
 require recipes-image/images/tizen-core-image-minimal.bb
-
 SUMMARY = "A very basic Wayland image with a terminal"
 LICENSE = "MIT"
 DESCRIPTION = "A weston image with Tizen common."
@@ -22,3 +21,7 @@ CORE_IMAGE_BASE_INSTALL += "weston-common-tz-launcher"
 CORE_IMAGE_BASE_INSTALL += "weston-common-config"
 CORE_IMAGE_BASE_INSTALL += "desktop-skin"
 CORE_IMAGE_BASE_INSTALL += "packagegroup-tizen-gstreamer"
+
+CORE_IMAGE_BASE_INSTALL += "weston-clients"
+
+CORE_IMAGE_BASE_INSTALL += "gdb"
