@@ -127,7 +127,7 @@ ${sources_dir}: rules ${repo_file} rule/done/rule/repo-sync
 
 ${conf_file}: rules/90-overides.mk rules/10-config.mk rules/50-tasks.mk
 	@ls $@ || make rule/done/rule/configure
-	@make rule/env/help
+	@make rule/help
 
 ${init_build_env}: ${sources_dir}/${distro}
 	ls -l ${@D}
@@ -209,7 +209,8 @@ rule/conf: ${conf_file}
 	grep '^MACHINE.*' $<
 	grep ${MACHINE} $<
 
-rule/env/%: ${init_build_env}
+rule/env/%: ${init_build_env} 
+	grep ${MACHINE} ${conf_file}
 	cd ${<D}  \
  && ${source} ${<} ${build_dir} \
  && make -C ${CURDIR} rule/${@F} ARGS="${ARGS}"
