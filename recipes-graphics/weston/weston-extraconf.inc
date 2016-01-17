@@ -7,7 +7,7 @@ SRC_URI += "file://make-lcms-explicitly-configurable.patch"
 SRC_URI += "file://make-libwebp-explicitly-configurable.patch"
 
 PACKAGECONFIG ?= ""
-PACKAGECONFIG += "cairo-glesv2"
+#PACKAGECONFIG += "cairo-glesv2"
 PACKAGECONFIG += "egl"
 PACKAGECONFIG += "wayland"
 PACKAGECONFIG += "wayland-egl"
@@ -17,6 +17,8 @@ PACKAGECONFIG[egl] += " \
  --disable-egl --disable-simple-egl-clients, \
  virtual/egl \
 "
+# said to be unsupported
+#PACKAGECONFIG_remove_raspberrypi = "cairo-glesv2"
 
 PACKAGECONFIG[wayland-egl] += " \
  --enable-drm-compositor --enable-egl-backend, \
