@@ -7,6 +7,7 @@ SRC_URI += "file://make-lcms-explicitly-configurable.patch"
 SRC_URI += "file://make-libwebp-explicitly-configurable.patch"
 
 PACKAGECONFIG ?= ""
+PACKAGECONFIG += "cairo-glesv2"
 PACKAGECONFIG += "egl"
 PACKAGECONFIG += "wayland"
 PACKAGECONFIG += "wayland-egl"
@@ -20,7 +21,7 @@ PACKAGECONFIG[egl] += " \
 PACKAGECONFIG[wayland-egl] += " \
  --enable-drm-compositor --enable-egl-backend, \
  --disable-drm-compositor --disable-egl-backend, \ 
- virtual/egl \
+ virtual/wayland-egl \
 "
 
 PACKAGECONFIG[wayland] = " \
