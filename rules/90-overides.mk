@@ -87,3 +87,6 @@ rule/wip: \
  rule/bitbake/cleanall/cairo rule/bitbake/task/cairo \
  rule/bitbake/cleanall/harfbuzz rule/bitbake/task/harfbuzz \
  rule/bitbake/cleanall/config-image rule/bitbake/task/config-image
+
+rule/wip/help:
+	make rule/bitbake/args ARGS="-e" | grep BBPATH
