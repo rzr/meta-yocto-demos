@@ -40,6 +40,9 @@ CORE_IMAGE_BASE_INSTALL += "psmisc"
 CORE_IMAGE_BASE_INSTALL += "coreutils"
 CORE_IMAGE_BASE_INSTALL += "procps"
 
+CORE_IMAGE_BASE_INSTALL += "screen"
+CORE_IMAGE_BASE_INSTALL += "ncurses-terminfo"
+
 
 export SYSROOT = "${IMAGE_ROOTFS}"
 
