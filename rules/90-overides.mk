@@ -3,6 +3,8 @@
 # ex: set tabstop=4 noexpandtab:
 
 rule/overide/patch/tizen-distro: sources/tizen-distro/
+
+rule/overide/patch/tizen-distro/todo: sources/tizen-distro/
 	install -d sources/tizen-distro/meta-tizen/meta-tizen-micro/meta-tizen-micro-raspberrypi/recipes-image/
 	-mv -fv \
 	 sources/tizen-distro/meta-tizen/meta-tizen-micro/recipes-image/raspberrypi2/rpi-hwup-image-tizen-micro.bb \
