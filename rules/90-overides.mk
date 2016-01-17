@@ -7,6 +7,7 @@ rule/overide/patch/tizen-distro: sources/tizen-distro/
 	-mv -fv \
 	 sources/tizen-distro/meta-tizen/meta-tizen-micro/recipes-image/raspberrypi2/rpi-hwup-image-tizen-micro.bb \
 	 sources/tizen-distro/meta-tizen/meta-tizen-micro/meta-tizen-micro-raspberrypi/recipes-image/tizen-micro-rpi-hwup-image.bb 
+	-rm -rfv sources/tizen-distro/meta-tizen/meta-tizen-common-base/recipes-image/images/
 
 rule/overide/patch/meta-oic:  sources/meta-oic/
 	-mv -v $</recipes-kernel/linux/linux-yocto_3.19.bbappend \
@@ -71,6 +72,7 @@ rule/wip/cleanall: \
  rule/bitbake/cleanall/pam \
  rule/bitbake/cleanall/tlm \
  rule/bitbake/cleanall/weston \
+ rule/bitbake/cleanall/weston-init \
  rule/bitbake/cleanall/desktop-skin \
  rule/bitbake/cleanall/rpcbind \
  #eol
