@@ -1,5 +1,4 @@
 SUMMARY = "A very basic Wayland image with a terminal"
-
 IMAGE_FEATURES += "splash package-management ssh-server-dropbear hwcodecs"
 
 LICENSE = "MIT"
@@ -24,6 +23,8 @@ CORE_IMAGE_BASE_INSTALL += "tlm"
 CORE_IMAGE_BASE_INSTALL += "${TLMCONFIG}"
 
 
+#include "include/graphics.inc"
+
 CORE_IMAGE_BASE_INSTALL += "gum-utils"
 CORE_IMAGE_BASE_INSTALL += "meta-common"
 CORE_IMAGE_BASE_INSTALL += "pam"
@@ -43,16 +44,8 @@ CORE_IMAGE_BASE_INSTALL += "ncurses-terminfo"
 CORE_IMAGE_EXTRA_INSTALL += "packagegroup-tizen-fonts-ttf"
 CORE_IMAGE_EXTRA_INSTALL += "packagegroup-tizen-fonts-pango"
 
+#include "include/multimedia.inc"
 
 export SYSROOT = "${IMAGE_ROOTFS}"
 
-# Set root password to "root"
-ROOTFS_POSTPROCESS_COMMAND += "set_root_passwd;"
-set_root_passwd() {
-	sed 's%^root:[^:]*:%root:wYNffsf6sozwE:%' \
-		< ${IMAGE_ROOTFS}/etc/shadow \
-		> ${IMAGE_ROOTFS}/etc/shadow.new;
-	mv ${IMAGE_ROOTFS}/etc/shadow.new ${IMAGE_ROOTFS}/etc/shadow;
-}
-
-CORE_IMAGE_BASE_INSTALL += "rsync"
+include include/rootfs.inc
