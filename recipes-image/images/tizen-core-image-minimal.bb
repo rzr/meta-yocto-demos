@@ -24,17 +24,6 @@ CORE_IMAGE_BASE_INSTALL += "tlm"
 CORE_IMAGE_BASE_INSTALL += "${TLMCONFIG}"
 
 
-#CORE_IMAGE_BASE_INSTALL += "mesa-megadriver"
-#CORE_IMAGE_BASE_INSTALL += "libegl-gallium"
-#CORE_IMAGE_BASE_INSTALL += "libegl-mesa"
-#CORE_IMAGE_BASE_INSTALL += "libgbm"
-#CORE_IMAGE_BASE_INSTALL += "libgbm-gallium"
-#CORE_IMAGE_BASE_INSTALL += "mesa-driver-pipe-swrast"
-#CORE_IMAGE_BASE_INSTALL += "mesa-driver-pipe-vmwgfx"
-#CORE_IMAGE_BASE_INSTALL_append_x86 += "mesa-driver-pipe-i915"
-#CORE_IMAGE_BASE_INSTALL_append_x86-64 += "mesa-driver-pipe-i915"
-#CORE_IMAGE_BASE_INSTALL += "libgles1-mesa"
-#CORE_IMAGE_BASE_INSTALL += "libgles2-mesa"
 CORE_IMAGE_BASE_INSTALL += "gum-utils"
 CORE_IMAGE_BASE_INSTALL += "meta-common"
 CORE_IMAGE_BASE_INSTALL += "pam"
@@ -54,15 +43,6 @@ CORE_IMAGE_BASE_INSTALL += "ncurses-terminfo"
 CORE_IMAGE_EXTRA_INSTALL += "packagegroup-tizen-fonts-ttf"
 CORE_IMAGE_EXTRA_INSTALL += "packagegroup-tizen-fonts-pango"
 
-# Multimedia
-CORE_IMAGE_BASE_INSTALL += "gstreamer1.0-meta-base"
-CORE_IMAGE_BASE_INSTALL += "gstreamer1.0-meta-audio"
-CORE_IMAGE_BASE_INSTALL += "gstreamer1.0-meta-video"
-CORE_IMAGE_BASE_INSTALL += "gstreamer1.0-meta-debug"
-CORE_IMAGE_BASE_INSTALL += "gstreamer1.0-plugins-good-meta"
-CORE_IMAGE_BASE_INSTALL += "gstreamer1.0-plugins-base-meta"
-CORE_IMAGE_BASE_INSTALL += "gstreamer1.0-plugins-ugly-meta"
-CORE_IMAGE_BASE_INSTALL += "gstreamer1.0-plugins-bad-meta"
 
 export SYSROOT = "${IMAGE_ROOTFS}"
 
@@ -74,3 +54,5 @@ set_root_passwd() {
 		> ${IMAGE_ROOTFS}/etc/shadow.new;
 	mv ${IMAGE_ROOTFS}/etc/shadow.new ${IMAGE_ROOTFS}/etc/shadow;
 }
+
+CORE_IMAGE_BASE_INSTALL += "rsync"
