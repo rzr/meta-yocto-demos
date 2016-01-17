@@ -1,6 +1,4 @@
-# require recipes-image/images/tizen-core-image-minimal.bb
 require recipes-image/images/tizen-common-core-image-minimal.bb
-#require recipes-image/images/tizen-base-image.bb
 
 IMAGE_INSTALL += " \
 	kernel-modules \
@@ -15,7 +13,7 @@ IMAGE_INSTALL += "iotivity-example"
 
 IMAGE_EXTRA_INSTALL += "systemd-serialgetty util-linux-agetty"
 
-IMAGE_INSTALL += "ncurses screen"
+IMAGE_INSTALL += "ncurses-terminfo screen"
 
 IMAGE_INSTALL += "ofono"
 PREFERRED_VERSION_ofono = "git"
@@ -29,3 +27,4 @@ inherit extrausers
 EXTRA_USERS_PARAMS = "usermod -P password user;"
 
 
+IMAGE_INSTALL += "weston-clients"
