@@ -147,6 +147,7 @@ ${sources_dir}/${distro}: rules/10-config.mk rule/overide/sources
 rule/distro: ${sources_dir}/${distro}
 	grep ${<F} rules/*.mk
 
+
 ${sources_dir}: rule/rules ${repo_file} rule/done/repo-sync
 	@ls -l ${@} || ${MAKE} rule/repo/sync
 	touch ${@}
@@ -322,7 +323,6 @@ ${build_dir}/pn-depends.dot: ${build_dir}/conf rule/overide/sources
 
 rule/print/layers: ${build_dir}/conf ${sources_dir}
 	${MAKE} rule/env-exec/bitbake-layers ARGS="show-layers"
-
 
 rule/cleanall/image: rule/bitbake/cleanall/${image}
 
