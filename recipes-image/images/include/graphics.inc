@@ -1,0 +1,12 @@
+#CORE_IMAGE_BASE_INSTALL += "mesa-megadriver"
+#CORE_IMAGE_BASE_INSTALL += "libegl-gallium"
+#CORE_IMAGE_BASE_INSTALL += "libegl-mesa"
+#CORE_IMAGE_BASE_INSTALL += "libgbm"
+#CORE_IMAGE_BASE_INSTALL += "libgbm-gallium"
+#CORE_IMAGE_BASE_INSTALL += "mesa-driver-pipe-swrast"
+#CORE_IMAGE_BASE_INSTALL += "mesa-driver-pipe-vmwgfx"
+#CORE_IMAGE_BASE_INSTALL_append_x86 += "mesa-driver-pipe-i915"
+#CORE_IMAGE_BASE_INSTALL_append_x86-64 += "mesa-driver-pipe-i915"
+#CORE_IMAGE_BASE_INSTALL += "libgles1-mesa"
+#CORE_IMAGE_BASE_INSTALL += "libgles2-mesa"
+
