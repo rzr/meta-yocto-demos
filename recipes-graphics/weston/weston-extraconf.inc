@@ -21,10 +21,11 @@ PACKAGECONFIG[egl] += " \
 #PACKAGECONFIG_remove_raspberrypi = "cairo-glesv2"
 
 PACKAGECONFIG[wayland-egl] += " \
- --enable-drm-compositor --enable-egl-backend, \
- --disable-drm-compositor --disable-egl-backend, \ 
+ --enable-egl-backend, \
+ --disable-egl-backend, \ 
  virtual/wayland-egl \
 "
+PACKAGECONFIG[drm] += "--enable-drm-compositor, --disable-drm-compositor, libdrm"
 
 PACKAGECONFIG[wayland] = " \
  --enable-wayland-compositor,\
