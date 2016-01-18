@@ -4,16 +4,19 @@
 SELF?=${CURDIR}/rules/50-tasks.mk
 rules_files?=$(sort $(wildcard rules/??-*.mk))
 
-
 .PHONY: rule/%
 
-rule/default: rule/overide/help rule/overide/all
+rule/default: GNUmakefile rule/overide/help rule/overide/all
 	date
 
-rule/help: ${SELF}
-	@echo "# Usage:"
+rule/help: rule/print-env
+
+rule/print-env: ${SELF}
+	@echo "# Usage: make help"
+	@echo ""
 	@echo "# Existing rules :"
-	@grep -o -e '^[^# 	]*:' $< | grep -v '\$$' | grep -v '^rule/' | grep -v '.mk:'
+	@grep -o -e '^[^# 	]*:' $< \
+ | grep -v '\$$' | grep -v '^rule/' | grep -v '\.mk:' | grep -v '^\.'
 	@echo ""
 	@echo "# Configuration / Environment:"
 	@echo "# project_name=${project_name}"
@@ -32,14 +35,11 @@ rule/help: ${SELF}
 	@echo "# conf_file=${conf_file}"
 	@echo "# image=${image}"
 	@echo "# images=${images}"
+	@echo "# sources_name=${sources_name}"
 	@echo "# sources_layers=${sources_layers}"
 	@echo "# sources_layers_conf=${sources_layers_conf}"
-	@echo "# More in rules/*.mk "
-
-.FORCE: force
-
-force:
-	sync
+	@echo ""
+	@echo "# More in rules/*.mk"
 
 rule/warning:
 	$(warning log: ${@F}: ${ARGS})
@@ -58,8 +58,14 @@ rule/overide/%: rule/%
 	mkdir -p ${tmp_dir}/${@D}
 	touch ${tmp_dir}/${@}
 
+rule/patch/%:
+	$(info no patch for $@)
+
+rule/patch: rule/overide/sources
+	$(info no patch for $@)
+
 ${tmp_dir}/done/%:
-	$(warning must define $@ explicitly else file will be removed )
+	$(warning TODO: must define $@ explicitly else file will be removed )
 	${MAKE} rule/overide/${@F}
 	mkdir -p ${@D}
 	touch $@
@@ -73,12 +79,6 @@ ${tmp_dir}/done/configure:
 	${MAKE} rule/overide/${@F}
 	mkdir -p ${@D}
 	touch $@
-
-${tmp_dir}/done/repo-sync: default.xml
-	-git commit -m 'WIP: update ${project} ($@)' $<
-	make rule/overide/${@F}
-	mkdir -p ${@D}
-	touch sources $@
 
 rule/done/%: ${tmp_dir}/done/%
 	$(info log: one shot: ${@})
@@ -97,7 +97,7 @@ rule/log/%: ${tmp_dir}
 rules/10-config.mk:
 	@echo "#distro?=TODO" > $@
 
-Makefile: rules
+GNUmakefile: ${rules_files}
 	echo "#! /usr/bin/make -f" > $@
 	for rule in ${rules_files} ; do echo "include $${rule}" >> $@ ; done
 
@@ -109,51 +109,19 @@ rules/80-phony.mk: $(subst rules/80-phony.mk,, ${rules_files})
 
 rule/all: rule/done/configure rule/print/images rule/overide/image rule/list/images
 
-rule/repo/%: ${repo_dir}/.repo ${repo}
-	cd ${<D} && time ${repo} ${@F} && ${repo} list
-
-${repo_file}:
-	$(warning $@ is neeed grab sample one at ${url})
-	wget -p ${repo_file_url}
-
-
-rule/configure/repo: ${repo_file} rule/overide/repo/init rule/overide/repo/sync
-	date
 
 rule/rules: ${rules_files}
 
-${repo}:
-	mkdir -p ${@D}
-	wget -nc -O $@ ${repo_url}
-	chmod u+rx $@
 
-${repo_dir}/.repo: ${repo_file} ${repo}
-	mkdir -p $@ && cd $@/.. \
-	&& ${repo} init -q -u ${local_url} -b ${branch} -m ${<F}
-
-rule/repo: ${repo}
-	ls ${<}
-	@${<} --help
-
-rule/repo-dir: ${repo_dir}/.repo
-	du -hsc $<
-
-rule/repo-sync: ${repo_dir}/.repo
-	cd ${<D} && time ${repo} sync --force-sync
-
-${sources_dir}/${distro}: rules/10-config.mk rule/overide/sources
+${sources_dir}/${distro}: rules/10-config.mk rule/overide/patch
 	@ls -l ${@}/meta || make rule/error ARG="Please set distro var in $<"
 
 rule/distro: ${sources_dir}/${distro}
 	grep ${<F} rules/*.mk
 
-${sources_dir}: rule/rules ${repo_file} rule/done/repo-sync
-	@ls -l ${@} || ${MAKE} rule/repo/sync
-	touch ${@}
 
 ${conf_file}: rules/90-overides.mk rules/10-config.mk rules/50-tasks.mk
 	@ls $@ || make rule/done/configure
-	@make rule/help
 
 ${init_build_env}: ${sources_dir}/${distro}
 	ls -l ${@D}
@@ -192,6 +160,9 @@ rule/configure-conf: rule/conf ${rules_files}
 
 rule/configure-machine: ${conf_file}
 	sed -e "s|^MACHINE ??=.*|MACHINE ??= \"${MACHINE}\"|g" -i $<
+
+rule/configure-bsp: ${conf_file}
+	sync
 
 ${build_dir}/downloads: ${build_dir}
 	[ "" = "${DL_DIR}" ] || ln -fs "${DL_DIR}" ${build_dir} || mkdir -p $@
@@ -232,7 +203,7 @@ ${bblayers_file}.orig: rules/10-config.mk ${SELF}
 	@ls ${bblayers_file} || make rule/init_env
 	mv "${bblayers_file}" "${@}"
 
-rule/configure: ${bblayers_file} Makefile rule/done/sub-configure-rescan rule/done/configure-conf
+rule/configure: ${bblayers_file} GNUmakefile rule/done/sub-configure-rescan rule/done/configure-conf
 	grep 'BBLAYERS +=' $<
 
 rule/conf: ${conf_file}
@@ -247,41 +218,12 @@ rule/env/%: ${init_build_env}
 
 rule/exec/%: ${build_dir} ${conf_file} ${bblayers_file}
 	grep '^MACHINE.*' $</conf/local.conf
-	cd ${<} && time ${@F} ${ARGS}
+	cd ${<} && time ${@F} ${EXTRA_ARGS} ${ARGS}
 
 rule/env-exec/%: ${init_build_env}
 	cd ${<D}  \
  && ${source} ${<} ${build_dir} \
  && make -C ${CURDIR} rule/exec/${@F} ARGS="${ARGS}"
-
-rule/bitbake/task/%: rule/done/configure ${bblayers_file} ${conf_file}
-	${MAKE} rule/env-exec/bitbake ARGS="${@F}"
-
-rule/bitbake/args: ${bblayers_file} ${conf_file}
-	${MAKE} rule/env-exec/bitbake ARGS="${ARGS}"
-
-rule/bitbake/cleanall/%:
-	${MAKE} rule/env-exec/bitbake ARGS="-c cleanall ${@F}"
-
-rule/bitbake/clean/%:
-	${MAKE} rule/env-exec/bitbake ARGS="-c clean ${@F}"
-
-rule/bitbake/rebuild/%: rule/bitbake/cleanall/% rule/bitbake/task/%
-	date
-
-rule/print/package/%: rule/done/configure ${build_dir}/conf ${sources_dir}
-	rm -f ${build_dir}/pn-depends.dot
-	make ${build_dir}/pn-depends.dot package="${@F}"
-	cat ${build_dir}/pn-depends.dot \
-	| grep -v -e '-native' \
-	| grep -v digraph \
-	| awk '{print $1}' | sort | uniq | grep "${@F}"
-
-rule/list/images:
-	find ${build_dir}/tmp*/deploy/images/${MACHINE}/ -type l
-
-rule/image: rule/print/image rule/bitbake/task/${image} rule/list/images
-	date
 
 rule/images: ${tmp_dir}
 	for image in ${images} ; do \
@@ -302,67 +244,90 @@ rule/configs: ${tmp_dir}
 	done ;
 
 rule/clean:
-	rm -rfv ${build_dir}/tmp *~ .#*
+	rm -rfv *~ .#*
 	$(info # make rule/{cleanall,distclean,purge} to clean more)
 
 rule/cleanall: rule/overide/clean
-	rm -rf ${build_dir}/conf ${sources_dir} ${tmp_dir}
+	rm -rf ${build_dir}/conf ${tmp_dir}
 
-rule/distclean: rule/overide/cleanall
-	rm -rfv repo
+rule/distclean: rule/overide/cleanall rule/scm-${scm}-clean
+	rm -rf ${build_dir}/tmp ${sources_dir}
 
-rule/purge: rule/overide/distclean
-	rm -rf -- ${repo_dir}/.repo build* tmp
+rule/clean-bsp:
+	$(info to be overiden in include/bsp/${bsp})
+
+rule/purge: rule/overide/distclean rule/scm-${scm}-cleanall
+	rm -rf --  build* tmp
 
 rule/rebuild: rule/overide/purge rule/overide/all
 	date
 
-${build_dir}/pn-depends.dot: ${build_dir}/conf rule/overide/sources
-	${MAKE} rule/env-exec/bitbake ARGS="-g ${package}"
 
-rule/print/layers: ${build_dir}/conf ${sources_dir}
-	${MAKE} rule/env-exec/bitbake-layers ARGS="show-layers"
+rule/build-packages: rule/overide/build-packages
+	$(info to overloaded $@)
 
+rule/clean-packages: rule/overide/clean-packages
+	$(info to overloaded $@)
 
-rule/cleanall/image: rule/bitbake/cleanall/${image}
+rule/rebuild-packages: rule/clean-packages rule/build-packages
+	sync
 
 rule/print/image: rule/print/package/${image}
-
-rule/print/images: ${build_dir}/conf ${sources_dir}
-	${MAKE} rule/env-exec/bitbake-layers ARGS='show-recipes \"*-image-*\"'
-	${MAKE} rule/env-exec/bitbake-layers ARGS='show-recipes \"\*-image\"'
-
-rule/ui/image:
-	${MAKE} rule/env-exec/bitbake ARGS="${image} -g -u depexp ${@F}"
+	sync
 
 
-rule/ui/args:
-	${MAKE} rule/env-exec/bitbake ARGS="${ARGS} -g -u depexp "
+rules/include/machine/%.mk:
+	$(error please create $@)
 
-rule/show-recipes:
-	${MAKE} rule/env-exec/bitbake-layers ARGS="show-recipes"
-
-#TODO/WIP
-rule/show:
-	${MAKE} rule/env-exec/bb ARGS="show DISTRO DISTRO_FEATURES"
-
-rule/show-recipes:
-	${MAKE} rule/env-exec/bitbake-layers ARGS="show-recipes"
+rules/config/bsp/${bsp}/default.xml:
+	$(error please create $@)
 
 
-# aliases
+rule/setup-bsp: rule/overide/scm-${scm}-setup-bsp
 
-configure: rule/overide/configure
 
-rebuild: rule/overide/rebuild
-	date
+rules/09-local-config.mk:
+	touch $@
 
-all: rule/overide/all
-	date
+rule/setup-machine/%: rules/config/machine/%/config.mk GNUmakefile
+	echo "MACHINE?=${@F}" > rules/09-local-config.mk
+	echo 'include $<' >> rules/09-local-config.mk
+	${MAKE} GNUmakefile
+	${MAKE} rule/cleanall rule/setup-bsp rule/reset MACHINE=${@F}
+	grep MACHINE rules/09-local-config.mk
+	unset MACHINE ; make rule/print-env | grep MACHINE | grep ${@F}
 
-clean: rule/overide/clean
+machines_list?=$(shell ls rules/config/machine/ | sed -e 's|.mk||g' | grep -v '~' | sort)
 
-cleanall: rule/overide/cleanall
+rule/overide/help:
+	@echo "# "
+	@echo "# Usage: make \$${MACHINE}"
+	@echo "# Where \$${MACHINE} is set to name of supported ones:"
+	@echo "# ${machines_list}"
+	@echo "# "
 
-default: rule/overide/default
 
+${machines_list}:
+	${MAKE} rule/build-machine/${@F}
+
+machines: ${machines_list}
+
+rule/build-machine/%:
+	grep '^MACHINE' rules/config/machine/${@F}/config.mk
+	make rule/setup-machine/${@F}
+	unset MACHINE ; make rule/image
+#	make rule/images
+
+rule/build-machines:
+	for MACHINE in ${machines_list} ; do make rule/build-machine/${MACHINE} ; done
+
+rule/reset:
+	make GNUmakefile
+
+rule/compress:
+	find build* -type f \
+	-iname "*.hddimg" -o \
+	-iname "*.rpi-sdimg" | while read file ; do \
+	time qemu-img convert -p -c -O qcow2 "$${file}" "$${file}.qcow2" \
+        && md5sum "$${file}.qcow2" | tee "$${file}.qcow2.txt" ; \
+	done
