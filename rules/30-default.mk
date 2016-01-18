@@ -2,7 +2,7 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-# better force in your rule/config.mk
+# better force in your rule/10-config.mk
 SHELL?=/bin/bash
 
 project_name?=meta-yocto-demos
@@ -21,6 +21,8 @@ branch?=$(shell git rev-parse --abbrev-ref HEAD)
 generic?=generic
 bsp?=${generic}
 MACHINE?=${bsp}x86
+export MACHINE
+
 machine?=${MACHINE}
 machines?=${MACHINE}
 
@@ -42,7 +44,7 @@ build_file?=${tmp_dir}/build.log
 sources_layers_conf?=$(sort $(wildcard sources/meta-*/conf/layer.conf))
 sources_layers_conf+=./conf/layer.conf
 sources_layers_dirs?=$(dir ${sources_layers_conf})
-sources_layers?=$(shell dirname $(sources_layers_dirs))
+sources_layers?=$(sort $(shell dirname $(sources_layers_dirs)))
 
 init_name?=oe
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
@@ -61,3 +63,9 @@ local_name=localhost
 local_url?=file://${repo_dir}
 
 source?=.
+
+sudo?=$(shell which sudo || echo sudo)
+rules_files?=$(sort $(wildcard rules/??-*.mk))
+
+
+
