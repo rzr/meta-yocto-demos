@@ -2,12 +2,6 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-rules_files?=$(sort $(wildcard rules/??-*.mk))
-
-Makefile: rules
-	echo "#! /usr/bin/make -f" > $@
-	for rule in ${rules_files} ; do echo "include $${rule}" >> $@ ; done
-
 /etc/os-release:
 	$(error Unsupported OS please report bug)
 
@@ -131,9 +125,3 @@ rule/setup/lsb: /etc/os-release
 
 rule/setup/all: rule/setup/lsb ~/.gitconfig
 
-
-rules/80-phony.mk:
-	mkdir -p ${@D}
-	echo '.PHONY: \' > $@
-	grep '^rule/.*:' rules/*.mk | grep -v '%' | cut -d: -f2| sort | sed -e 's|$$| \\|g' >> $@
-	echo ' #eol' >> $@
