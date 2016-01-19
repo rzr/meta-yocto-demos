@@ -4,7 +4,7 @@
 
 rules_files?=$(sort $(wildcard rules/??-*.mk))
 
-Makefile: rules
+Makefile: rules/80-phony.mk rules
 	echo "#! /usr/bin/make -f" > $@
 	for rule in ${rules_files} ; do echo "include $${rule}" >> $@ ; done
 
@@ -132,7 +132,7 @@ rule/setup/lsb: /etc/os-release
 rule/setup/all: rule/setup/lsb ~/.gitconfig
 
 
-rules/80-phony.mk:
+rules/80-phony.mk: rules/50-tasks.mk
 	mkdir -p ${@D}
 	echo '.PHONY: \' > $@
 	grep '^rule/.*:' rules/*.mk | grep -v '%' | cut -d: -f2| sort | sed -e 's|$$| \\|g' >> $@
