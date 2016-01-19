@@ -7,6 +7,8 @@ V=1
 root_bsp=generic
 bsp?=${root_bsp}
 MACHINE?=${bsp}x86
+machine?=${MACHINE}
+machines?=${machine} ${machine}-64
 
 os?=oe
 os_profile?=
