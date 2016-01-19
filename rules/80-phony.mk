@@ -25,6 +25,7 @@ rule/init_build_env \
 rule/init_env \
 rule/list/images \
 rule/machines \
+rule/overide/all \
 rule/overide/configure-conf \
 rule/print/image \
 rule/print/images \
