@@ -30,4 +30,3 @@ EXTRA_USERS_PARAMS = "usermod -P password root;"
 inherit extrausers
 EXTRA_USERS_PARAMS = "usermod -P password user;"
 
-IMAGE_INSTALL_append_raspberrypi = " packagegroup-rpi-test"
