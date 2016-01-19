@@ -2,6 +2,8 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 SELF?=${CURDIR}/rules/50-tasks.mk
+rules_files?=$(sort $(wildcard rules/??-*.mk))
+
 
 .PHONY: rule/%
 
@@ -94,6 +96,16 @@ rule/log/%: ${tmp_dir}
 
 rules/10-config.mk:
 	@echo "#distro?=TODO" > $@
+
+Makefile: rules
+	echo "#! /usr/bin/make -f" > $@
+	for rule in ${rules_files} ; do echo "include $${rule}" >> $@ ; done
+
+rules/80-phony.mk: $(subst rules/80-phony.mk,, ${rules_files})
+	mkdir -p ${@D}
+	echo '.PHONY: \' > $@
+	grep '^rule/.*:' rules/*.mk | grep -v '%' | cut -d: -f2| sort | sed -e 's|$$| \\|g' >> $@
+	@echo ' #eol' >> $@
 
 rule/all: rule/done/configure rule/overide/image rule/list/images
 
