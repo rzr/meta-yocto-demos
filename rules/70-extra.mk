@@ -1,9 +1,12 @@
-sudo?=$(shell which sudo || echo sudo)
-rules?=$(sort $(wildcard rules/??-*.mk))
+#! /usr/bin/make -f
+# Author: Philippe Coval <philippe.coval@osg.samsung.com>
+# ex: set tabstop=4 noexpandtab:
+
+rules_files?=$(sort $(wildcard rules/??-*.mk))
 
 Makefile: rules
 	echo "#! /usr/bin/make -f" > $@
-	for rule in ${rules} ; do echo "include $${rule}" >> $@ ; done
+	for rule in ${rules_files} ; do echo "include $${rule}" >> $@ ; done
 
 /etc/os-release:
 	$(error Unsupported OS please report bug)
@@ -25,6 +28,7 @@ rule/setup/debian: /etc/debian_version
  libattr1-dev \
  libsdl1.2-dev \
  libwayland-dev \
+ nodejs-legacy \
  quilt \
  sudo \
  texinfo \
@@ -127,3 +131,9 @@ rule/setup/lsb: /etc/os-release
 
 rule/setup/all: rule/setup/lsb ~/.gitconfig
 
+
+rules/80-phony.mk:
+	mkdir -p ${@D}
+	echo '.PHONY: \' > $@
+	grep '^rule/.*:' rules/*.mk | grep -v '%' | cut -d: -f2| sort | sed -e 's|$$| \\|g' >> $@
+	echo ' #eol' >> $@
