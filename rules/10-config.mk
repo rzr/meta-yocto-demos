@@ -16,8 +16,8 @@ distro?=poky
 extra?=
 init_name?=${os}
 base_image?=core-image-minimal
-image?=${base_image}
-images?=${image} ${image}-dev
+image?=oic-demo-image
+images?=${image} ${image}-dev ${base_image}
 
 sources_layers_conf?=$(sort $(wildcard sources/meta-*/conf/layer.conf))
 
