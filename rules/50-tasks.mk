@@ -147,7 +147,6 @@ ${sources_dir}/${distro}: rules/10-config.mk rule/overide/sources
 rule/distro: ${sources_dir}/${distro}
 	grep ${<F} rules/*.mk
 
-
 ${sources_dir}: rule/rules ${repo_file} rule/done/repo-sync
 	@ls -l ${@} || ${MAKE} rule/repo/sync
 	touch ${@}
