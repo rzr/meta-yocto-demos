@@ -2,6 +2,7 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
+
 /etc/os-release:
 	$(error Unsupported OS please report bug)
 
@@ -34,7 +35,7 @@ rule/setup/debian: /etc/debian_version
 rule/setup/ubuntu: rule/setup/debian
 
 rule/setup/fedora: /etc/fedora-release
-	sudo yum install \
+	${sudo} yum install \
  SDL-devel \
  bzip2 \
  ccache \
@@ -65,7 +66,7 @@ rule/setup/fedora: /etc/fedora-release
  #eol
 
 rule/setup/centos: /etc/centos-release
-	sudo yum install \
+	${sudo} yum install \
  SDL-devel \
  bzip2 \
  chrpath \
@@ -92,7 +93,7 @@ rule/setup/centos: /etc/centos-release
  #eol
 
 rule/setup/opensuse:  /etc/SuSE-release
-	sudo zypper install \
+	${sudo} zypper install \
  chrpath \
  curl \
  diffstat \
