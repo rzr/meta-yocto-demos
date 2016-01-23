@@ -329,8 +329,8 @@ rule/cleanall/image: rule/bitbake/cleanall/${image}
 rule/print/image: rule/print/package/${image}
 
 rule/print/images: ${build_dir}/conf ${sources_dir}
-	${MAKE} rule/env-exec/bitbake-layers ARGS="show-recipes \"*-image-*\""
-	${MAKE} rule/env-exec/bitbake-layers ARGS="show-recipes \"*-image\""
+	${MAKE} rule/env-exec/bitbake-layers ARGS='show-recipes \"*-image-*\"'
+	${MAKE} rule/env-exec/bitbake-layers ARGS='show-recipes \"\*-image\"'
 
 rule/ui/image:
 	${MAKE} rule/env-exec/bitbake ARGS="${image} -g -u depexp ${@F}"
