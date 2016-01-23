@@ -45,7 +45,6 @@ rule/overide/patch/meta-sunxi/master: sources/meta-sunxi/conf/machine/include/su
 	echo 'TUNE_FEATURES     = "arm armv7ve vfp  neon"' >> $<
 	echo 'TARGET_FPU        = "softfp"' >> $<
 
-
 rule/overide/patch/meta-raspberrypi/dizzy: sources/meta-raspberrypi
 	mkdir -p recipes-graphics/cairo
 	echo 'CFLAGS_append_raspberrypi="-I\${STAGING_INCDIR}/interface/vcos/pthreads/ -I\${STAGING_INCDIR}/interface/vmcs_host/linux/"' \
