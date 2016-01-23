@@ -24,8 +24,17 @@ rule/info \
 rule/init_build_env \
 rule/init_env \
 rule/list/images \
+rule/local/clean \
 rule/machines \
 rule/overide/configure-conf \
+rule/overide/packages \
+rule/overide/patch \
+rule/overide/patch/meta-oic \
+rule/overide/patch/meta-raspberrypi/dizzy \
+rule/overide/patch/meta-raspberrypi/master \
+rule/overide/patch/tizen-distro \
+rule/overide/patch/tizen-distro/todo \
+rule/overide/sources \
 rule/print/image \
 rule/print/images \
 rule/print/layers \
@@ -52,4 +61,9 @@ rule/sub-rule/layer/. \
 rule/ui/args \
 rule/ui/image \
 rule/warning \
+rule/wip \
+rule/wip/cleanall \
+rule/wip/help \
+rule/wip/patch \
+rule/wip/rebuild \
  #eol
