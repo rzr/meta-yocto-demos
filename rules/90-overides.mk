@@ -41,6 +41,11 @@ rule/overide/patch/meta-raspberrypi/master: sources/meta-raspberrypi
 	-sed -e 's|get_kernelversion_file|get_kernelversion|g' -i  \
 	sources/meta-raspberrypi/classes/linux-raspberrypi-base.bbclass
 
+rule/overide/patch/meta-sunxi/master: sources/meta-sunxi/conf/machine/include/sunxi-mali.inc
+	echo 'TUNE_FEATURES     = "arm armv7ve vfp  neon"' >> $<
+	echo 'TARGET_FPU        = "softfp"' >> $<
+
+
 rule/overide/patch/meta-raspberrypi/dizzy: sources/meta-raspberrypi
 	mkdir -p recipes-graphics/cairo
 	echo 'CFLAGS_append_raspberrypi="-I\${STAGING_INCDIR}/interface/vcos/pthreads/ -I\${STAGING_INCDIR}/interface/vmcs_host/linux/"' \
@@ -115,3 +120,4 @@ rule/wip/help:
 	make rule/bitbake/args ARGS="-e" | grep BBPATH
 
 #rule/overide/image: rule/overide/packages rule/image
+
