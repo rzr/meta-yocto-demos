@@ -247,15 +247,15 @@ rule/env/%: ${init_build_env}
 
 rule/exec/%: ${build_dir} ${conf_file} ${bblayers_file}
 	grep '^MACHINE.*' $</conf/local.conf
-	cd ${<} && time ${@F} ${ARGS}
+	cd ${<} && time ${@F} ${EXTRA_ARGS} ${ARGS}
 
 rule/env-exec/%: ${init_build_env}
 	cd ${<D}  \
  && ${source} ${<} ${build_dir} \
  && make -C ${CURDIR} rule/exec/${@F} ARGS="${ARGS}"
 
-rule/bitbake/task/%: rule/done/configure ${bblayers_file} ${conf_file}
-	${MAKE} rule/env-exec/bitbake ARGS="${@F}"
+rule/bitbake/build/%: rule/done/configure ${bblayers_file} ${conf_file}
+	${MAKE} rule/env-exec/bitbake ARGS="${@F}" 
 
 rule/bitbake/args: ${bblayers_file} ${conf_file}
 	${MAKE} rule/env-exec/bitbake ARGS="${ARGS}"
@@ -266,21 +266,23 @@ rule/bitbake/cleanall/%:
 rule/bitbake/clean/%:
 	${MAKE} rule/env-exec/bitbake ARGS="-c clean ${@F}"
 
-rule/bitbake/rebuild/%: rule/bitbake/cleanall/% rule/bitbake/task/%
+rule/bitbake/rebuild/%: rule/bitbake/cleanall/% rule/bitbake/build/%
 	date
 
 rule/print/package/%: rule/done/configure ${build_dir}/conf ${sources_dir}
-	rm -f ${build_dir}/pn-depends.dot
-	make ${build_dir}/pn-depends.dot package="${@F}"
-	cat ${build_dir}/pn-depends.dot \
+	rm -f ${build_dir}/${@F}-depends.dot
+	${MAKE} ${build_dir}/${@F}-depends.dot package="${@F}"
+	cat ${build_dir}/${@F}-depends.dot \
 	| grep -v -e '-native' \
 	| grep -v digraph \
 	| awk '{print $1}' | sort | uniq | grep "${@F}"
+	${MAKE} ${build_dir}/${@F}-env.log package="${@F}"
+	cat ${build_dir}/${@F}-env.log | grep "${@F}"
 
 rule/list/images:
 	find ${build_dir}/tmp*/deploy/images/${MACHINE}/ -type l
 
-rule/image: rule/print/image rule/bitbake/task/${image} rule/list/images
+rule/image: rule/print/image rule/bitbake/build/${image} rule/list/images
 	date
 
 rule/images: ${tmp_dir}
@@ -317,8 +319,12 @@ rule/purge: rule/overide/distclean
 rule/rebuild: rule/overide/purge rule/overide/all
 	date
 
-${build_dir}/pn-depends.dot: ${build_dir}/conf rule/overide/sources
+${build_dir}/${package}-depends.dot: ${build_dir}/conf rule/overide/sources
 	${MAKE} rule/env-exec/bitbake ARGS="-g ${package}"
+	mv ${build_dir}/pn-depends.dot "$@"
+
+${build_dir}/${package}-env.log: ${build_dir}/conf rule/overide/sources
+	${MAKE} rule/env-exec/bitbake ARGS="-e ${package}" > $@
 
 rule/print/layers: ${build_dir}/conf ${sources_dir}
 	${MAKE} rule/env-exec/bitbake-layers ARGS="show-layers"
