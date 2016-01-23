@@ -22,6 +22,7 @@ generic?=generic
 bsp?=${generic}
 MACHINE?=${bsp}x86
 export MACHINE
+
 machine?=${MACHINE}
 machines?=${MACHINE}
 
@@ -65,3 +66,6 @@ source?=.
 sudo?=$(shell which sudo || echo sudo)
 
 rules_files?=$(sort $(wildcard rules/??-*.mk))
+
+
+
