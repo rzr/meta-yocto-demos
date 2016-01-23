@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
+  <remote fetch="git://git.tizen.org/" name="tizen"/>
+  <remote fetch="https://github.com/linux-sunxi/" name="sunxi"/>
+  <project name="scm/bb/tizen-distro" path="sources/tizen-distro" remote="tizen" revision="tizen"/>
+  <project name="meta-sunxi" path="sources/meta-sunxi" remote="sunxi" revision="dizzy"/>
+  <project name="meta-oic" path="sources/meta-oic" remote="yocto" revision="master"/>
+</manifest>
