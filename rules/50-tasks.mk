@@ -4,7 +4,6 @@
 SELF?=${CURDIR}/rules/50-tasks.mk
 rules_files?=$(sort $(wildcard rules/??-*.mk))
 
-
 .PHONY: rule/%
 
 rule/default: rule/overide/help rule/overide/all
@@ -97,17 +96,7 @@ rule/log/%: ${tmp_dir}
 rules/10-config.mk:
 	@echo "#distro?=TODO" > $@
 
-Makefile: rules
-	echo "#! /usr/bin/make -f" > $@
-	for rule in ${rules_files} ; do echo "include $${rule}" >> $@ ; done
-
-rules/80-phony.mk: $(subst rules/80-phony.mk,, ${rules_files})
-	mkdir -p ${@D}
-	echo '.PHONY: \' > $@
-	grep '^rule/.*:' rules/*.mk | grep -v '%' | cut -d: -f2| sort | sed -e 's|$$| \\|g' >> $@
-	@echo ' #eol' >> $@
-
-rule/all: rule/done/configure rule/print/images rule/overide/image rule/list/images
+rule/all: rule/done/configure rule/overide/image rule/list/images
 
 rule/repo/%: ${repo_dir}/.repo ${repo}
 	cd ${<D} && time ${repo} ${@F} && ${repo} list
@@ -187,7 +176,7 @@ rule/sources: ${sources_dir}
 rule/build: ${build_dir}
 	ls $<
 
-rule/configure-conf: rule/conf ${rules_files}
+rule/configure-conf: rule/conf ${rules_files} 
 	grep -i MACHINE ${conf_file}
 
 rule/configure-machine: ${conf_file}
@@ -239,7 +228,7 @@ rule/conf: ${conf_file}
 	grep '^MACHINE.*' $<
 	grep ${MACHINE} $<
 
-rule/env/%: ${init_build_env}
+rule/env/%: ${init_build_env} 
 	grep ${MACHINE} ${conf_file}
 	cd ${<D}  \
  && ${source} ${<} ${build_dir} \
@@ -329,6 +318,7 @@ ${build_dir}/${package}-env.log: ${build_dir}/conf rule/overide/sources
 rule/print/layers: ${build_dir}/conf ${sources_dir}
 	${MAKE} rule/env-exec/bitbake-layers ARGS="show-layers"
 
+
 rule/cleanall/image: rule/bitbake/cleanall/${image}
 
 rule/print/image: rule/print/package/${image}
@@ -353,7 +343,6 @@ rule/show:
 
 rule/show-recipes:
 	${MAKE} rule/env-exec/bitbake-layers ARGS="show-recipes"
-
 
 # aliases
 
