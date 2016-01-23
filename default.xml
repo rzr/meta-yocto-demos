@@ -1,5 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<manifest>
-  <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
-  <project name="poky" path="sources/poky" remote="yocto" revision="master"/>
-</manifest>
+config/bsp/meta-sunxi/default.xml
