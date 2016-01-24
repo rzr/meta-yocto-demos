@@ -99,7 +99,7 @@ rule/log/%: ${tmp_dir}
 rules/10-config.mk:
 	@echo "#distro?=TODO" > $@
 
-Makefile: rules
+GNUmakefile: rules
 	echo "#! /usr/bin/make -f" > $@
 	for rule in ${rules_files} ; do echo "include $${rule}" >> $@ ; done
 
@@ -234,7 +234,7 @@ ${bblayers_file}.orig: rules/10-config.mk ${SELF}
 	@ls ${bblayers_file} || make rule/init_env
 	mv "${bblayers_file}" "${@}"
 
-rule/configure: ${bblayers_file} Makefile rule/done/sub-configure-rescan rule/done/configure-conf
+rule/configure: ${bblayers_file} GNUmakefile rule/done/sub-configure-rescan rule/done/configure-conf
 	grep 'BBLAYERS +=' $<
 
 rule/conf: ${conf_file}
