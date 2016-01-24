@@ -2,8 +2,8 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-# better force in your rule/10-config.mk
-SHELL?=/bin/bash
+SHELL=/bin/bash
+V=1
 
 project_name?=meta-yocto-demos
 remote?=tizenteam
