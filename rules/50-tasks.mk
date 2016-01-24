@@ -313,6 +313,9 @@ rule/cleanall: rule/overide/clean
 rule/distclean: rule/overide/cleanall
 	rm -rfv repo
 
+rule/clean-bsp:
+	$(info to be overiden in include/bsp/${bsp})
+
 rule/purge: rule/overide/distclean
 	rm -rf -- ${repo_dir}/.repo build* tmp
 
