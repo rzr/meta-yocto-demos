@@ -1,2 +1,3 @@
-MACHINE?=genericx86-64
-include rule/include/bsp/generic.mk
+bsp?=generic
+MACHINE?=${bsp}x86-64
+include rules/include/bsp/${bsp}/config.mk
