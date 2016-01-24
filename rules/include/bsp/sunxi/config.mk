@@ -4,9 +4,9 @@
 
 SHELL=/bin/bash
 V=1
-root_bsp=generic
+root_bsp=sunxi
 bsp?=${root_bsp}
-MACHINE?=${bsp}x86-64
+MACHINE?=olinuxino-a20
 machine?=${MACHINE}
 machines?=${machine}
 os?=tizen
@@ -24,3 +24,10 @@ images?=${base_image} \
 
 sources_layers_conf+=$(sort $(wildcard sources/meta-*/conf/layer.conf))
 #sources_layers_conf+=meta-tizen-${bsp}/conf/layer.conf
+
+rule/overide/patch/meta-sunxi/%: rule/done/patch-sunxi-mali
+	@echo "should happend once"
+
+rule/overide/patch-sunxi-mali: sources/meta-sunxi/conf/machine/include/sunxi-mali.inc
+       echo 'TUNE_FEATURES     = "arm armv7ve vfp  neon"' >> $<
+       echo 'TARGET_FPU        = "softfp"' >> $<
