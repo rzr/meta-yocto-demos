@@ -2,11 +2,11 @@
 rule/all \
 rule/bblayers \
 rule/bitbake/args \
-rule/bsp \
 rule/build \
 rule/clean \
 rule/cleanall \
 rule/cleanall/image \
+rule/clean-bsp \
 rule/conf \
 rule/configs \
 rule/configure \
@@ -46,6 +46,7 @@ rule/repo-sync \
 rule/reset \
 rule/rules \
 rule/setup/all \
+rule/setup-bsp \
 rule/setup/centos \
 rule/setup/debian \
 rule/setup/fedora \
