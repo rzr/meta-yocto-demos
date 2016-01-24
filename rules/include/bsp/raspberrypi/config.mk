@@ -38,3 +38,6 @@ rule/overide/patch/meta-raspberrypi/dizzy: sources/meta-raspberrypi
 	mkdir -p recipes-graphics/cairo
 	echo 'CFLAGS_append_raspberrypi="-I\${STAGING_INCDIR}/interface/vcos/pthreads/ -I\${STAGING_INCDIR}/interface/vmcs_host/linux/"' \
 	> recipes-graphics/cairo/cairo_1.12.16.bbappend
+
+rule/overide/clean-bsp: rule/bitbake/cleanall/userland
+	@echo "bsp=${bsp}"
