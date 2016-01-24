@@ -1,12 +1,13 @@
+*#
 *.tmp
 *~
+.#*
 .repo/
+GNUmakefile
 build*/
 cache*/
 project*/
 repo
 sources/
-tmp/*
 tmp*
-*#
-.#*
+tmp/*
