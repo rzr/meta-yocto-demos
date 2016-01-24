@@ -11,8 +11,10 @@ rule/default: rule/overide/help rule/overide/all
 
 rule/help: ${SELF}
 	@echo "# Usage:"
+	@echo ""
 	@echo "# Existing rules :"
-	@grep -o -e '^[^# 	]*:' $< | grep -v '\$$' | grep -v '^rule/' | grep -v '.mk:'
+	@grep -o -e '^[^# 	]*:' $< \
+ | grep -v '\$$' | grep -v '^rule/' | grep -v '\.mk:' | grep -v '^\.'
 	@echo ""
 	@echo "# Configuration / Environment:"
 	@echo "# project_name=${project_name}"
@@ -33,12 +35,8 @@ rule/help: ${SELF}
 	@echo "# images=${images}"
 	@echo "# sources_layers=${sources_layers}"
 	@echo "# sources_layers_conf=${sources_layers_conf}"
-	@echo "# More in rules/*.mk "
-
-.FORCE: force
-
-force:
-	sync
+	@echo ""
+	@echo "# More in rules/*.mk"
 
 rule/warning:
 	$(warning log: ${@F}: ${ARGS})
@@ -369,5 +367,4 @@ clean: rule/overide/clean
 
 cleanall: rule/overide/cleanall
 
-default: rule/overide/default
 
