@@ -2,6 +2,7 @@
 rule/all \
 rule/bblayers \
 rule/bitbake/args \
+rule/bsp \
 rule/build \
 rule/clean \
 rule/cleanall \
@@ -32,7 +33,9 @@ rule/overide/patch \
 rule/overide/patch/meta-oic \
 rule/overide/patch/meta-raspberrypi/dizzy \
 rule/overide/patch/meta-raspberrypi/master \
+rule/overide/patch/meta-sunxi/master \
 rule/overide/patch/tizen-distro \
+rule/overide/patch/tizen-distro/ldconfig \
 rule/overide/patch/tizen-distro/todo \
 rule/overide/sources \
 rule/print/image \
@@ -53,6 +56,7 @@ rule/setup/lsb \
 rule/setup/opensuse \
 rule/setup/ubuntu \
 rule/show \
+rule/show-recipes \
 rule/show-recipes \
 rule/sources \
 rule/sub-configure-layers \
