@@ -25,7 +25,6 @@ rule/wip/rebuild: rule/wip/cleanall \
  rule/bitbake/tlm
 
 rule/wip: \
- rule/bitbake/cleanall/userland rule/bitbake/task/userland \
  rule/bitbake/cleanall/cairo rule/bitbake/task/cairo \
  rule/bitbake/cleanall/harfbuzz rule/bitbake/task/harfbuzz \
  rule/bitbake/cleanall/config-image rule/bitbake/task/config-image
@@ -36,16 +35,17 @@ rule/wip/help:
 rule/reset:
 	make GNUmakefile
 
-rule/machine/%: rule/cleanall
-	echo "MACHINE?=${@F}" > rules/09-local-config.mk
-	echo 'include rules/include/machine/$${MACHINE}.mk' >> rules/09-local-config.mk
-	${MAKE} rule/bsp rule/reset
-
-config/bsp/${bsp}/default.xml:
+config/setup-bsp/${bsp}/default.xml:
 	$(error please create $@)
 
-rule/bsp: config/bsp/${bsp}/default.xml
+rule/setup-bsp: config/setup-bsp/${bsp}/default.xml
 	cp $< ${<F}
+
+rule/setup-machine/%: rule/cleanall
+	echo "MACHINE?=${@F}" > rules/09-local-config.mk
+	echo 'include rules/include/machine/$${MACHINE}.mk' >> rules/09-local-config.mk
+	${MAKE} rule/setup-bsp rule/reset
+
 
 local/todo:
 	cd  sources/meta-raspberrypi/ && \
