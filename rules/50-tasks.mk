@@ -96,7 +96,17 @@ rule/log/%: ${tmp_dir}
 rules/10-config.mk:
 	@echo "#distro?=TODO" > $@
 
-rule/all: rule/done/configure rule/overide/image rule/list/images
+Makefile: rules
+	echo "#! /usr/bin/make -f" > $@
+	for rule in ${rules_files} ; do echo "include $${rule}" >> $@ ; done
+
+rules/80-phony.mk: $(subst rules/80-phony.mk,, ${rules_files})
+	mkdir -p ${@D}
+	echo '.PHONY: \' > $@
+	grep '^rule/.*:' rules/*.mk | grep -v '%' | cut -d: -f2| sort | sed -e 's|$$| \\|g' >> $@
+	@echo ' #eol' >> $@
+
+rule/all: rule/done/configure rule/print/images rule/overide/image rule/list/images
 
 rule/repo/%: ${repo_dir}/.repo ${repo}
 	cd ${<D} && time ${repo} ${@F} && ${repo} list
