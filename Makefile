@@ -1,4 +1,5 @@
 #! /usr/bin/make -f
+include rules/09-local-config.mk
 include rules/10-config.mk
 include rules/30-default.mk
 include rules/50-tasks.mk
