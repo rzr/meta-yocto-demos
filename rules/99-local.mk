@@ -41,9 +41,11 @@ rule/machine/%: rule/cleanall
 	echo "include rules/include/machine/${@F}.mk" >> rules/09-local-config.mk
 	${MAKE} rule/bsp rule/reset
 
-rule/bsp:
-	cp config/bsp/meta-${bsp}/default.xml default.xml
+config/bsp/${bsp}/default.xml:
+	$(error please create $@)
 
+rule/bsp: config/bsp/${bsp}/default.xml
+	cp $< ${<F}
 
 local/todo:
 	cd  sources/meta-raspberrypi/ && \
