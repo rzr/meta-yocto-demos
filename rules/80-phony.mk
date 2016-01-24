@@ -46,6 +46,7 @@ rule/rebuild \
 rule/repo \
 rule/repo-dir \
 rule/repo-sync \
+rule/reset \
 rule/rules \
 rule/setup/all \
 rule/setup/centos \
@@ -56,7 +57,6 @@ rule/setup/lsb \
 rule/setup/opensuse \
 rule/setup/ubuntu \
 rule/show \
-rule/show-recipes \
 rule/show-recipes \
 rule/sources \
 rule/sub-configure-layers \
