@@ -26,3 +26,15 @@ images?=${base_image} \
 
 sources_layers_conf+=$(sort $(wildcard sources/meta-*/conf/layer.conf))
 sources_layers_conf+=meta-tizen-raspberrypi/conf/layer.conf
+
+
+rule/overide/patch/meta-raspberrypi/master: sources/meta-raspberrypi
+	-sed -e 's|STAGING_KERNEL_BUILDDIR|STAGING_KERNEL_DIR|g' -i  \
+	 sources/meta-raspberrypi/classes/linux-raspberrypi-base.bbclass
+	-sed -e 's|get_kernelversion_file|get_kernelversion|g' -i  \
+	sources/meta-raspberrypi/classes/linux-raspberrypi-base.bbclass
+
+rule/overide/patch/meta-raspberrypi/dizzy: sources/meta-raspberrypi
+	mkdir -p recipes-graphics/cairo
+	echo 'CFLAGS_append_raspberrypi="-I\${STAGING_INCDIR}/interface/vcos/pthreads/ -I\${STAGING_INCDIR}/interface/vmcs_host/linux/"' \
+	> recipes-graphics/cairo/cairo_1.12.16.bbappend
