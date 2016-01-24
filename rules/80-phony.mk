@@ -7,6 +7,7 @@ rule/clean \
 rule/cleanall \
 rule/cleanall/image \
 rule/clean-bsp \
+rule/clean-packages \
 rule/conf \
 rule/configs \
 rule/configure \
@@ -27,10 +28,13 @@ rule/init_env \
 rule/list/images \
 rule/local/clean \
 rule/machines \
+rule/machines \
+rule/overide/clean-packages \
 rule/overide/configure-conf \
+rule/overide/help \
 rule/overide/packages \
 rule/overide/patch \
-rule/overide/patch/meta-oic \
+rule/overide/patch/meta-oic/master \
 rule/overide/patch/tizen-distro \
 rule/overide/patch/tizen-distro/ldconfig \
 rule/overide/patch/tizen-distro/todo \
@@ -64,7 +68,6 @@ rule/ui/args \
 rule/ui/image \
 rule/warning \
 rule/wip \
-rule/wip/cleanall \
 rule/wip/help \
 rule/wip/patch \
 rule/wip/rebuild \
