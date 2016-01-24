@@ -351,8 +351,6 @@ rule/show-recipes:
 rule/show:
 	${MAKE} rule/env-exec/bb ARGS="show DISTRO DISTRO_FEATURES"
 
-rule/show-recipes:
-	${MAKE} rule/env-exec/bitbake-layers ARGS="show-recipes"
 
 # aliases
 
