@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote fetch="http://github.com/TizenTeam/" name="tizenteam"/>
+  <remote fetch="http://git.tizen.org/git/" name="tizen"/>
+  <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
+  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="master"/>
+  <project name="tizen-distro" path="sources/tizen-distro" remote="tizenteam" revision="sandbox/pcoval/tizen"/>
+  <project name="meta-intel" path="sources/meta-intel" remote="yocto" revision="dizzy"/>
+</manifest>
