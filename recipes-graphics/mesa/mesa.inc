@@ -16,8 +16,7 @@ PE = "2"
 
 DEPENDS = "expat makedepend-native flex-native bison-native libxml2-native udev"
 
-#PROVIDES = "virtual/libgl virtual/libgles1 virtual/libgles2 virtual/egl virtual/mesa"
-#PROVIDES += "virtual/wayland-egl"
+PROVIDES = "virtual/libgl virtual/libgles1 virtual/libgles2 virtual/egl virtual/mesa"
 
 inherit autotools pkgconfig pythonnative gettext distro_features_check
 
@@ -48,7 +47,7 @@ EGL_PLATFORMS  = "drm"
 EGL_PLATFORMS .="${@bb.utils.contains('PACKAGECONFIG', 'x11', ',x11', '', d)}"
 EGL_PLATFORMS .="${@bb.utils.contains('PACKAGECONFIG', 'wayland', ',wayland', '', d)}"
 PACKAGECONFIG[egl] = "--enable-egl --with-egl-platforms=${EGL_PLATFORMS}, --disable-egl"
-
+PROVIDES += "${@bb.utils.contains('PACKAGECONFIG', 'egl', 'virtual/wayland-egl', '', d)}"
 PACKAGECONFIG[openvg] = "--enable-openvg, --disable-openvg"
 
 GALLIUMDRIVERS = "swrast"
