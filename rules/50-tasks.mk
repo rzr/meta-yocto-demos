@@ -334,6 +334,10 @@ rule/print/layers: ${build_dir}/conf ${sources_dir}
 
 
 rule/cleanall/image: rule/bitbake/cleanall/${image}
+	$(info image=${image})
+
+rule/clean-packages: rule/overide/clean-packages
+	$(info to overloaded $@)
 
 rule/print/image: rule/print/package/${image}
 
@@ -370,4 +374,5 @@ clean: rule/overide/clean
 
 cleanall: rule/overide/cleanall
 
-
+help: rule/overide/help
+	@pwd
