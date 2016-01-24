@@ -57,8 +57,11 @@ rule/overide/%: rule/%
 	mkdir -p ${tmp_dir}/${@D}
 	touch ${tmp_dir}/${@}
 
+rule/patch/%:
+	$(info no patch for $@)
+
 ${tmp_dir}/done/%:
-	$(warning must define $@ explicitly else file will be removed )
+	$(warning TODO: must define $@ explicitly else file will be removed )
 	${MAKE} rule/overide/${@F}
 	mkdir -p ${@D}
 	touch $@
