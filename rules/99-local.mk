@@ -34,11 +34,11 @@ rule/wip/help:
 	make rule/bitbake/args ARGS="-e" | grep BBPATH
 
 rule/reset:
-	make Makefile
+	make GNUmakefile
 
 rule/machine/%: rule/cleanall
 	echo "MACHINE?=${@F}" > rules/09-local-config.mk
-	echo "include rules/include/machine/\${MACHINE}.mk" >> rules/09-local-config.mk
+	echo 'include rules/include/machine/$${MACHINE}.mk' >> rules/09-local-config.mk
 	${MAKE} rule/bsp rule/reset
 
 config/bsp/${bsp}/default.xml:
