@@ -31,9 +31,6 @@ rule/overide/configure-conf \
 rule/overide/packages \
 rule/overide/patch \
 rule/overide/patch/meta-oic \
-rule/overide/patch/meta-raspberrypi/dizzy \
-rule/overide/patch/meta-raspberrypi/master \
-rule/overide/patch/meta-sunxi/master \
 rule/overide/patch/tizen-distro \
 rule/overide/patch/tizen-distro/ldconfig \
 rule/overide/patch/tizen-distro/todo \
