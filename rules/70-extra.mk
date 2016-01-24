@@ -125,4 +125,4 @@ rule/setup/lsb: /etc/os-release
 	${MAKE} rule/setup/git
 
 rule/setup/all: rule/setup/lsb ~/.gitconfig
-
+	grep 'user.' ~/.gitconfig
