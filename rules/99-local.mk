@@ -38,7 +38,7 @@ rule/reset:
 
 rule/machine/%: rule/cleanall
 	echo "MACHINE?=${@F}" > rules/09-local-config.mk
-	echo "include rules/include/machine/${@F}.mk" >> rules/09-local-config.mk
+	echo "include rules/include/machine/\${MACHINE}.mk" >> rules/09-local-config.mk
 	${MAKE} rule/bsp rule/reset
 
 config/bsp/${bsp}/default.xml:
