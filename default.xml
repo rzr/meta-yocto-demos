@@ -7,6 +7,7 @@
   <remote fetch="https://github.com/meta-qt5" name="qt5"/>
   <remote fetch="https://github.com/openembedded/" name="oe"/>
   <project name="scm/bb/tizen-distro" path="sources/tizen-distro" remote="tizen" revision="tizen"/>
+  <project name="meta-oic" path="sources/meta-oic" remote="yocto" revision="master"/>
   <project name="meta-atmel" path="sources/meta-atmel" remote="atmel" revision="dizzy"/>
   <project name="meta-qt5" path="sources/meta-qt5" remote="qt5" revision="dizzy"/>
 </manifest>
