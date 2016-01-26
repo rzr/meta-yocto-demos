@@ -69,6 +69,13 @@ rule/overide/help: rule/help
 	@echo "# Machines: ${machines_list}"
 	@echo ""
 
-rule/machines:
-	for MACHINE in ${machines_list} ; do make rule/setup-machine/$${MACHINE} ; make rule/image ; make rule/images ; done
+rule/build-machine/%:
+	grep '^MACHINE' rules/config/machine/${@F}/config.mk 
+	make rule/cleanall
+	make rule/setup-machine/${@F} 
+	make rule/image
+	make rule/images
+
+rule/build-machines:
+	for MACHINE in ${machines_list} ; do make rule/build-machine/${MACHINE} ; done
 
