@@ -332,14 +332,20 @@ ${build_dir}/${package}-env.log: ${build_dir}/conf rule/overide/sources
 rule/print/layers: ${build_dir}/conf ${sources_dir}
 	${MAKE} rule/env-exec/bitbake-layers ARGS="show-layers"
 
-
 rule/cleanall/image: rule/bitbake/cleanall/${image}
 	$(info image=${image})
+
+rule/build-packages: rule/overide/build-packages
+	$(info to overloaded $@)
 
 rule/clean-packages: rule/overide/clean-packages
 	$(info to overloaded $@)
 
+rule/rebuild-packages: rule/clean-packages rule/build-packages
+	sync
+
 rule/print/image: rule/print/package/${image}
+	sync
 
 rule/print/images: ${build_dir}/conf ${sources_dir}
 	${MAKE} rule/env-exec/bitbake-layers ARGS='show-recipes \"*-image-*\"'
