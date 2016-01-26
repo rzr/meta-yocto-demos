@@ -3,6 +3,8 @@ rule/all \
 rule/bblayers \
 rule/bitbake/args \
 rule/build \
+rule/build-machines \
+rule/build-packages \
 rule/clean \
 rule/cleanall \
 rule/cleanall/image \
@@ -28,7 +30,6 @@ rule/init_env \
 rule/list/images \
 rule/local/clean \
 rule/machines \
-rule/machines \
 rule/overide/clean-packages \
 rule/overide/configure-conf \
 rule/overide/help \
@@ -44,6 +45,7 @@ rule/print/images \
 rule/print/layers \
 rule/purge \
 rule/rebuild \
+rule/rebuild-packages \
 rule/repo \
 rule/repo-dir \
 rule/repo-sync \
