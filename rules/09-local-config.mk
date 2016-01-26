@@ -1,2 +1,2 @@
-MACHINE?=fri2-noemgd
-include rules/config/machine/fri2-noemgd/config.mk
+MACHINE?=raspberrypi2
+include rules/config/machine/raspberrypi2/config.mk
