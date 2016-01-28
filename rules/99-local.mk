@@ -45,10 +45,13 @@ rules/config/bsp/${bsp}/default.xml:
 rule/setup-bsp: rules/config/bsp/${bsp}/default.xml
 	cp -av $< ${<F}
 
-rule/setup-machine/%: rules/config/machine/%/config.mk
+rule/setup-machine/%: rules/config/machine/%/config.mk GNUmakefile
 	echo "MACHINE?=${@F}" > rules/09-local-config.mk
 	echo 'include $<' >> rules/09-local-config.mk
-	${MAKE} rule/cleanall rule/setup-bsp rule/reset
+	${MAKE} GNUmakefile
+	${MAKE} rule/cleanall rule/setup-bsp rule/reset MACHINE=${@F}
+	grep MACHINE rules/09-local-config.mk
+	unset MACHINE ; make rule/print-env | grep MACHINE | grep ${@F}
 
 local/todo:
 	cd  sources/meta-raspberrypi/ && \
@@ -65,17 +68,32 @@ rule/wip/patch: rule/overide/patch/meta-raspberrypi
 
 machines_list?=$(shell ls rules/config/machine/ | sed -e 's|.mk||g' | grep -v '~' | sort) 
 
-rule/overide/help: rule/help
-	@echo "# Machines: ${machines_list}"
-	@echo ""
+rule/overide/help: 
+	@echo "# "
+	@echo "# Usage: make \$${MACHINE}"
+	@echo "# Where \$${MACHINE} is set to name of supported ones:"
+	@echo "# ${machines_list}"
+	@echo "# "
+
+
+${machines_list}:
+	${MAKE} rule/build-machine/${@F}
 
 rule/build-machine/%:
 	grep '^MACHINE' rules/config/machine/${@F}/config.mk 
-	make rule/cleanall
 	make rule/setup-machine/${@F} 
+	unset MACHINE
 	make rule/image
 	make rule/images
 
 rule/build-machines:
 	for MACHINE in ${machines_list} ; do make rule/build-machine/${MACHINE} ; done
 
+
+rule/compress:
+	find build* -type f \
+	-iname "*.hddimg" -o \
+	-iname "*.rpi-sdimg" | while read file ; do \
+	time qemu-img convert -p -c -O qcow2 "$${file}" "$${file}.qcow2" \
+        && md5sum "$${file}.qcow2" | tee "$${file}.qcow2.txt" ; \
+	done
