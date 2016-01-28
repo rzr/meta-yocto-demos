@@ -3,12 +3,12 @@
 # ex: set tabstop=4 noexpandtab:
 
 
-rule/overide/patch/tizen-distro/ldconfig: sources/tizen-distro/meta-tizen/
+todo/rule/overide/patch/tizen-distro/ldconfig: sources/tizen-distro/meta-tizen/
 	-grep -r '^[\ ]*ldconfig[\ ]*$$' $< | cut -d: -f1 | sort | uniq | while read t ; do \
  sed -e 's/^[ ]*ldconfig[ ]*$$/\[ \"\" != "\$$D\" \] || ldconfig # TODO/g' -i $$t  && echo "ldconfig: $$t" ; \
  done  | grep ldconfig
 
-rule/overide/patch/tizen-distro: sources/tizen-distro/
+todo/rule/overide/patch/tizen-distro: sources/tizen-distro/
 	-find $< -type f -exec sed -e 's/\[ \"x$$D\" == \"x\" \] && ldconfig/\[ \"\" != \"$$D\" \] || ldconfig/g' -i "{}" \;
 
 #	-cd $< && git diff
@@ -34,18 +34,20 @@ rule/overide/configure-conf: rule/configure-conf rule/overide/sources
 #	ls -l sources/meta-*${bsp}/conf/machine/${MACHINE}.conf
 
 rule/overide/packages: \
- rule/bitbake/build/weston \
- rule/bitbake/build/cogl-1.0 \
  rule/bitbake/build/cairo \
- rule/bitbake/build/harfbuzz \
- rule/bitbake/build/wayland \
  rule/bitbake/build/clutter-1.0 \
+ rule/bitbake/build/cogl-1.0 \
  rule/bitbake/build/efl \
  rule/bitbake/build/gstreamer \
+ rule/bitbake/build/harfbuzz \
  rule/bitbake/build/iotivity \
- rule/bitbake/build/iotivity-simple-client \
  rule/bitbake/build/iotivity-example \
  rule/bitbake/build/iotivity-sensorboard
+ rule/bitbake/build/iotivity-simple-client \
+ rule/bitbake/build/poppler \
+ rule/bitbake/build/syslinux \
+ rule/bitbake/build/wayland \
+ rule/bitbake/build/weston \
 	@echo "success: $@" 
 
 rule/local/clean: rule/bitbake/cleanall/tizen-platform-wrapper \
