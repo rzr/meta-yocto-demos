@@ -6,9 +6,9 @@
 /etc/os-release:
 	$(error Unsupported OS please report bug)
 
-rule/setup/%: /etc/os-release /etc/%-release
+rule/setup-os/%: /etc/os-release /etc/%-release
 
-rule/setup/debian: /etc/debian_version
+rule/setup-os/debian: /etc/debian_version
 	${sudo} apt-get install \
  binutils-gold \
  build-essential \
@@ -32,9 +32,9 @@ rule/setup/debian: /etc/debian_version
  xterm \
  #eol
 
-rule/setup/ubuntu: rule/setup/debian
+rule/setup-os/ubuntu: rule/setup-os/debian
 
-rule/setup/fedora: /etc/fedora-release
+rule/setup-os/fedora: /etc/fedora-release
 	${sudo} yum install \
  SDL-devel \
  bzip2 \
@@ -65,7 +65,7 @@ rule/setup/fedora: /etc/fedora-release
  xterm \
  #eol
 
-rule/setup/centos: /etc/centos-release
+rule/setup-os/centos: /etc/centos-release
 	${sudo} yum install \
  SDL-devel \
  bzip2 \
@@ -92,7 +92,7 @@ rule/setup/centos: /etc/centos-release
  xterm \
  #eol
 
-rule/setup/opensuse:  /etc/SuSE-release
+rule/setup-os/opensuse:  /etc/SuSE-release
 	${sudo} zypper install \
  chrpath \
  curl \
@@ -112,17 +112,15 @@ rule/setup/opensuse:  /etc/SuSE-release
  xterm \
  #eol
 
-PHONY: rule/setup/git
+rule/setup-os/lsb: /etc/os-release
+	${source} $< && export ID && ${MAKE} rule/setup-os/$${ID}
 
 rule/setup/git:
 	  git config --global user.email "${email}"
 	  git config --global user.name "${name}"
 
-rule/setup/lsb: /etc/os-release
-	${source} $< && export ID && ${MAKE} rule/setup/$${ID}
-
 ~/.gitconfig:
 	${MAKE} rule/setup/git
 
-rule/setup/all: rule/setup/lsb ~/.gitconfig
+rule/setup: rule/setup-os/lsb ~/.gitconfig
 	grep 'user.' ~/.gitconfig
