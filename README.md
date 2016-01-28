@@ -11,14 +11,12 @@ Usage:
 ======
 
    # 0st setup your host (install needed packages)
-   make rule/setup/all
+   $ make setup
 
-   # 1st setup your machine if supported (patches welcome)
-   make rule/setup-machine/${MACHINE}
+   # 1st list supported machines
+   $ make help
 
-   # 2d build image
-   make rule/image
+   # 2d build image(s) for supported machine
+   $ make ${MACHINE}
 
-   # 3rd (optionnaly) build other images
-   make rule/image
 
