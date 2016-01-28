@@ -9,8 +9,10 @@ rules_files?=$(sort $(wildcard rules/??-*.mk))
 rule/default: rule/overide/help rule/overide/all
 	date
 
-rule/help: ${SELF}
-	@echo "# Usage:"
+rule/help: rule/print-env
+
+rule/print-env: ${SELF}
+	@echo "# Usage: make help"
 	@echo ""
 	@echo "# Existing rules :"
 	@grep -o -e '^[^# 	]*:' $< \
@@ -97,7 +99,7 @@ rule/log/%: ${tmp_dir}
 rules/10-config.mk:
 	@echo "#distro?=TODO" > $@
 
-GNUmakefile: rules
+GNUmakefile: ${rules_files}
 	echo "#! /usr/bin/make -f" > $@
 	for rule in ${rules_files} ; do echo "include $${rule}" >> $@ ; done
 
@@ -153,7 +155,6 @@ ${sources_dir}: rule/rules ${repo_file} rule/done/repo-sync
 
 ${conf_file}: rules/90-overides.mk rules/10-config.mk rules/50-tasks.mk
 	@ls $@ || make rule/done/configure
-	@make rule/help
 
 ${init_build_env}: ${sources_dir}/${distro}
 	ls -l ${@D}
@@ -364,21 +365,4 @@ rule/show-recipes:
 #TODO/WIP
 rule/show:
 	${MAKE} rule/env-exec/bb ARGS="show DISTRO DISTRO_FEATURES"
-
-
-# aliases
-
-configure: rule/overide/configure
-
-rebuild: rule/overide/rebuild
-	date
-
-all: rule/overide/all
-	date
-
-clean: rule/overide/clean
-
-cleanall: rule/overide/cleanall
-
-help: rule/overide/help
 	@pwd
