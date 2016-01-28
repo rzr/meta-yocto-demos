@@ -29,3 +29,4 @@ GALLIUMDRIVERSTIZEN_append_x86 = "${@bb.utils.contains('PACKAGECONFIG', 'gallium
 GALLIUMDRIVERSTIZEN_append_x86-64 = "${@bb.utils.contains('PACKAGECONFIG', 'gallium-llvm', ',${GALLIUMDRIVERSTIZEN_LLVM}', '', d)}"
 # keep --with-gallium-drivers separate, because when only one of gallium versions is enabled, other 2 were adding --without-gallium-drivers
 PACKAGECONFIG[gallium]      = "--with-gallium-drivers=${GALLIUMDRIVERSTIZEN}, --without-gallium-drivers"
+
