@@ -1,4 +1,5 @@
-require recipes-core/images/core-image-minimal.bb
+require recipes-image/images/tizen-core-image-minimal.bb
+#require recipes-core/images/core-image-minimal.bb
 
 
 IMAGE_INSTALL += " \
