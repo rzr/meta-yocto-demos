@@ -23,7 +23,7 @@ PACKAGECONFIG[egl] += " \
  virtual/egl \
 "
 
-PACKAGECONFIG[wayland-egl] += "--enable-egl-backend, --disable-egl-backend, virtual/wayland-egl"
+PACKAGECONFIG[wayland-egl] += "--enable-egl-backend, ,virtual/wayland-egl"
 PACKAGECONFIG[wayland] = "--enable-wayland-compositor, --disable-wayland-compositor, wayland"
 PACKAGECONFIG[drm] = "--enable-drm-compositor, --disable-drm-compositor, libdrm"
 PACKAGECONFIG[cairo-glesv2] += "--with-cairo=glesv2, , virtual/libgles2"
