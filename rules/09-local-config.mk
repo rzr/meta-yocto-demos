@@ -1,2 +1,2 @@
-MACHINE?=raspberrypi2
-include rules/config/machine/raspberrypi2/config.mk
+MACHINE?=genericx86
+include rules/config/machine/genericx86/config.mk
