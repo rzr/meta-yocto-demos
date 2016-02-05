@@ -65,7 +65,7 @@ rule/scm-repo-dir: ${repo_dir}/.repo
 rule/scm-repo-sync: ${repo_dir}/.repo
 	cd ${<D} && time ${repo} sync --force-sync
 
-${sources_dir}: rule/rules ${repo_file} rule/done/repo-sync
+${sources_dir}: rule/rules ${repo_file} rule/done/scm-repo-sync
 	@ls -l ${@} || ${MAKE} rule/scm-repo-sync
 	touch ${@}
 
