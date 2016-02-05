@@ -6,7 +6,7 @@ rules_files?=$(sort $(wildcard rules/??-*.mk))
 
 .PHONY: rule/%
 
-rule/default: rule/overide/help rule/overide/all
+rule/default: GNUmakefile rule/overide/help rule/overide/all
 	date
 
 rule/help: rule/print-env
