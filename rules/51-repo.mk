@@ -6,24 +6,26 @@
 SHELL?=/bin/bash
 
 repo_file_url?=https://raw.githubusercontent.com/TizenTeam/meta-yocto-demos/master/default.xml
-repo_src_file?=default.xml
-repo_dir?=${project_dir}/tmp
-repo_file?=${repo_dir}/${repo_src_file}
+repo_filename=default.xml
+repo_src_file?=rules/config/bsp/${bsp}/${repo_filename}
+repo_dir?=${project_dir}/sources
+repo_file?=${repo_dir}/${repo_filename}
 local_url?=file://${repo_dir}
 repo?=$(shell which repo || echo ${repo_dir}/repo)
 repo_url?=https://storage.googleapis.com/git-repo-downloads/repo
 
-rule/scm-repo-setup-bsp:  ${repo_dir}/${repo_src_file}
+rule/scm-repo-setup-bsp:  ${repo_file}
 
 #${repo_file}:
 #	$(warning $@ is neeed grab sample one at ${url})
 #	@echo "wget -p ${repo_file_url}"
 
-${repo_file}: rules/config/bsp/${bsp}/default.xml ${repo_dir}/.git
+${repo_file}: ${repo_src_file} ${repo_dir}/.git
 	mkdir -p ${@D}
 	@echo "TODO: ln?"
-	cp -av ./$< ${@}
-	grep project ${@}
+	ln -fs ${CURDIR}/$< $@
+#	cp -av ./$< ${@} # TODO
+	grep "project" "${@}"
 	-cd ${@D} && git add ${@F} && git commit -m 'WIP: update ${project}' ${@F}
 
 ${repo_dir}/.git:
@@ -36,17 +38,16 @@ ${repo_dir}/.repo: ${repo_file} ${repo}
 	cd $@/.. && ln -fs . sources 
 	cd $@/.. && ${repo} init -q -u ${local_url} -b ${branch} -m ${<F}
 
-${tmp_dir}/done/repo-sync: ${repo_src_file} ${repo}
+${tmp_dir}/done/scm-repo-sync: ${repo_file} ${repo}
 	-git commit -m 'WIP: update ${project} ($@)' $<
 	make rule/overide/${@F}
 	mkdir -p ${@D}
 	touch sources $@
 
-rule/repo/%: ${repo_dir}/.repo ${repo}
+rule/scm-repo/%: ${repo_dir}/.repo ${repo}
 	cd ${<D} && time ${repo} ${@F} && ${repo} list
 
-
-rule/configure/repo: ${repo_file} rule/overide/repo/init rule/overide/repo/sync
+rule/configure-scm-repo: ${repo_file} rule/overide/scm-repo/init rule/overide/scm-repo/sync
 	date
 
 ${repo}:
@@ -54,19 +55,18 @@ ${repo}:
 	wget -nc -O $@ ${repo_url}
 	chmod u+rx $@
 
-
 rule/repo: ${repo}
 	ls ${<}
 	@${<} --help
 
-rule/repo-dir: ${repo_dir}/.repo
+rule/scm-repo-dir: ${repo_dir}/.repo
 	du -hsc $<
 
-rule/repo-sync: ${repo_dir}/.repo
+rule/scm-repo-sync: ${repo_dir}/.repo
 	cd ${<D} && time ${repo} sync --force-sync
 
 ${sources_dir}: rule/rules ${repo_file} rule/done/repo-sync
-	@ls -l ${@} || ${MAKE} rule/repo/sync
+	@ls -l ${@} || ${MAKE} rule/scm-repo-sync
 	touch ${@}
 
 rule/scm-repo-clean:
