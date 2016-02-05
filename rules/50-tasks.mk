@@ -280,6 +280,10 @@ rules/config/bsp/${bsp}/default.xml:
 
 rule/setup-bsp: rule/overide/scm-${scm}-setup-bsp
 
+
+rules/09-local-config.mk:
+	touch $@
+
 rule/setup-machine/%: rules/config/machine/%/config.mk GNUmakefile
 	echo "MACHINE?=${@F}" > rules/09-local-config.mk
 	echo 'include $<' >> rules/09-local-config.mk
