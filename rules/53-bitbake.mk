@@ -46,7 +46,7 @@ rule/print/layers: ${build_dir}/conf ${sources_dir}
 rule/cleanall/image: rule/bitbake/cleanall/${image}
 	$(info image=${image})
 
-orule/print/images: ${build_dir}/conf ${sources_dir}
+rule/print/images: ${build_dir}/conf ${sources_dir}
 	${MAKE} rule/env-exec/bitbake-layers ARGS='show-recipes \"*-image-*\"'
 	${MAKE} rule/env-exec/bitbake-layers ARGS='show-recipes \"\*-image\"'
 
