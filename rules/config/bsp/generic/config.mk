@@ -4,9 +4,11 @@
 
 SHELL=/bin/bash
 V=1
-root_bsp=generic
-bsp?=${root_bsp}
-MACHINE?=${bsp}x86-64
+
+bsp?=generic
+board_family?=${bsp}x86
+board_variant?=64
+MACHINE?=${board_family}-${board_variant}
 machine?=${MACHINE}
 machines?=${machine}
 os?=oe
