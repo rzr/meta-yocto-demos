@@ -23,3 +23,4 @@ sources_layers_conf?=$(sort $(wildcard sources/meta-*/conf/layer.conf))
 
 sources_layers_conf+=
 
+branch=master
