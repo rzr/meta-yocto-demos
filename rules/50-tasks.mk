@@ -244,9 +244,10 @@ rule/clean:
 	$(info # make rule/{cleanall,distclean,purge} to clean more)
 
 rule/cleanall: rule/overide/clean
-	rm -rf ${build_dir}/conf ${sources_dir} ${tmp_dir}
+	rm -rf ${build_dir}/conf ${tmp_dir}
 
 rule/distclean: rule/overide/cleanall rule/scm-${scm}-clean
+	rm -rf ${sources_dir}
 
 rule/clean-bsp:
 	$(info to be overiden in include/bsp/${bsp})
