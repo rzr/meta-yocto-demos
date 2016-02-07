@@ -19,6 +19,7 @@ base_image?=core-image-minimal
 image?=${base_image}
 images?=${image} ${image}-dev
 
-sources_layers_conf?=$(sort $(wildcard sources/meta-*/conf/layer.conf))
+sources_name?=sources-${MACHINE}
+sources_layers_conf?=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
 
 sources_layers_conf+=
