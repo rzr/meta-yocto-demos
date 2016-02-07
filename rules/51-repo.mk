@@ -8,7 +8,7 @@ SHELL?=/bin/bash
 repo_file_url?=https://raw.githubusercontent.com/TizenTeam/meta-yocto-demos/master/default.xml
 repo_filename=default.xml
 repo_src_file?=rules/config/bsp/${bsp}/${repo_filename}
-repo_dir?=${project_dir}/sources
+repo_dir?=${project_dir}/${sources_name}
 repo_file?=${repo_dir}/${repo_filename}
 local_url?=file://${repo_dir}
 repo?=$(shell which repo || echo ${repo_dir}/repo)
@@ -42,7 +42,7 @@ ${tmp_dir}/done/scm-repo-sync: ${repo_file} ${repo}
 	-git commit -m 'WIP: update ${project} ($@)' $<
 	make rule/overide/${@F}
 	mkdir -p ${@D}
-	touch sources $@
+	touch ${sources_name} $@
 
 rule/scm-repo/%: ${repo_dir}/.repo ${repo}
 	cd ${<D} && time ${repo} ${@F} && ${repo} list
