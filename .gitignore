@@ -5,9 +5,11 @@
 .repo/
 GNUmakefile
 build*/
+build-*/
 cache*/
 project*/
 repo
 sources/
+sources-*/
 tmp*
-tmp/*
+tmp-*/*
