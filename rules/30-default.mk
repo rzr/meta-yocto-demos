@@ -33,14 +33,14 @@ project_dir?=${CURDIR}
 cache_dir?=${project_dir}/
 build_dir?=${cache_dir}build-${machine}
 project_relative_dir?=../../
-sources_dir?=${project_dir}/sources
-tmp_dir?=tmp
+sources_dir?=${project_dir}/${sources_name}
+tmp_dir?=tmp-${MACHINE}
 
 image_dir?=${build_dir}/tmp/deploy/images/${machine}
 conf_file?=${build_dir}/conf/local.conf
 bblayers_file?=${build_dir}/conf/bblayers.conf
 build_file?=${tmp_dir}/build.log
-sources_layers_conf?=$(sort $(wildcard sources/meta-*/conf/layer.conf))
+sources_layers_conf?=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
 sources_layers_conf+=./conf/layer.conf
 sources_layers_dirs?=$(dir ${sources_layers_conf})
 sources_layers?=$(sort $(shell dirname $(sources_layers_dirs)))
