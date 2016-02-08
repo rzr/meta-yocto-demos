@@ -35,6 +35,7 @@ rule/print-env: ${SELF}
 	@echo "# conf_file=${conf_file}"
 	@echo "# image=${image}"
 	@echo "# images=${images}"
+	@echo "# sources_name=${sources_name}"
 	@echo "# sources_layers=${sources_layers}"
 	@echo "# sources_layers_conf=${sources_layers_conf}"
 	@echo ""
