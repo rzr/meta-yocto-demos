@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 V=1
 
-default: rule/help
+default: GNUmakefile rule/help
 
 %: rule/help
