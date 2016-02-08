@@ -33,6 +33,7 @@ project_dir?=${CURDIR}
 cache_dir?=${project_dir}/
 build_dir?=${cache_dir}build-${machine}
 project_relative_dir?=../../
+sources_name?=sources-${MACHINE}
 sources_dir?=${project_dir}/${sources_name}
 tmp_dir?=tmp-${MACHINE}
 
