@@ -23,7 +23,7 @@ rule/scm-repo-setup-bsp:  ${repo_file}
 ${repo_file}: ${repo_src_file} ${repo_dir}/.git
 	mkdir -p ${@D}
 	@echo "TODO: ln?"
-	ln -fs ${CURDIR}/$< $@
+	ls $@ || ln -fs ${CURDIR}/$< $@
 #	cp -av ./$< ${@} # TODO
 	grep "project" "${@}"
 	-cd ${@D} && git add ${@F} && git commit -m 'WIP: update ${project}' ${@F}
@@ -35,7 +35,7 @@ ${repo_dir}/.git:
 
 ${repo_dir}/.repo: ${repo_file} ${repo}
 	mkdir -p $@ 
-	cd $@/.. && ln -fs . sources 
+	cd $@/.. && ls sources || ln -fs . sources 
 	cd $@/.. && ${repo} init -q -u ${local_url} -b ${branch} -m ${<F}
 
 ${tmp_dir}/done/scm-repo-sync: ${repo_file} ${repo}
