@@ -32,6 +32,7 @@ rule/init_env \
 rule/list/images \
 rule/machines \
 rule/overide/help \
+rule/patch \
 rule/print-env \
 rule/print/image \
 rule/print/images \
