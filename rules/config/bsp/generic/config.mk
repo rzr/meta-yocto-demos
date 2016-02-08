@@ -4,11 +4,9 @@
 
 SHELL=/bin/bash
 V=1
-
-bsp?=generic
-board_family?=${bsp}x86
-board_variant?=64
-MACHINE?=${board_family}-${board_variant}
+root_bsp=generic
+bsp?=${root_bsp}
+MACHINE?=${bsp}x86-64
 machine?=${MACHINE}
 machines?=${machine}
 os?=oe
@@ -16,9 +14,17 @@ os_profile?=
 distro?=poky
 extra?=
 init_name?=${os}${os_profile}
-base_image?=core-image-minimal
+base_image?=genivi-demo-platform
 image?=${base_image}
 images?=${base_image} \
  #eol
-sources_layers_conf+=$(sort $(wildcard sources/meta-*/conf/layer.conf))
 
+sources_layers_conf+=$(sort $(wildcard sources/meta-*/conf/layer.conf))
+sources_layers_conf+=sources/meta-openembedded/meta-oe/conf/layer.conf
+sources_layers_conf+=sources/meta-openembedded/meta-ruby/conf/layer.conf
+sources_layers_conf+=sources/meta-ivi/meta-ivi/conf/layer.conf
+sources_layers_conf+=sources/meta-ivi/meta-ivi-bsp/conf/layer.conf
+#sources_layers_conf+=sources/meta-ivi/meta-ivi-demo/conf/layer.conf
+
+rule/overide/configure-conf: rule/configure-conf
+	sed -e 's|^DISTRO.*=.*|DISTRO ?= "poky-ivi-systemd"|g' -i ${conf_file}
