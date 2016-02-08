@@ -9,7 +9,8 @@ build-*/
 cache*/
 project*/
 repo
-sources/
+sources
 sources-*/
+sources/
 tmp*
 tmp-*/*
