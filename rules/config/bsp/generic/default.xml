@@ -4,20 +4,10 @@
   <remote fetch="git://git.projects.genivi.org/" name="genivi"/>
   <remote fetch="git://github.com/meta-qt5" name="qt"/>
   <remote fetch="git://git.openembedded.org/" name="oe"/>
-  <project name="poky" path="sources/poky" remote="yocto" revision="dizzy"/>
-  <project name="meta-ivi" path="sources/meta-ivi" remote="yocto" revision="8.0"/>
-  <project name="meta-qt5" path="sources/meta-qt5" remote="qt" revision="dizzy"/>
-  <project name="meta-openembedded" path="sources/meta-openebedded" remote="oe" revision="dizzy"/>
-  <project name="meta-genivi-demo" path="sources/meta-genivi-demo" remote="genivi" revision="master"/>
-  <project name="meta-intel" path="sources/meta-intel" remote="yocto" revision="dizzy"/>
+  <project name="poky" path="sources/poky" remote="yocto" revision="6d34267e0a13e10ab91b60590b27a2b5ba3b7da6"/>
+  <project name="meta-ivi" path="sources/meta-ivi" remote="yocto" revision="cc64f96b285e64524d7e0c740155851bbc44d790"/>
+  <project name="meta-qt5" path="sources/meta-qt5" remote="qt" revision="adeca0db212d61a933d7952ad44ea1064cfca747"/>
+  <project name="meta-openembedded" path="sources/meta-openembedded" remote="oe" revision="6413cdb66acf43059f94d0076ec9b8ad6a475b35"/>
+  <project name="meta-genivi-demo" path="sources/meta-genivi-demo" remote="genivi" revision="e0c9fe684d84de9831d2b5612570c552c8bf7be1"/>
 </manifest>
 
-<!--
- e0c9fe684d84de9831d2b5612570c552c8bf7be1 meta-genivi-demo (v7.0-6-ge0c9fe6)
- c1cf5b2b61d69c41eb5ad34c351a7f055b4d41bd meta-intel (2.0-dizzy-1.7-23-gc1cf5b2)
- cc64f96b285e64524d7e0c740155851bbc44d790 meta-ivi (8.0.1)
- 6413cdb66acf43059f94d0076ec9b8ad6a475b35 meta-openembedded (6413cdb)
- adeca0db212d61a933d7952ad44ea1064cfca747 meta-qt5 (5.2.1+origin/release-88-gadeca0d)
- 6d34267e0a13e10ab91b60590b27a2b5ba3b7da6 poky (dizzy-12.0.3-3-g6d34267)
-
--->
