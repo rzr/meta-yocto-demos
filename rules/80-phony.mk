@@ -31,7 +31,6 @@ rule/init_build_env \
 rule/init_env \
 rule/list/images \
 rule/machines \
-rule/overide/configure-conf \
 rule/overide/help \
 rule/print-env \
 rule/print/image \
