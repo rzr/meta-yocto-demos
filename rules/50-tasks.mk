@@ -60,6 +60,9 @@ rule/overide/%: rule/%
 rule/patch/%:
 	$(info no patch for $@)
 
+rule/patch: rule/overide/sources
+	$(info no patch for $@)
+
 ${tmp_dir}/done/%:
 	$(warning TODO: must define $@ explicitly else file will be removed )
 	${MAKE} rule/overide/${@F}
@@ -109,7 +112,7 @@ rule/all: rule/done/configure rule/print/images rule/overide/image rule/list/ima
 rule/rules: ${rules_files}
 
 
-${sources_dir}/${distro}: rules/10-config.mk rule/overide/sources
+${sources_dir}/${distro}: rules/10-config.mk rule/overide/patch
 	@ls -l ${@}/meta || make rule/error ARG="Please set distro var in $<"
 
 rule/distro: ${sources_dir}/${distro}
@@ -244,10 +247,9 @@ rule/clean:
 	$(info # make rule/{cleanall,distclean,purge} to clean more)
 
 rule/cleanall: rule/overide/clean
-	rm -rf ${build_dir}/conf ${tmp_dir}
+	rm -rf ${build_dir}/conf ${sources_dir} ${tmp_dir}
 
 rule/distclean: rule/overide/cleanall rule/scm-${scm}-clean
-	rm -rf ${sources_dir}
 
 rule/clean-bsp:
 	$(info to be overiden in include/bsp/${bsp})
