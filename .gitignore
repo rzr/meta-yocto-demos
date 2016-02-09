@@ -11,9 +11,9 @@ build-*
 cache*
 project*
 repo
-repo
 sources
 sources-*
+sources-*/
+sources/
 tmp*
 tmp-**
-
