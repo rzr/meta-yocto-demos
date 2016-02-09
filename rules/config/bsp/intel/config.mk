@@ -15,7 +15,7 @@ distro?=poky
 distro_conf?=${distro}-ivi-systemd
 extra?=
 init_name?=${os}${os_profile}
-base_image?=genivi-demo-platform
+base_image?=demo-image
 image?=${base_image}
 images?=${base_image} \
  #eol
