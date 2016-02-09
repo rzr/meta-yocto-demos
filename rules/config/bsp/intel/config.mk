@@ -32,7 +32,7 @@ rule/overide/configure-conf: rule/configure-conf
 	sed -e 's|^DISTRO.*=.*|DISTRO ?= "poky-ivi-systemd"|g' -i ${conf_file}
 	cat rules/config/bsp/${bsp}/local.conf.in >> ${conf_file}
 
-rule/overide/patch/meta-genivi-demo: ${sources_dir}/meta-genivi-demo/conf/layer.conf 
+rule/overide/patch/meta-genivi-demo: ${sources_name}/meta-genivi-demo/conf/layer.conf
 	sed -e 's|BBFILE_PRIORITY_genividemo = "7"|BBFILE_PRIORITY_genividemo = "8"|g' -i $<
 
 rule/overide/patch: rule/overide/patch/meta-genivi-demo
