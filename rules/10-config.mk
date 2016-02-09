@@ -4,11 +4,13 @@
 
 SHELL=/bin/bash
 V=1
-root_bsp=generic
-bsp?=${root_bsp}
-MACHINE?=${bsp}x86
+root_bsp=intel
+bsp?=intel
+board_family?=${bsp}-corei7
+board_variant?=64
+MACHINE?=${board_family}-${board_variant}
 machine?=${MACHINE}
-machines?=${machine} ${machine}-64
+machines?=${machine}
 
 os?=oe
 os_profile?=
