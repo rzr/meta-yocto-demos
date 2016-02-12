@@ -1,2 +1,2 @@
-MACHINE?=genericx86-64
-include rules/config/machine/genericx86-64/config.mk
+MACHINE?=intel-corei7-64
+include rules/config/machine/intel-corei7-64/config.mk
