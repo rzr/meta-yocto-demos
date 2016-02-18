@@ -12,14 +12,24 @@ MACHINE?=${board_family}
 machine?=${MACHINE}
 machines?=${machine} ${machine}-64
 
-os?=oe
-os_profile?=
-distro?=poky
+os?=tizen
+os_profile?=common
+distro?=${os}-distro
 extra?=
-init_name?=${os}
+init_name?=${os}-${os_profile}
 base_image?=core-image-minimal
-image?=${base_image}
-images?=${image} ${image}-dev
+image?=${os}-${os_profile}-${base_image}
+images?=${base_image} \
+ ${image} ${image}-dev \
+ tizen-common-core-image-crosswalk \
+ tizen-common-core-image-crosswalk-dev
+
+images?=${image} ${image}-dev \
+ ${os}-${os_profile}-${base_image} \
+ ${os}-${os_profile}-${base_image}-dev \
+ ${os}-${os_profile}-core-image-crosswalk \
+ ${os}-${os_profile}-core-image-crosswalk-dev
+
 
 sources_name?=sources-${MACHINE}
 sources_layers_conf?=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
