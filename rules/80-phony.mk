@@ -4,12 +4,14 @@ rule/bblayers \
 rule/bitbake/args \
 rule/build \
 rule/build-machines \
+rule/build-machines \
 rule/build-packages \
 rule/clean \
 rule/cleanall \
 rule/cleanall/image \
 rule/clean-bsp \
 rule/clean-packages \
+rule/compress \
 rule/compress \
 rule/conf \
 rule/configs \
@@ -30,9 +32,17 @@ rule/info \
 rule/init_build_env \
 rule/init_env \
 rule/list/images \
+rule/local/clean \
 rule/machines \
+rule/overide/clean-packages \
 rule/overide/configure-conf \
 rule/overide/help \
+rule/overide/help \
+rule/overide/packages \
+rule/overide/patch \
+rule/overide/patch/meta-oic/master \
+rule/overide/patch/tizen-distro/todo \
+rule/overide/sources \
 rule/patch \
 rule/print-env \
 rule/print/image \
@@ -43,6 +53,7 @@ rule/rebuild \
 rule/rebuild-packages \
 rule/repo \
 rule/reset \
+rule/reset \
 rule/rules \
 rule/scm-repo-clean \
 rule/scm-repo-cleanall \
@@ -50,6 +61,7 @@ rule/scm-repo-dir \
 rule/scm-repo-setup-bsp \
 rule/scm-repo-sync \
 rule/setup \
+rule/setup-bsp \
 rule/setup-bsp \
 rule/setup/git \
 rule/setup-os/centos \
@@ -67,4 +79,8 @@ rule/sub-rule/layer/. \
 rule/ui/args \
 rule/ui/image \
 rule/warning \
+rule/wip \
+rule/wip/help \
+rule/wip/patch \
+rule/wip/rebuild \
  #eol
