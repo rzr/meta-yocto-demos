@@ -15,6 +15,7 @@ version?=0.0.$(shell date -u +%Y%m%d)${user}
 email?=${user}+${project_name}@localhost
 name?=${USER} ${project_name} user
 
+branch?=master
 branch?=$(shell git rev-parse --abbrev-ref HEAD)
 
 generic?=generic
