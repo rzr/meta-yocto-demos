@@ -65,7 +65,7 @@ rule/patch: rule/overide/sources
 	$(info no patch for $@)
 
 ${tmp_dir}/done/%:
-	$(warning TODO: must define $@ explicitly else file will be removed )
+	$(warning TODO: must define $@ explicitly else target file will be removed )
 	${MAKE} rule/overide/${@F}
 	mkdir -p ${@D}
 	touch $@
@@ -129,7 +129,6 @@ ${init_build_env}: ${sources_dir}/${distro}
 ${build_dir}/conf:
 	${MAKE} rule/init_env
 	grep BBLAYERS ${@}/bblayers.conf
-
 #${sources_dir}/${project_name}: ${sources_dir}
 #	ls -l $@ || ln -fs .. $@
 
@@ -291,7 +290,7 @@ rules/09-local-config.mk:
 
 rule/setup-machine/%: rules/config/machine/%/config.mk GNUmakefile
 	echo "MACHINE?=${@F}" > rules/09-local-config.mk
-	echo 'include $<' >> rules/09-local-config.mk
+	echo 'include rules/config/machine/$${MACHINE}/config.mk' >> rules/09-local-config.mk
 	${MAKE} GNUmakefile
 	${MAKE} rule/cleanall rule/setup-bsp rule/reset MACHINE=${@F}
 	grep MACHINE rules/09-local-config.mk
