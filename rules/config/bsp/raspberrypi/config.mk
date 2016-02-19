@@ -20,6 +20,9 @@ images?=${base_image} \
  tizen-base-image \
  ${image} \
  ${os}-${os_profile}-${base_image} \
+ #eol
+
+todo_image?=\
  tizen-common-core-image-crosswalk \
  tizen-common-core-image-crosswalk-dev \
  rpi-hwup-image \
