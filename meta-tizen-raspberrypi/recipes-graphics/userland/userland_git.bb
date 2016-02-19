@@ -53,6 +53,12 @@ do_install_append() {
     install -m 0644 ${WORKDIR}/egl.pc ${D}${libdir}/pkgconfig/
     install -m 0644 ${WORKDIR}/bcm_host.pc ${D}${libdir}/pkgconfig/
     install -m 0644 ${WORKDIR}/glesv2.pc ${D}${libdir}/pkgconfig/
+
+
+    # tizen fix
+    install -d ${D}/etc/udev/rules.d/
+    echo 'SUBSYSTEM=="vchiq",GROUP="display",MODE="0660"' > ${D}/etc/udev/rules.d/10-vchiq-permissions.rules
+
 }
 
 # Shared libs from userland package  build aren't versioned, so we need
