@@ -4,12 +4,15 @@
 .#*
 .repo/
 GNUmakefile
+build
 build*/
 build-*/
 cache*/
 project*/
 repo
-sources/
+rules/*-local.mk
+sources
 sources-*/
+sources/
 tmp*
 tmp-*/*
