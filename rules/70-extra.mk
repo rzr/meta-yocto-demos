@@ -2,7 +2,6 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-
 /etc/os-release:
 	$(error Unsupported OS please report bug)
 
@@ -24,6 +23,8 @@ rule/setup-os/debian: /etc/debian_version
  libsdl1.2-dev \
  libwayland-dev \
  nodejs-legacy \
+ qemu-system-x86 \
+ qemu-utils \
  quilt \
  sudo \
  texinfo \
@@ -115,12 +116,22 @@ rule/setup-os/opensuse:  /etc/SuSE-release
 rule/setup-os/lsb: /etc/os-release
 	${source} $< && export ID && ${MAKE} rule/setup-os/$${ID}
 
-rule/setup/git:
+rule/setup-os: rule/setup-os/lsb
+
+rule/setup-git:
 	  git config --global user.email "${email}"
 	  git config --global user.name "${name}"
 
 ~/.gitconfig:
-	${MAKE} rule/setup/git
+	${MAKE} rule/done/setup-git
 
-rule/setup: rule/setup-os/lsb ~/.gitconfig
+rule/setup: rule/done/setup-os ~/.gitconfig
 	grep 'user.' ~/.gitconfig
+
+rule/compress:
+	find build* -type f \
+	-iname "*.hddimg" -o \
+	-iname "*.rpi-sdimg" | while read file ; do \
+	time qemu-img convert -p -c -O qcow2 "$${file}" "$${file}.qcow2" \
+        && md5sum "$${file}.qcow2" | tee "$${file}.qcow2.txt" ; \
+	done
