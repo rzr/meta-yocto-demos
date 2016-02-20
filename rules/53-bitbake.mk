@@ -5,6 +5,9 @@
 rule/bitbake/build/%: rule/done/configure ${bblayers_file} ${conf_file}
 	${MAKE} rule/env-exec/bitbake ARGS="${@F}" 
 
+rule/bitbake/verbose/%: rule/done/configure ${bblayers_file} ${conf_file}
+	${MAKE} rule/env-exec/bitbake ARGS="-v ${@F}" 
+
 rule/bitbake/args: ${bblayers_file} ${conf_file}
 	${MAKE} rule/env-exec/bitbake ARGS="${ARGS}"
 
@@ -26,6 +29,9 @@ rule/print/package/%: rule/done/configure ${build_dir}/conf ${sources_dir}
 	| awk '{print $1}' | sort | uniq | grep "${@F}"
 	${MAKE} ${build_dir}/${@F}-env.log package="${@F}"
 	cat ${build_dir}/${@F}-env.log | grep "${@F}"
+
+rule/print/image: rule/print/package/${image}
+	sync
 
 rule/list/images:
 	find ${build_dir}/tmp*/deploy/images/${MACHINE}/ -type l
@@ -60,7 +66,6 @@ rule/ui/args:
 rule/show-recipes:
 	${MAKE} rule/env-exec/bitbake-layers ARGS="show-recipes"
 
-#TODO/WIP
-rule/show:
-	${MAKE} rule/env-exec/bb ARGS="show DISTRO DISTRO_FEATURES"
-	@pwd
+rule/run:
+	${MAKE} rule/env-exec/runqemu ARGS="${MACHINE}"
+	sync
