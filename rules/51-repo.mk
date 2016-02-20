@@ -14,11 +14,13 @@ local_url?=file://${repo_dir}
 repo?=$(shell which repo || echo ${repo_dir}/repo)
 repo_url?=https://storage.googleapis.com/git-repo-downloads/repo
 
-rule/scm-repo-setup-bsp:  ${repo_file}
+rule/scm-repo-setup-bsp: ${repo_file}
 
 #${repo_file}:
 #	$(warning $@ is neeed grab sample one at ${url})
 #	@echo "wget -p ${repo_file_url}"
+
+rule/repo_file: ${repo_file}
 
 ${repo_file}: ${repo_src_file} ${repo_dir}/.git
 	mkdir -p ${@D}
@@ -37,13 +39,7 @@ ${repo_dir}/.repo/manifest.xml: ${repo_file} ${repo}
 	mkdir -p ${@D}
 	cd ${@D}/.. && ls sources || ln -fs . sources 
 	cd ${@D}/.. && ${repo} init -q -u ${local_url} -b ${branch} -m ${<F}
-	grep sources $@
-
-${tmp_dir}/done/scm-repo-sync: ${repo_file} ${repo}
-	-git commit -m 'WIP: update ${project} ($@)' $<
-	make rule/overide/${@F}
-	mkdir -p ${@D}
-	touch ${sources_name} $@
+	grep project $@
 
 rule/scm-repo/%: ${repo_dir}/.repo/manifest.xml ${repo}
 	cd ${<D} && time ${repo} ${@F} && ${repo} list
@@ -64,10 +60,12 @@ rule/scm-repo-dir: ${repo_dir}/.repo
 	du -hsc $<
 
 rule/scm-repo-sync: ${repo_dir}/.repo/manifest.xml
+	-cd ${<D}/.. && git commit -m 'WIP: update ${project} ($@)' $<
 	cd ${<D}/.. && time ${repo} sync --force-sync
+	touch ${<D}/..
 
-${sources_dir}: rule/rules ${repo_file} rule/scm-repo-sync
-	@ls -l ${@} || ${MAKE} rule/scm-repo-sync
+${sources_dir}: rule/rules ${repo_file} rule/done/scm-repo-sync
+	@ls -l ${@}/.repo/manifest.xml || ${MAKE} rule/done/scm-repo-sync
 	touch ${@}
 
 rule/scm-repo-clean:
