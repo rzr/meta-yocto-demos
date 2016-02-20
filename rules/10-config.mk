@@ -6,9 +6,9 @@ SHELL=/bin/bash
 V=1
 root_bsp=generic
 bsp?=${root_bsp}
-board_family?=${bsp}x86
-#board_variant?=64
-MACHINE?=${board_family}
+board_family?=qemu
+board_variant?=x86
+MACHINE?=${board_family}${board_variant}
 machine?=${MACHINE}
 machines?=${machine} ${machine}-64
 
@@ -25,3 +25,4 @@ sources_name?=sources-${MACHINE}
 sources_layers_conf?=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
 
 sources_layers_conf+=
+branch?=master
