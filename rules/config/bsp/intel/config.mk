@@ -46,6 +46,7 @@ rule/overide/configure-conf: rules/config/bsp/${bsp}/local.conf ${conf_dir}
 rule/overide/configure-bblayers: ${sources_name}/meta-agl-demo/templates/${MACHINE}/conf/bblayers.conf.sample ${conf_dir}
 	echo "RELATIVE_DIR := \"\$${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) + '/${project_relative_dir}')}\"" > ${bblayers_file}.mine
 	sed -e "s|##OEROOT##|\$${RELATIVE_DIR}|g"  < $< >> ${bblayers_file}.mine
+	echo "BBLAYERS += \" \$${RELATIVE_DIR}/../meta-oic \"" >> ${bblayers_file}.mine
 	echo "BBLAYERS += \" \$${RELATIVE_DIR}/../.. \"" >> ${bblayers_file}.mine
 	cp -av ${bblayers_file}.mine ${bblayers_file}
 	ln -fs ../${sources_name} ${build_dir}/sources
