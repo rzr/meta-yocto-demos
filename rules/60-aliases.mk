@@ -2,9 +2,6 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-SELF?=${CURDIR}/rules/60-tasks.mk
-
-
 configure: rule/overide/configure
 
 rebuild: rule/overide/rebuild
@@ -19,6 +16,15 @@ cleanall: rule/overide/cleanall
 
 help: rule/overide/help
 
+longhelp: rule/overide/longhelp
+
+print: rule/overide/print
+
 setup: rule/overide/setup
 
 run: rule/overide/run
+
+machines: ${machines_list}
+	df -h .
+
+
