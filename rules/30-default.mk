@@ -15,12 +15,15 @@ version?=0.0.$(shell date -u +%Y%m%d)${user}
 email?=${user}+${project_name}@localhost
 name?=${USER} ${project_name} user
 
+branch?=master
 branch?=$(shell git rev-parse --abbrev-ref HEAD)
 
 generic?=generic
 bsp?=${generic}
 MACHINE?=${bsp}x86
-export MACHINE
+
+# Don't export it could break sub makes
+#export MACHINE
 
 machine?=${MACHINE}
 machines?=${MACHINE}
@@ -63,4 +66,7 @@ sudo?=$(shell which sudo || echo sudo)
 rules_files?=$(sort $(wildcard rules/??-*.mk))
 
 
-
+distro_machines_dir?=${sources_dir}/${distro}/meta/conf/machine
+bsp_machines_dir?=${sources_dir}/meta-${bsp}/conf/machine/
+bsp_config_file?=rules/config/bsp/${bsp}/config.mk
+machine_config_file?=rules/config/machine/${machine}/config.mk
