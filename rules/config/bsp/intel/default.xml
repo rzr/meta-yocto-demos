@@ -17,4 +17,5 @@
   <project name="meta-openembedded" remote="openembedded" revision="dc5634968b270dde250690609f0015f881db81f2" upstream="jethro"/>
   <project name="meta-qt5" remote="qt5" revision="d5536e34ec985c82b621448ab4325e5cbba38560" upstream="jethro"/>
   <project name="poky" remote="yocto" revision="5b12268f6e17574999f91628a60e21711cf62ee4" upstream="jethro"/>
+  <project name="meta-oic" remote="yocto" revision="master" upstream="jethro"/>
 </manifest>
