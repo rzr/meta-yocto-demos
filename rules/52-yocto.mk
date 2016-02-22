@@ -94,3 +94,11 @@ rule/build-machines-bsp: ${bsp_machines_dir}
  | while read machine ; do \
  ${MAKE} $${machine} ; \
  done
+
+rule/setup-bsps:
+	for bsp in ${bsp_list} ; do \
+	${MAKE} rule/overide/setup-bsp bsp=$${bsp} ; \
+	done
+	-rm -rf sources-tmp
+
+
