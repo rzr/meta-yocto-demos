@@ -31,8 +31,8 @@ ${repo_file}: ${repo_src_file} ${repo_dir}/.git
 	-cd ${@D} && git add ${@F} && git commit -m 'WIP: update ${project}' ${@F}
 
 ${repo_dir}/.git:
-	@echo "log: tmp repo"
-	mkdir -p ${@D}
+	@echo "log: tmp repo : $@"
+	@mkdir -p ${@D}
 	cd ${@D} && git init
 
 ${repo_dir}/.repo/manifest.xml: ${repo_file} ${repo}
