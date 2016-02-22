@@ -49,7 +49,7 @@ rule/configure-scm-repo: ${repo_file} rule/overide/scm-repo/init rule/overide/sc
 
 ${repo}:
 	mkdir -p ${@D}
-	wget -nc -O $@ ${repo_url}
+	wget -nc -O $@.tmp ${repo_url} && mv $@.tmp $@
 	chmod u+rx $@
 
 rule/repo: ${repo}
