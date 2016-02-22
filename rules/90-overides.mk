@@ -2,7 +2,7 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
--include rules/config/bsp/${BSP}/config.mk
+-include rules/config/bsp/${bsp}/config.mk
 
 #rule/overide/all:
 #	$(warning # log: skip building ${@F}: ${ARG})
