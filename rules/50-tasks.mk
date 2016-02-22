@@ -6,7 +6,8 @@ explicit_file?=rules/45-explicit-local.mk
 phony_file?=rules/80-phony-local.mk
 config_file?=rules/10-config.mk
 include_file?=rules/20-include.mk
-local_file?=rules/05-config-local.mk
+local_file?=rules/04-machine-local.mk
+machine_file?=rules/05-machine.mk
 
 rules_files?=$(sort $(wildcard rules/??-*.mk))
 
@@ -198,6 +199,7 @@ rule/configure-machine: ${conf_file}.mine
 
 rule/configure-bsp: ${conf_file} ${bblayers_file}
 	sync
+
 rule/configure-bblayers: rule/done/sub-configure-rescan
 	grep BBLAYERS ${bblayers_file}
 
