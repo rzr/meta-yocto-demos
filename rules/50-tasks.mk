@@ -6,7 +6,7 @@ explicit_file?=rules/45-explicit-local.mk
 phony_file?=rules/80-phony-local.mk
 config_file?=rules/10-config.mk
 include_file?=rules/20-include.mk
-local_file?=rules/09-config-local.mk
+local_file?=rules/05-config-local.mk
 
 rules_files?=$(sort $(wildcard rules/??-*.mk))
 
@@ -40,7 +40,7 @@ rule/pre: ${explicit_file} ${phony_file} GNUmakefile Makefile
 rule/post: GNUmakefile Makefile
 	@date
 
-rule/help:
+rule/help: ${rules_files}
 	@echo "# ${project} "
 	@echo "# "
 	@echo "# URL: ${url}"
@@ -125,7 +125,9 @@ ${tmp_dir}:
 rule/patch: rule/overide/sources
 	$(info no patch for $@)
 
-${phony_file}: ${phony_rules}
+rule/phony: ${phony_file}
+
+${phony_file}: ${phony_rules_files}
 	@mkdir -p ${@D}
 	@echo '.PHONY: \' > $@
 	@grep '^rule/.*:' rules/*.mk | grep -v '%' | cut -d: -f2| sort | sed -e 's|$$| \\|g' >> $@
@@ -287,7 +289,7 @@ rule/clean:
 	$(info make rule/{cleanall,distclean,purge} to clean more)
 
 rule/cleanall: rule/overide/clean
-	rm -rf ${build_dir}/conf ${tmp_dir}
+	rm -rfv ${build_dir}/conf ${tmp_dir}
 
 rule/scm-setup-bsp: rule/overide/scm-${scm}-setup
 
