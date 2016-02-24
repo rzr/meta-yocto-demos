@@ -57,8 +57,6 @@ do_install_append() {
     # tizen fix (TODO relocated to package's recipe)
     install -d ${D}/etc/udev/rules.d/
     echo 'SUBSYSTEM=="vchiq",GROUP="display",MODE="0660"' > ${D}/etc/udev/rules.d/10-vchiq-permissions.rules
-
-    sed -e 's|backend=drm|backend=rpi|g;s|/dev/dri|/dev/vchiq|g'  -i ${D}/lib/systemd/system/display-manager-run.service
 #   sed -e 's|\[core\]|\[core\]\nbackend=rpi-backend.so\n|g' -i  ${D}/etc/xdg/weston/weston.ini || :
 }
 
