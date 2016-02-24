@@ -1,2 +1,2 @@
-MACHINE?=raspberrypi0
-include rules/config/machine/${MACHINE}/config.mk
+MACHINE?=raspberrypi2
+include rules/config/machine/raspberrypi2/config.mk
