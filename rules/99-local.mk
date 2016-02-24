@@ -4,9 +4,6 @@ rule/overide/clean-packages: \
  rule/bitbake/cleanall/config-image \
  rule/bitbake/cleanall/desktop-skin \
  rule/bitbake/cleanall/gumd \
- rule/bitbake/cleanall/initramfs-live-boot \
- rule/bitbake/cleanall/initramfs-live-install \
- rule/bitbake/cleanall/initramfs-live-install-efi \
  rule/bitbake/cleanall/pam \
  rule/bitbake/cleanall/rpcbind \
  rule/bitbake/cleanall/rpm \
@@ -20,6 +17,11 @@ rule/overide/clean-packages: \
  rule/bitbake/cleanall/weston-init \
  rule/bitbake/cleanall/wpa-supplicant \
  #eol
+
+rule/overide/clean-packages/generic: \
+ rule/bitbake/cleanall/initramfs-live-boot \
+ rule/bitbake/cleanall/initramfs-live-install \
+ rule/bitbake/cleanall/initramfs-live-install-efi \
 
 rule/wip/rebuild: rule/wip/cleanall \
  rule/bitbake/tlm
