@@ -3,7 +3,7 @@
 # ex: set tabstop=4 noexpandtab:
 
 bsp?=raspberrypi
-MACHINE?=${bsp}2
+MACHINE?=${bsp}0
 
 os?=tizen
 os_profile?=common
