@@ -4,7 +4,7 @@
   <remote fetch="http://git.tizen.org/git/" name="tizen"/>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <remote fetch="git://git.s-osg.org/" name="s-osg"/>
-  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="master"/>
+  <project name="meta-yocto-demos" path="sources/meta-yocto-demos" remote="tizenteam" revision="sandbox/pcoval/bsp/raspberrypi"/>
   <project name="tizen-distro" path="sources/tizen-distro" remote="s-osg" revision="tizen-debianhost"/>
   <project name="meta-raspberrypi" path="sources/meta-raspberrypi" remote="s-osg" revision="master"/>
 </manifest>
