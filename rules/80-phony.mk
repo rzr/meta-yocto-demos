@@ -35,6 +35,7 @@ rule/list/images \
 rule/local/clean \
 rule/machines \
 rule/overide/clean-packages \
+rule/overide/clean-packages/generic \
 rule/overide/configure-conf \
 rule/overide/help \
 rule/overide/help \
