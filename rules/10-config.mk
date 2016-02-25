@@ -8,3 +8,6 @@ V=1
 
 MACHINE?=qemux86
 distro?=poky
+
+image?=demo-image
+
