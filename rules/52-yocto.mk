@@ -19,9 +19,11 @@ rule/setup-machine/%: rules/config/machine/%/config.mk GNUmakefile
 ${local_file}/rule-rm:
 	rm -fv ${@D}
 
-rule/set-machine:
+rule/set-machine: GNUmakefile
 	${MAKE} rule/overide/machine-file MACHINE=${MACHINE} bsp=${bsp}
 	grep "${MACHINE}" ${local_file}
+	@echo "# If you want to set this machine, rename before commit :"
+	@echo "# cp ${local_file} ${machine_file}"
 	cp -av GNUmakefile Makefile
 	-git add Makefile
 	${MAKE} print | grep "MACHINE=${MACHINE}"
