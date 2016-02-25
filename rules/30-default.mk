@@ -21,7 +21,6 @@ branch?=$(shell git rev-parse --abbrev-ref HEAD)
 generic?=generic
 bsp?=${generic}
 MACHINE?=${bsp}x86
-
 # Don't export it could break sub makes
 #export MACHINE
 
@@ -66,7 +65,4 @@ sudo?=$(shell which sudo || echo sudo)
 rules_files?=$(sort $(wildcard rules/??-*.mk))
 
 
-distro_machines_dir?=${sources_dir}/${distro}/meta/conf/machine
-bsp_machines_dir?=${sources_dir}/meta-${bsp}/conf/machine/
-bsp_config_file?=rules/config/bsp/${bsp}/config.mk
-machine_config_file?=rules/config/machine/${machine}/config.mk
+
