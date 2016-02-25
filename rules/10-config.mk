@@ -18,6 +18,7 @@ distro?=${os}-distro
 extra?=
 init_name?=${os}-${os_profile}
 base_image?=core-image-minimal
+image?=demo-image
 image?=${os}-${os_profile}-${base_image}
 images?=${base_image} \
  ${image} ${image}-dev \
