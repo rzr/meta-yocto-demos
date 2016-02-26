@@ -1,7 +1,6 @@
 #! /usr/bin/make -f
 -include rules/01-global.mk
 -include rules/04-machine-local.mk
--include rules/05-config-local.mk
 -include rules/10-config.mk
 -include rules/20-include.mk
 -include rules/30-default.mk
@@ -14,5 +13,4 @@
 -include rules/60-aliases.mk
 -include rules/70-extra.mk
 -include rules/80-phony-local.mk
--include rules/80-phony.mk
 -include rules/90-overides.mk
