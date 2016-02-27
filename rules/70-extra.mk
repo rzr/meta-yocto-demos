@@ -22,15 +22,20 @@ rule/setup-os/debian: /etc/debian_version
  libattr1-dev \
  libsdl1.2-dev \
  libwayland-dev \
- nodejs-legacy \
- qemu-system-x86 \
- qemu-utils \
  quilt \
  sudo \
  texinfo \
  unzip \
  wget \
  xterm \
+ #eol
+
+rule/overide/setup-os/debian: rule/setup-os/debian
+	${sudo} apt-get install aptitude
+	${sudo} aptitude install \
+ nodejs-legacy \
+ qemu-system-x86 \
+ qemu-utils \
  #eol
 
 rule/setup-os/ubuntu: rule/setup-os/debian
