@@ -29,7 +29,10 @@ image_type?=core
 image?=${init_name}-${image_type}-image-minimal
 base_image?=${init_name}-${image_type}-image-minimal
 image?=${base_image}
-images?=${image} ${image}-dev
+images?=${image} \
+ ${init_name}-${image_type}-image-minimal \
+ ${init_name}-${image_type}-image-crosswalk \
+ #eol
 
 sources_name?=sources-${MACHINE}
 sources_layers_conf?=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
