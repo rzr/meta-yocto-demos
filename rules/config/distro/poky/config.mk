@@ -20,7 +20,11 @@ extra?=
 init_name?=${os}
 base_image?=core-image-minimal
 image?=${base_image}
-images?=${image} ${image}-dev
+images?=${image} \
+ ${base_image} \
+ core-image-minimal \
+ core-image-minimal-dev \
+ core-image-weston
 
 sources_name?=sources-${MACHINE}
 sources_layers_conf?=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
