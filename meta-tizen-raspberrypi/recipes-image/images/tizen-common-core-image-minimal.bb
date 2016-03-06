@@ -24,3 +24,5 @@ CORE_IMAGE_BASE_INSTALL += "weston-common-tz-launcher"
 CORE_IMAGE_BASE_INSTALL += "weston-common-config"
 CORE_IMAGE_BASE_INSTALL += "desktop-skin"
 CORE_IMAGE_BASE_INSTALL += "packagegroup-tizen-gstreamer"
+
+IMAGE_INSTALL += "weston-clients"
