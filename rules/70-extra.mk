@@ -138,5 +138,18 @@ rule/compress:
 	-iname "*.hddimg" -o \
 	-iname "*.rpi-sdimg" | while read file ; do \
 	time qemu-img convert -p -c -O qcow2 "$${file}" "$${file}.qcow2" \
-        && md5sum "$${file}.qcow2" | tee "$${file}.qcow2.txt" ; \
-	done
+  && md5sum "$${file}.qcow2" | tee "$${file}.qcow2.txt" ; \
+  done
+
+rule/deploy:
+	mkdir -p "deploy-${MACHINE}"
+	find build-${MACHINE} -iname "*.qcow2" -exec mv "{}" "deploy-${MACHINE}/" \;
+	cd "deploy-${MACHINE}" && ls *.qcow2 | while read file ; do \
+  sha1sum "$${file}" | tee "$${file}.tmp" && mv "$${file}.tmp" "$${file}.txt" ; \
+  done
+
+DESTDIR?=${CURDIR}/out
+
+rule/install: deploy-${MACHINE}
+	install -d ${DESTDIR}/$<
+	cp -rf $</* ${DESTDIR}/$</
