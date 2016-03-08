@@ -2,8 +2,7 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-MACHINE?=TODO
-distro?=TODO
-
+#MACHINE?=qemux86
+distro?=poky
 #image?=demo-image
 
