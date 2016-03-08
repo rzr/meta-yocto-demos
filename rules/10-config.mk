@@ -4,5 +4,5 @@
 
 #bsp?=generic
 #MACHINE?=qemux86
-#distro?=poky
+distro?=tizen-distro
 image?=demo-image
