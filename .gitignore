@@ -9,6 +9,7 @@ build
 build*
 build-*
 cache*
+deploy-*
 project*
 repo
 repo
@@ -16,4 +17,3 @@ sources
 sources-*
 tmp*
 tmp-**
-
