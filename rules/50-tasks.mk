@@ -77,6 +77,9 @@ GNUmakefile: ${gen_rules_files} ${rules_files} ${SELF}
 	@echo "#! /usr/bin/make -f" > $@
 	@for rule in ${rules_files} ; do echo "-include $${rule}" >> $@ ; done
 
+rule/print-val/%:
+	@echo "${@F}=${${@F}}"
+
 rule/print: ${rules_files} GNUmakefile
 	@echo "# Usage: make help"
 	@echo ""
