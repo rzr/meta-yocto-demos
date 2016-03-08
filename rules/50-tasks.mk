@@ -299,7 +299,7 @@ rule/cleanall: rule/overide/clean
 rule/scm-setup-bsp: rule/overide/scm-${scm}-setup
 
 rule/distclean: rule/overide/cleanall rule/scm-${scm}-clean
-	rm -rf ${build_dir}/tmp ${sources_dir}
+	rm -rf ${build_dir}/tmp ${sources_dir} ${build_dir} ${tmp_dir}
 
 rule/clean-bsp:
 	$(info to be overiden in include/bsp/${bsp})
