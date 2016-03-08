@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
-  <project name="poky" remote="yocto" revision="master"/>/>
-  <project name="meta-intel" path="meta-intel" remote="yocto" revision="master"/>
+  <project name="poky" remote="yocto" revision="dizzy"/>/>
+  <project name="meta-intel" path="meta-intel" remote="yocto" revision="dizzy"/>
 </manifest>
