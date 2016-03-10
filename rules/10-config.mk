@@ -3,6 +3,6 @@
 # ex: set tabstop=4 noexpandtab:
 
 #MACHINE?=qemux86
-distro?=poky
+distro?=tizen-distro
 #image?=demo-image
 
