@@ -40,4 +40,4 @@ sources_layers_conf?=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
 sources_layers_conf+=
 branch?=master
 
-bsp_machines_dir?=${distro_machines_dir}
+#bsp_machines_dir?=${distro_machines_dir}
