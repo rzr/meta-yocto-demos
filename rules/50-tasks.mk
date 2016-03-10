@@ -52,7 +52,8 @@ rule/help: ${rules_files}
 	@echo "# "
 	@echo "#  Where \$${MACHINE} is set to name of supported one among those:"
 	@echo "#  ${machines_list}"
-	@echo "#  Default on is \$${MACHINE}"
+	@echo "# "
+	@echo "#  Current machine is ${MACHINE}"
 	@echo "# "
 	@echo "# "
 
