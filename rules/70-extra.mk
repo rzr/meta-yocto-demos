@@ -135,8 +135,10 @@ rule/setup: rule/done/setup-os ~/.gitconfig
 
 rule/compress:
 	find build* -type f \
-	-iname "*.hddimg" -o \
-	-iname "*.rpi-sdimg" | while read file ; do \
+  -iname "*.hddimg" \
+  -o -iname "*.rpi-sdimg" \
+  -o -iname "*.rootfs.*-sdimg" \
+  | while read file ; do \
 	time qemu-img convert -p -c -O qcow2 "$${file}" "$${file}.qcow2" \
   && md5sum "$${file}.qcow2" | tee "$${file}.qcow2.txt" ; \
   done
