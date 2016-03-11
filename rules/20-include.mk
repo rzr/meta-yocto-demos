@@ -3,7 +3,7 @@
 # ex: set tabstop=4 noexpandtab:
 
 MACHINE?=qemux86
-include rules/config/machine/${MACHINE}/config.mk
+-include rules/config/machine/${MACHINE}/config.mk
 
 bsp?=generic
 include rules/config/bsp/${bsp}/config.mk
