@@ -5,13 +5,17 @@
   <remote fetch="git://github.com/meta-qt5" name="qt"/>
   <remote fetch="git://git.openembedded.org/" name="oe"/>
   <remote fetch="https://github.com/" name="github" />
-  <project name="poky" path="sources/poky" remote="yocto" revision="6d34267e0a13e10ab91b60590b27a2b5ba3b7da6"/>
-  <project name="meta-ivi" path="sources/meta-ivi" remote="yocto" revision="cc64f96b285e64524d7e0c740155851bbc44d790"/>
-  <project name="meta-qt5" path="sources/meta-qt5" remote="qt" revision="adeca0db212d61a933d7952ad44ea1064cfca747"/>
-  <project name="meta-openembedded" path="sources/meta-openembedded" remote="oe" revision="6413cdb66acf43059f94d0076ec9b8ad6a475b35"/>
-  <project name="meta-genivi-demo" path="sources/meta-genivi-demo" remote="genivi" revision="e0c9fe684d84de9831d2b5612570c552c8bf7be1"/>
-  <project name="meta-intel" path="sources/meta-intel" remote="yocto" revision="c1cf5b2b61d69c41eb5ad34c351a7f055b4d41bd"/>
+  <project name="poky" path="sources/poky" remote="yocto" revision="900d7d6b59c36b2bdbd1c85febec99e80ab54f95" />
+  <project name="meta-ivi" path="sources/meta-ivi" remote="yocto" revision="bfd95c5021885ed61b58a33087a4ee8e3d2f32ad" />
+  <project name="meta-qt5" path="sources/meta-qt5" remote="qt" revision="90919b9d86988e7da01fa2c0a07246b5b5600a5d"/>
+  <project name="meta-openembedded" path="sources/meta-openembedded" remote="oe" revision="a7c1a2b0e6947740758136216e45ca6ca66321fc" />
+  <project name="meta-genivi-demo" path="sources/meta-genivi-demo" remote="genivi" revision="ce93f8946aba53c7210df2caa0c6e12e7d6adb34" />
+  <project name="meta-intel" path="sources/meta-intel" remote="yocto" revision="ead0a5c115e632015d8358f4f304ec8908732f5f" />
   <project name="meta-oic" path="sources/meta-oic" remote="yocto" revision="master" />
   <project name="advancedtelematic/meta-rvi" path="sources/meta-rvi" remote="github" revision="master" />
   <project name="joaohf/meta-erlang" path="sources/meta-erlang" remote="github" revision="master" />
 </manifest>
+
+<!--
+
+-->
