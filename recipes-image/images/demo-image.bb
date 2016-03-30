@@ -1,4 +1,4 @@
-require recipes-core/images/core-image-minimal.bb
+require recipes-demo-platform/images/genivi-demo-platform.bb 
 
 IMAGE_FEATURES += " ssh-server-dropbear "
 
