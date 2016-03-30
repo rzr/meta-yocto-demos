@@ -10,9 +10,7 @@
   <project name="meta-qt5" remote="qt" revision="90919b9d86988e7da01fa2c0a07246b5b5600a5d"/>
   <project name="meta-openembedded" remote="oe" revision="a7c1a2b0e6947740758136216e45ca6ca66321fc" />
   <project name="meta-genivi-demo" remote="genivi" revision="ce93f8946aba53c7210df2caa0c6e12e7d6adb34" />
-
   <project name="meta-oic" remote="yocto" revision="master" />
-  <project name="advancedtelematic/meta-rvi"remote="github" revision="master" />
+  <project name="advancedtelematic/meta-rvi" remote="github" revision="master" />
   <project name="joaohf/meta-erlang" remote="github" revision="master" />
-
 </manifest>
