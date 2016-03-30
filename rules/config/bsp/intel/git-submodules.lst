@@ -1,6 +1,0 @@
-ce93f8946aba53c7210df2caa0c6e12e7d6adb34 ../meta-genivi-demo (v8.0-22-gce93f89)
-ead0a5c115e632015d8358f4f304ec8908732f5f ../meta-intel (3.1-fido-1.8-44-gead0a5c)
-bfd95c5021885ed61b58a33087a4ee8e3d2f32ad ../meta-ivi (9.0.1)
-a7c1a2b0e6947740758136216e45ca6ca66321fc ../meta-openembedded (remotes/origin/fido)
-90919b9d86988e7da01fa2c0a07246b5b5600a5d ../meta-qt5 (5.2.1+origin/release-166-g90919b9)
-900d7d6b59c36b2bdbd1c85febec99e80ab54f95 ../poky (fido-13.0.1-139-g900d7d6)
