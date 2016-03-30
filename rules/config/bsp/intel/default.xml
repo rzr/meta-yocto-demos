@@ -15,7 +15,3 @@
   <project name="advancedtelematic/meta-rvi" path="sources/meta-rvi" remote="github" revision="master" />
   <project name="joaohf/meta-erlang" path="sources/meta-erlang" remote="github" revision="master" />
 </manifest>
-
-<!--
-
--->
