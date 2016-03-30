@@ -10,4 +10,3 @@
   <project name="meta-openembedded" path="sources/meta-openembedded" remote="oe" revision="6413cdb66acf43059f94d0076ec9b8ad6a475b35"/>
   <project name="meta-genivi-demo" path="sources/meta-genivi-demo" remote="genivi" revision="e0c9fe684d84de9831d2b5612570c552c8bf7be1"/>
 </manifest>
-
