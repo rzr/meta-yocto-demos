@@ -31,8 +31,10 @@ sources_name?=sources-${MACHINE}
 sources_layers_conf+=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
 sources_layers_conf+=${sources_name}/meta-openembedded/meta-oe/conf/layer.conf
 sources_layers_conf+=${sources_name}/meta-openembedded/meta-ruby/conf/layer.conf
+sources_layers_conf+=${sources_name}/meta-openembedded/meta-filesystems/conf/layer.conf
 sources_layers_conf+=${sources_name}/meta-ivi/meta-ivi/conf/layer.conf
 sources_layers_conf+=${sources_name}/meta-ivi/meta-ivi-bsp/conf/layer.conf
+
 #sources_layers_conf+=${sources_name}/meta-ivi/meta-ivi-demo/conf/layer.conf
 
 rule/overide/configure-conf: rule/configure-conf
