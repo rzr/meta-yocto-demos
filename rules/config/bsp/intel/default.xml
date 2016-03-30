@@ -5,16 +5,14 @@
   <remote fetch="git://github.com/meta-qt5" name="qt"/>
   <remote fetch="git://git.openembedded.org/" name="oe"/>
   <remote fetch="https://github.com/" name="github" />
-  <project name="poky"  remote="yocto" revision="900d7d6b59c36b2bdbd1c85febec99e80ab54f95" />
+  <project name="poky" remote="yocto" revision="900d7d6b59c36b2bdbd1c85febec99e80ab54f95" />
   <project name="meta-ivi" remote="yocto" revision="bfd95c5021885ed61b58a33087a4ee8e3d2f32ad" />
   <project name="meta-qt5" remote="qt" revision="90919b9d86988e7da01fa2c0a07246b5b5600a5d"/>
   <project name="meta-openembedded" remote="oe" revision="a7c1a2b0e6947740758136216e45ca6ca66321fc" />
   <project name="meta-genivi-demo" remote="genivi" revision="ce93f8946aba53c7210df2caa0c6e12e7d6adb34" />
-
+  <project name="meta-intel" remote="yocto" revision="ead0a5c115e632015d8358f4f304ec8908732f5f" />
   <project name="meta-oic" remote="yocto" revision="master" />
-  <project name="advancedtelematic/meta-rvi"remote="github" revision="master" />
+  <project name="advancedtelematic/meta-rvi" remote="github" revision="master" />
   <project name="joaohf/meta-erlang" remote="github" revision="master" />
-
-  <project name="meta-intel"remote="yocto" revision="ead0a5c115e632015d8358f4f304ec8908732f5f" />
 
 </manifest>
