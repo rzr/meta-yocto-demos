@@ -2,7 +2,7 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-MACHINE?=intel-corei7-64
+MACHINE?=fri2-noemgd
 distro?=poky
 #image?=demo-image
 
