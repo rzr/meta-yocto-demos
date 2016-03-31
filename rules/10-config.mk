@@ -4,5 +4,5 @@
 
 MACHINE?=fri2-noemgd
 distro?=poky
-#image?=demo-image
+image?=demo-image
 
