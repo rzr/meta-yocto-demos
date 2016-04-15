@@ -46,5 +46,13 @@ rule/overide/configure-conf: rule/configure-conf
 rule/overide/patch/meta-genivi-demo: ${sources_name}/meta-genivi-demo/conf/layer.conf
 	sed -e 's|BBFILE_PRIORITY_genividemo = "7"|BBFILE_PRIORITY_genividemo = "8"|g' -i $<
 
-rule/overide/patch: rule/overide/patch/meta-genivi-demo
+
+rule/overide/patch/sources: ${sources_name}
+	find $< -iname "*.bb" -exec grep -H 'git://git.projects.genivi.org' {} \;  | grep -v protocol=http | cut -d: -f1 | xargs -n1  sed -e 's|protocol=git|protocol=http|g' -i 
+	find $< -iname "*.bb" -exec grep -H 'git://git.projects.genivi.org' {} \;  | grep -v protocol=http | cut -d: -f1 | xargs -n1  sed -e 's|\(git://git.projects.genivi.org/[^ "]*\)|\1;protocol=http|g' -i
+
+
+rule/overide/patch: rule/overide/patch/meta-genivi-demo rule/overide/patch/sources
+
+
 
