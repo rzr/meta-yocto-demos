@@ -1,21 +1,19 @@
 SUMMARY = "Iotivity Example"
-DESCRIPTION = "Minimalist Iotivity Client/Server application that controle single LED resource using GPIO"
-HOMEPAGE = "https://notabug.org/tizen/iotivity-example"
+DESCRIPTION = "Minimalist Iotivity Client/Server application that control single LED resource using GPIO"
+HOMEPAGE = "https://github.com/TizenTeam/iotivity-example"
 SECTION = "apps"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://COPYING;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
-hash = "dec572d3a2eb27c9ccd934f481858420d1c74efb"
-SRC_URI = "git://notabug.org/tizen/iotivity-example/;branch=master;tag=${hash};protocol=http"
-dir = "/home/philippe/var/cache/url/git/ssh/notabug.org/tizen/iotivity-example/src/iotivity-example"
-SRC_URI = "git://${dir};tag=${hash};protocol=file"
+SRCREV = "master"
+SRC_URI = "git://github.com/TizenTeam/iotivity-example.git/;protocol=http;nobranch=1"
 
 S = "${WORKDIR}/git"
 
 LOCAL_OPT_DIR = "/opt"
 LOCAL_OPT_DIR_D = "${D}${LOCAL_OPT_DIR}"
 
-DEPENDS += "iotivity"
+DEPENDS += "iotivity "
 
 config_mraa="1"
 DEPENDS += "mraa"
@@ -24,9 +22,9 @@ RDEPENDS_${PN} += "mraa"
 DEPENDS_${PN} += "iotivity-resource-dev iotivity-resource-thin-staticdev iotivity-service-dev iotivity-service-staticdev"
 
 BBCLASSEXTEND = "native nativesdk"
+RDEPENDS_${PN} += " iotivity-resource "
 
-EXTRA_OEMAKE = " \
-   "
+EXTRA_OEMAKE = " "
 
 do_configure() {
 }
@@ -59,5 +57,3 @@ do_install() {
 
 FILES_${PN} += "${LOCAL_OPT_DIR}/${PN}/*"
 FILES_${PN}-dbg += "${LOCAL_OPT_DIR}/${PN}/.debug"
-RDEPENDS_${PN} += "iotivity-resource"
-BBCLASSEXTEND = "native nativesdk"
