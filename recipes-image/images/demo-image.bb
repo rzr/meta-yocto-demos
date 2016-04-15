@@ -6,6 +6,8 @@ IMAGE_INSTALL += " screen "
 
 IMAGE_INSTALL += " iotivity-example "
 
+IMAGE_INSTALL += " iotivity-example-stream "
+
 IMAGE_INSTALL += " nodejs "
 
 
