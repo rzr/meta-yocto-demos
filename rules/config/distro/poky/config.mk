@@ -15,19 +15,41 @@ machines?=${machine} ${machine}-64
 
 os?=oe
 os_profile?=
-distro?=poky
+distro=poky
+distro_conf?=${distro}-ivi-systemd
 extra?=
-init_name?=${os}
-base_image?=core-image-minimal
+init_name?=${os}${os_profile}
+base_image?=genivi-demo-platform
 image?=${base_image}
-images?=${image} \
- ${base_image} \
- core-image-minimal \
- core-image-minimal-dev \
- core-image-weston
-
-sources_name?=sources-${MACHINE}
-sources_layers_conf?=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
+images?=${base_image} \
+ #eol
 
 sources_layers_conf+=
 branch?=master
+
+
+sources_name?=sources-${MACHINE}
+sources_layers_conf+=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
+sources_layers_conf+=${sources_name}/meta-openembedded/meta-oe/conf/layer.conf
+sources_layers_conf+=${sources_name}/meta-openembedded/meta-ruby/conf/layer.conf
+sources_layers_conf+=${sources_name}/meta-openembedded/meta-filesystems/conf/layer.conf
+sources_layers_conf+=${sources_name}/meta-ivi/meta-ivi/conf/layer.conf
+sources_layers_conf+=${sources_name}/meta-ivi/meta-ivi-bsp/conf/layer.conf
+
+#sources_layers_conf+=${sources_name}/meta-ivi/meta-ivi-demo/conf/layer.conf
+
+rule/overide/configure-conf: rule/configure-conf
+	sed -e 's|^DISTRO.*=.*|DISTRO ?= "poky-ivi-systemd"|g' -i ${conf_file}
+	cat rules/config/distro/${distro}/local.conf.in >> ${conf_file}
+
+rule/overide/patch/meta-genivi-demo: ${sources_name}/meta-genivi-demo/conf/layer.conf
+	sed -e 's|BBFILE_PRIORITY_genividemo = "7"|BBFILE_PRIORITY_genividemo = "8"|g' -i $<
+
+
+# https://at.projects.genivi.org/jira/projects/OSSINFR/issues/OSSINFR-30
+rule/overide/patch/sources: ${sources_name}
+	-find $< -iname "*.bb" -exec grep -H 'git://git.projects.genivi.org' {} \;  | grep -v protocol=http | cut -d: -f1 | xargs -n1  sed -e 's|protocol=git|protocol=http|g' -i 
+	-find $< -iname "*.bb" -exec grep -H 'git://git.projects.genivi.org' {} \;  | grep -v protocol=http | cut -d: -f1 | xargs -n1  sed -e 's|\(git://git.projects.genivi.org/[^ "]*\)|\1;protocol=http|g' -i
+
+
+rule/overide/patch: rule/overide/patch/meta-genivi-demo rule/overide/patch/sources
