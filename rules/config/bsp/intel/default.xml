@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
-  <project name="poky" remote="yocto" revision="master"/>
-  <project name="meta-intel" remote="yocto" revision="master"/>
+  <remote fetch="http://git.projects.genivi.org/" name="genivi"/>
+  <remote fetch="http://github.com/meta-qt5" name="qt"/>
+  <remote fetch="http://git.openembedded.org/" name="oe"/>
+  <remote fetch="https://github.com/" name="github" />
+  <project name="poky" remote="yocto" revision="6d34267e0a13e10ab91b60590b27a2b5ba3b7da6" />
+  <project name="meta-ivi" remote="yocto" revision="cc64f96b285e64524d7e0c740155851bbc44d790" />
+  <project name="meta-qt5" remote="qt" revision="adeca0db212d61a933d7952ad44ea1064cfca747"/>
+  <project name="meta-openembedded" remote="oe" revision="6413cdb66acf43059f94d0076ec9b8ad6a475b35" />
+  <project path="meta-genivi-demo" name="meta-genivi-demo.git" remote="genivi" revision="e0c9fe684d84de9831d2b5612570c552c8bf7be1" />
+  <project name="meta-intel" remote="yocto" revision="c1cf5b2b61d69c41eb5ad34c351a7f055b4d41bd" />
 </manifest>
