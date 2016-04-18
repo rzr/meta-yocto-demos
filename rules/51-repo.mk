@@ -62,13 +62,16 @@ rule/scm-repo-dir: ${repo_dir}/.repo
 rule/scm-repo-sync: ${repo_dir}/.repo/manifest.xml
 	-cd ${<D}/.. && git commit -m 'WIP: update ${project} ($@)' $<
 	cd ${<D}/.. && time ${repo} sync --force-sync
-	find ${<D}/.. -type d -iname '.*?.git' | while read file ; do \
- dirname=$$(dirname -- "$${file}"); \
- basename=$$(basename -- "$${file}" | sed -e 's|.git||'); \
- ln -fs "$${basename}.git" "$${dirname}/$${basename}" ; \
- done
 	touch ${<D}/..
 
+rule/scm-repo-sync-fix: ${repo_dir}/.repo/manifest.xml
+	find ${<D}/.. -path '${<D}' -prune -o -type d -iname '?*?.git' | while read file ; do \
+ dirname=$$(dirname -- "$${file}"); \
+ basename=$$(basename -- "$${file}" | sed -e 's|.git||'); \
+ ln -fvs "$${basename}.git" "$${dirname}/$${basename}" ; \
+ done
+
+#rule/overide/scm-repo/sync: rule/scm-repo-sync rule/scm-repo-sync-fix
 
 ${sources_dir}: rule/rules ${repo_file} rule/done/scm-repo-sync
 	@ls -l ${@}/.repo/manifest.xml || ${MAKE} rule/done/scm-repo-sync
