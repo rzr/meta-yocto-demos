@@ -2,5 +2,6 @@
 <manifest>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <project name="poky" remote="yocto" revision="master"/>
+  <project name="meta-oic" remote="yocto" revision="master"/>
   <project name="meta-intel" remote="yocto" revision="master"/>
 </manifest>
