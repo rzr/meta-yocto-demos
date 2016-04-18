@@ -12,4 +12,5 @@
   <project name="jmesmon/meta-rust" path="meta-rust" remote="github" revision="f13ac9d48ae928b761d7be204fa8f877d41e7099" />
   <project name="meta-intel" remote="yocto" revision="ead0a5c115e632015d8358f4f304ec8908732f5f" />
   <project name="meta-genivi-demo.git" path="meta-genivi-demo" remote="genivi" revision="362ca365d6522f24b977bdb4e3e0a1604893ff0e" />
+  <project name="meta-oic" remote="yocto" revision="master" />
 </manifest>
