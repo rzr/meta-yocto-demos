@@ -35,6 +35,8 @@ sources_layers_conf+=${sources_name}/meta-openembedded/meta-ruby/conf/layer.conf
 sources_layers_conf+=${sources_name}/meta-openembedded/meta-filesystems/conf/layer.conf
 sources_layers_conf+=${sources_name}/meta-ivi/meta-ivi/conf/layer.conf
 sources_layers_conf+=${sources_name}/meta-ivi/meta-ivi-bsp/conf/layer.conf
+sources_layers_conf+=${sources_name}/meta-genivi-demo/meta-genivi-demo/conf/layer.conf
+sources_layers_conf+=${sources_name}/meta-genivi-demo/meta-${bsp}-gdp/conf/layer.conf
 
 #sources_layers_conf+=${sources_name}/meta-ivi/meta-ivi-demo/conf/layer.conf
 
@@ -42,7 +44,7 @@ rule/overide/configure-conf: rule/configure-conf
 	sed -e 's|^DISTRO.*=.*|DISTRO ?= "poky-ivi-systemd"|g' -i ${conf_file}
 	cat rules/config/distro/${distro}/local.conf.in >> ${conf_file}
 
-rule/overide/patch/meta-genivi-demo: ${sources_name}/meta-genivi-demo/conf/layer.conf
+rule/overide/patch/meta-genivi-demo: ${sources_name}/meta-genivi-demo/meta-genivi-demo/conf/layer.conf
 	sed -e 's|BBFILE_PRIORITY_genividemo = "7"|BBFILE_PRIORITY_genividemo = "8"|g' -i $<
 
 
