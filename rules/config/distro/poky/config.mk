@@ -31,3 +31,11 @@ sources_layers_conf?=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
 
 sources_layers_conf+=
 branch?=master
+
+agl_repo_url?=https://download.automotivelinux.org/AGL/snapshots/master/latest/intel-corei7-64/intel-corei7-64_repo_default.xml
+agl_conf_url?=https://download.automotivelinux.org/AGL/snapshots/master/latest/intel-corei7-64/local.conf
+
+rule/agl/update: rules/config/bsp/intel/default.xml
+	wget -O$< ${agl_repo_url}
+	wget -O rules/config/bsp/intel/local.conf ${agl_conf_url}
+
