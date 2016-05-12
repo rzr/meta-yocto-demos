@@ -15,7 +15,6 @@
   <project name="jmesmon/meta-rust" path="meta-rust" remote="github" revision="395cde581938d862abb6a9219c0118c81cf01da2" upstream="master"/>
   <project name="meta-fsl-arm" remote="yocto" revision="19fa4c0ae14f38cfba52c9b65494b8f066c36a66" upstream="jethro"/>
   <project name="meta-intel" remote="yocto" revision="2397181e99d3155c7a00e1756cec92b568d9a9eb" upstream="jethro"/>
-  <project name="meta-oic" remote="yocto" revision="69146eaf8bc05c74c377e731b7e16d82854a4659" upstream="1.0.1"/>
   <project name="meta-openembedded" remote="openembedded" revision="c305ac5d2f5285d5eec8952a4ca7f3b4f89aed96" upstream="jethro"/>
   <project name="meta-qcom" remote="yocto" revision="fab859d583cbbedb2e37fafc450713b4c6cdba6b" upstream="jethro"/>
   <project name="meta-qt5/meta-qt5" path="meta-qt5" remote="github" revision="ea37a0bc987aa9484937ad68f762b4657c198617" upstream="jethro"/>
