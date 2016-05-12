@@ -21,7 +21,7 @@
   <project name="meta-qt5/meta-qt5" path="meta-qt5" remote="github" revision="ea37a0bc987aa9484937ad68f762b4657c198617" upstream="jethro"/>
   <project name="meta-raspberrypi" remote="yocto" revision="9912d38e97671704822d1aa05312a0439cb650d3" upstream="master"/>
   <project name="meta-security-isafw" remote="01org" revision="d6db6a103b381aebac1a4e7dae41813aec735628" upstream="jethro"/>
-  <project name="meta-ti" remote="yocto" revision="ddbb13e225ff8406912f7ac7d0642a38afb5ebe7" upstream="master"/>
-  <project name="poky" remote="yocto" revision="6b2102cd59c1ac48b8550dbbea0b83eada7e7b32" upstream="jethro"/>
+  <project name="meta-ti" remote="yocto" revision="0e804eb4d9f6e43de8753e893ea6b841949e0031" upstream="master"/>
+  <project name="poky" remote="yocto" revision="a201edefaecaa87eaf7e5f265c2317f7d12202a9" upstream="jethro"/>
   <project name="tripzero/meta-amb" path="meta-amb" remote="github" revision="ef3495bb8d6543709f6d1f7b657cb894d32c1757" upstream="master"/>
 </manifest>
