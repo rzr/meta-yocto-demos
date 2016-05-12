@@ -277,6 +277,12 @@ rule/env-exec/%: ${init_build_env}
  && ${source} ${<} ${build_dir} \
  && make -C ${CURDIR} rule/exec/${@F} ARGS="${ARGS}"
 
+
+rule/env-shell: ${init_build_env}
+	cd ${<D}  \
+ && ${source} ${<} ${build_dir} && ${SHELL}
+
+
 rule/images: ${tmp_dir}
 	for image in ${images} ; do \
 	make rule/overide/all image=$${image} \
