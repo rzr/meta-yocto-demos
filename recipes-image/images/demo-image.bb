@@ -4,7 +4,8 @@ IMAGE_FEATURES += " ssh-server-dropbear "
 
 IMAGE_INSTALL += " screen "
 
-IMAGE_INSTALL += " libdrm-intel "
+IMAGE_INSTALL += " mesa-megadriver "
 
 IMAGE_INSTALL += " iotivity "
+
 
