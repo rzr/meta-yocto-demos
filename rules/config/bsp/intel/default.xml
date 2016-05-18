@@ -8,14 +8,14 @@
   
   <default remote="agl" revision="master" sync-j="4"/>
   
-  <project name="AGL/meta-agl" path="meta-agl" revision="b4dedf13f6545df00893e080e51c782e23ca00b3" upstream="master"/>
+  <project name="tizenteam/meta-agl" path="meta-agl" revision="sandbox/pcoval/for/master" upstream="master"/>
   <project name="AGL/meta-agl-demo" path="meta-agl-demo" revision="ee55488e1f47e03e608594a8d7273648d3da389d" upstream="master"/>
   <project name="AGL/meta-renesas" path="meta-renesas" revision="e79ae20d2a6865bd7a228c206106e3eb89fa5399" upstream="agl-1.0-bsp-1.8.0"/>
   <project name="Freescale/meta-fsl-arm-extra" path="meta-fsl-arm-extra" remote="github" revision="dd074c47af53948041f6c5671e519fbf815b0980" upstream="jethro"/>
   <project name="jmesmon/meta-rust" path="meta-rust" remote="github" revision="395cde581938d862abb6a9219c0118c81cf01da2" upstream="master"/>
   <project name="meta-fsl-arm" remote="yocto" revision="19fa4c0ae14f38cfba52c9b65494b8f066c36a66" upstream="jethro"/>
   <project name="meta-intel" remote="yocto" revision="2397181e99d3155c7a00e1756cec92b568d9a9eb" upstream="jethro"/>
-  <project name="meta-oic" remote="yocto" revision="69146eaf8bc05c74c377e731b7e16d82854a4659" upstream="1.0.1"/>
+  <project name="tizenteam/meta-oic" remote="yocto" revision="sandbox/pcoval/on/master/wip" upstream="master"/>
   <project name="meta-openembedded" remote="openembedded" revision="d69386740b85b7865ea1ca844b91bbacd27041d8" upstream="jethro"/>
   <project name="meta-qcom" remote="yocto" revision="fab859d583cbbedb2e37fafc450713b4c6cdba6b" upstream="jethro"/>
   <project name="meta-qt5/meta-qt5" path="meta-qt5" remote="github" revision="ea37a0bc987aa9484937ad68f762b4657c198617" upstream="jethro"/>
