@@ -374,11 +374,11 @@ do_install() {
 #Service Samples: iotivity-service-samples, iotivity-service-samples-dbg
 #Tests: iotivity-tests, iotivity-tests-dbg
 
-FILES_iotivity-resource-dev = "\
+FILES_${PN}-resource-dev = "\
                         ${includedir}/iotivity/resource \
                         ${inclidedir}/iotivity/extlibs"
 
-FILES_iotivity-resource-thin-staticdev = "\
+FILES_${PN}-resource-thin-staticdev = "\
                         ${libdir}/libocsrm.a \
                         ${libdir}/libconnectivity_abstraction.a \
                         ${libdir}/liboctbstack.a \
@@ -387,22 +387,22 @@ FILES_iotivity-resource-thin-staticdev = "\
                         ${libdir}/libroutingmanager.a \
                         ${libdir}/libtimer.a"
 
-FILES_iotivity-plugins-staticdev = "\
+FILES_${PN}-plugins-staticdev = "\
                         ${includedir}/iotivity/plugins \
                         ${libdir}/libplugin_interface.a \
                         ${libdir}/libzigbee_wrapper.a \
                         ${libdir}/libtelegesis_wrapper.a"
 
-FILES_iotivity-plugins-dbg = "\
+FILES_${PN}-plugins-dbg = "\
                         ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/plugins"
 
-FILES_iotivity-resource = "\
+FILES_${PN}-resource = "\
                         ${libdir}/liboc.so \
                         ${libdir}/liboctbstack.so \
                         ${libdir}/liboc_logger.so \
                         ${libdir}/liboc_logger_core.so"
 
-FILES_iotivity-resource-dbg = "\
+FILES_${PN}-resource-dbg = "\
                         ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/resource \
                         ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/extlibs \
                         ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/examples \
@@ -412,28 +412,28 @@ FILES_iotivity-resource-dbg = "\
                         ${libdir}/.debug/liboc_logger.so \
                         ${libdir}/.debug/liboc_logger_core.so"
 
-FILES_iotivity-resource-samples-dbg = "\
+FILES_${PN}-resource-samples-dbg = "\
                       ${IOTIVITY_BIN_DIR}/examples/resource/cpp/.debug \
                       ${IOTIVITY_BIN_DIR}/examples/resource/c/SimpleClientServer/.debug \
                       ${IOTIVITY_BIN_DIR}/examples/resource/c/secure/.debug"
 
-FILES_iotivity-resource-samples = "\
+FILES_${PN}-resource-samples = "\
                       ${IOTIVITY_BIN_DIR}/examples/resource"
 
-FILES_iotivity-plugins-samples = "\
+FILES_${PN}-plugins-samples = "\
                       ${IOTIVITY_BIN_DIR}/examples/plugins"
 
-FILES_iotivity-plugins-samples-dbg = "\
+FILES_${PN}-plugins-samples-dbg = "\
                       ${IOTIVITY_BIN_DIR}/examples/plugins/zigbee/.debug"
 
-FILES_iotivity-service-dbg = "\
+FILES_${PN}-service-dbg = "\
                         ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/service \
                         ${libdir}/.debug"
 
-FILES_iotivity-service-dev = "\
+FILES_${PN}-service-dev = "\
                         ${includedir}/iotivity/service"
 
-FILES_iotivity-service = "\
+FILES_${PN}-service = "\
                         ${libdir}/libBMISensorBundle.so \
                         ${libdir}/libDISensorBundle.so \
                         ${libdir}/librcs_server.so \
@@ -446,7 +446,7 @@ FILES_iotivity-service = "\
                         ${libdir}/librcs_client.so \
                         ${libdir}/libTestBundle.so"
 
-FILES_iotivity-service-staticdev = "\
+FILES_${PN}-service-staticdev = "\
                         ${libdir}/librcs_client.a \
                         ${libdir}/librcs_server.a \
                         ${libdir}/librcs_common.a \
@@ -456,7 +456,7 @@ FILES_iotivity-service-staticdev = "\
                         ${libdir}/libresource_directory.a \
                         ${libdir}/libscene_manager.a"
 
-FILES_iotivity-service-samples-dbg = "\
+FILES_${PN}-service-samples-dbg = "\
                       ${IOTIVITY_BIN_DIR}/examples/service/things-manager/groupaction/.debug \
                       ${IOTIVITY_BIN_DIR}/examples/service/resource-encapsulation/.debug \
                       ${IOTIVITY_BIN_DIR}/examples/service/resource-container/.debug \
@@ -466,10 +466,10 @@ FILES_iotivity-service-samples-dbg = "\
                       ${IOTIVITY_BIN_DIR}/examples/service/things-manager/configuration/.debug \
                       ${IOTIVITY_BIN_DIR}/examples/service/scene-manager/.debug"
 
-FILES_iotivity-service-samples = "\
+FILES_${PN}-service-samples = "\
                       ${IOTIVITY_BIN_DIR}/examples/service"
 
-FILES_iotivity-tests-dbg = "\
+FILES_${PN}-tests-dbg = "\
                       ${libdir}/.debug/libgtest.so \
                       ${libdir}/.debug/libgtest_main.so \
                       ${IOTIVITY_BIN_DIR}/tests/service/easy-setup/.debug \
@@ -480,7 +480,7 @@ FILES_iotivity-tests-dbg = "\
                       ${IOTIVITY_BIN_DIR}/tests/service/scene-manager/.debug \
                       ${IOTIVITY_BIN_DIR}/tests/plugins/zigbee/.debug"
 
-FILES_iotivity-tests = "\
+FILES_${PN}-tests = "\
                       ${libdir}/libgtest.so \
                       ${libdir}/libgtest_main.so \
                       ${IOTIVITY_BIN_DIR}/tests"
@@ -490,13 +490,14 @@ ALLOW_EMPTY_${PN} = "1"
 RDEPENDS_${PN} += "boost"
 RRECOMMENDS_${PN} += "iotivity-resource iotivity-service"
 RRECOMMENDS_${PN}-dev += "iotivity-resource-dev iotivity-resource-thin-staticdev iotivity-plugins-staticdev iotivity-service-dev iotivity-service-staticdev"
-RDEPENDS_iotivity-resource += "glib-2.0"
-RRECOMMENDS_iotivity-plugins-staticdev += "iotivity-resource-dev iotivity-resource-thin-staticdev iotivity-resource"
-RRECOMMENDS_iotivity-resource-thin-staticdev += "iotivity-resource-dev"
-RRECOMMENDS_iotivity-service-dev += "iotivity-service iotivity-service-staticdev iotivity-resource"
-RDEPENDS_iotivity-plugins-samples += "iotivity-resource glib-2.0"
-RDEPENDS_iotivity-resource-samples += "iotivity-resource glib-2.0"
-RDEPENDS_iotivity-tests += "iotivity-resource iotivity-service glib-2.0"
-RDEPENDS_iotivity-service-samples += "iotivity-service iotivity-resource glib-2.0"
-RDEPENDS_iotivity-service += "iotivity-resource glib-2.0"
+RDEPENDS_${PN}-resource += "glib-2.0"
+RRECOMMENDS_${PN}-plugins-staticdev += "iotivity-resource-dev iotivity-resource-thin-staticdev iotivity-resource"
+RRECOMMENDS_${PN}-resource-thin-staticdev += "iotivity-resource-dev"
+RRECOMMENDS_${PN}-service-dev += "iotivity-service iotivity-service-staticdev iotivity-resource"
+RDEPENDS_${PN}-plugins-samples += "iotivity-resource glib-2.0"
+RDEPENDS_${PN}-resource-samples += "iotivity-resource glib-2.0"
+RDEPENDS_${PN}-tests += "iotivity-resource iotivity-service glib-2.0"
+RDEPENDS_${PN}-service-samples += "iotivity-service iotivity-resource glib-2.0"
+RDEPENDS_${PN}-service += "iotivity-resource glib-2.0"
 BBCLASSEXTEND = "native nativesdk"
+
