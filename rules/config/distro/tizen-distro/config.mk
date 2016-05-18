@@ -17,7 +17,7 @@ machine?=${MACHINE}
 machines?=${machine} ${machine}-64
 
 os?=tizen
-os_profile?=common
+os_profile?=ivi
 distro?=${os}-distro
 distro_branch?=${os}
 init_name?=${os}-${os_profile}
@@ -26,18 +26,18 @@ init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
 extra?=
 init_name?=${os}
 image_type?=core
-image?=${init_name}-${image_type}-image-minimal
-base_image?=${init_name}-${image_type}-image-minimal
+image?=${init_name}-${image_type}-image
+base_image?=${init_name}-${image_type}-image
 image?=${base_image}
 images?=${image} \
- ${init_name}-${image_type}-image-minimal \
- ${init_name}-${image_type}-image-crosswalk \
+ ${init_name}-Modello-image \
+ ${init_name}-ico-image \
  #eol
 
 sources_name?=sources-${MACHINE}
 sources_layers_conf?=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
 
-sources_layers_conf+=
+sources_layers_conf+= ${sources_name}/tizen-distro/meta-tizen/meta-tizen-ivi/conf/layer.conf
 branch?=master
 
 bsp_machines_dir?=${distro_machines_dir}
