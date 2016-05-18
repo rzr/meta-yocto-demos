@@ -3,5 +3,5 @@
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <remote fetch="https://git.tizen.org/cgit/" review="git://review.tizen.org/" name="tizen"/>
   <project name="poky" remote="yocto" revision="dizzy"/>
-  <project name="scm/bb/tizen-distro.git" path="tizen-distro" remote="tizen" revision="tizen"/>
+  <project name="scm/bb/tizen-distro.git" path="tizen-distro" remote="tizen" revision="tizen-ivi"/>
 </manifest>
