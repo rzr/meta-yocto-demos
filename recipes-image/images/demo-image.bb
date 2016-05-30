@@ -9,3 +9,5 @@ IMAGE_INSTALL += " iotivity-tests "
 IMAGE_INSTALL += " iotivity-resource-samples "
 IMAGE_INSTALL += " iotivity-plugins-samples "
 IMAGE_INSTALL += " iotivity-service-samples "
+
+IMAGE_INSTALL += " iotivitymap "
