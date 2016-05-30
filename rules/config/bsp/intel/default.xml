@@ -8,20 +8,20 @@
   
   <default remote="agl" revision="master" sync-j="4"/>
   
-  <project name="tizenteam/meta-agl" remote="github" path="meta-agl" revision="sandbox/pcoval/for/master" upstream="master"/>
-  <project name="tizenteam/meta-agl-demo" remote="github" path="meta-agl-demo" revision="sandbox/pcoval/for/master" upstream="master"/>
+  <project name="AGL/meta-agl" path="meta-agl" revision="56b1139ef2660535b112d0be4ddb2806f75298a8" upstream="master"/>
+  <project name="AGL/meta-agl-demo" path="meta-agl-demo" revision="83c4a67a5daf437f717dd519b3a85f8a803e9357" upstream="master"/>
   <project name="AGL/meta-renesas" path="meta-renesas" revision="e79ae20d2a6865bd7a228c206106e3eb89fa5399" upstream="agl-1.0-bsp-1.8.0"/>
   <project name="Freescale/meta-fsl-arm-extra" path="meta-fsl-arm-extra" remote="github" revision="dd074c47af53948041f6c5671e519fbf815b0980" upstream="jethro"/>
-  <project name="jmesmon/meta-rust" path="meta-rust" remote="github" revision="395cde581938d862abb6a9219c0118c81cf01da2" upstream="master"/>
+  <project name="konsulko/meta-rust" path="meta-rust" remote="github" revision="395cde581938d862abb6a9219c0118c81cf01da2" upstream="jethro"/>
   <project name="meta-fsl-arm" remote="yocto" revision="19fa4c0ae14f38cfba52c9b65494b8f066c36a66" upstream="jethro"/>
   <project name="meta-intel" remote="yocto" revision="2397181e99d3155c7a00e1756cec92b568d9a9eb" upstream="jethro"/>
-  <project name="tizenteam/meta-oic" remote="github" path="meta-oic" revision="sandbox/pcoval/on/master/wip" upstream="master"/>
-  <project name="meta-openembedded" remote="openembedded" revision="d69386740b85b7865ea1ca844b91bbacd27041d8" upstream="jethro"/>
+  <project name="meta-oic" remote="yocto" revision="69146eaf8bc05c74c377e731b7e16d82854a4659" upstream="1.0.1"/>
+  <project name="meta-openembedded" remote="openembedded" revision="cb7e68f2a39fa6f24add48fc7b8d38fb7291bb44" upstream="jethro"/>
   <project name="meta-qcom" remote="yocto" revision="fab859d583cbbedb2e37fafc450713b4c6cdba6b" upstream="jethro"/>
   <project name="meta-qt5/meta-qt5" path="meta-qt5" remote="github" revision="ea37a0bc987aa9484937ad68f762b4657c198617" upstream="jethro"/>
-  <project name="meta-raspberrypi" remote="yocto" revision="9912d38e97671704822d1aa05312a0439cb650d3" upstream="master"/>
+  <project name="meta-raspberrypi" remote="yocto" revision="69840c0bbe03c2e61601e2377c8e2adc264e0478" upstream="master"/>
   <project name="meta-security-isafw" remote="01org" revision="d6db6a103b381aebac1a4e7dae41813aec735628" upstream="jethro"/>
-  <project name="meta-ti" remote="yocto" revision="2bd5259c12ffd8316c35a2ebba6c7b449a6d9be6" upstream="master"/>
-  <project name="poky" remote="yocto" revision="f117786f2447d86810d2b8078f125363632c7662" upstream="jethro"/>
+  <project name="meta-ti" remote="yocto" revision="41a1ad99cc71ec92f4d638a63c85041055220438" upstream="master"/>
+  <project name="poky" remote="yocto" revision="32728d09462d66cb0e9d5e366154b63058cb8709" upstream="jethro"/>
   <project name="tripzero/meta-amb" path="meta-amb" remote="github" revision="ef3495bb8d6543709f6d1f7b657cb894d32c1757" upstream="master"/>
 </manifest>
