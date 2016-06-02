@@ -1,2 +1,2 @@
-bsp?=artik
+bsp?=generic
 MACHINE?=artik10
