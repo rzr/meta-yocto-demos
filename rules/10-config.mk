@@ -2,7 +2,8 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-MACHINE?=intel-corei7-64
+bsp=artik
+MACHINE?=artik10
 distro?=poky
 image?=demo-image
 
