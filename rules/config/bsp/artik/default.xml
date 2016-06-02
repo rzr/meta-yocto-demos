@@ -3,5 +3,5 @@
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <remote fetch="http://github.com/" name="github"/>
   <project name="poky" remote="yocto" revision="jethro"/>
-  <project name="resin-os/meta-artik" path="meta-artik" remote="github" revision="master"/>
+  <project name="tizenteam/meta-artik" path="meta-artik" remote="github" revision="sandbox/pcoval/for/master"/>
 </manifest>
