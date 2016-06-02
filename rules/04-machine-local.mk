@@ -1,1 +1,1 @@
-include rules/config/machine/artik10/config.mk
+include rules/config/machine/artik5/config.mk
