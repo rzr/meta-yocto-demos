@@ -13,7 +13,7 @@
 #rule/overide/list-images:
 #	$(info # log: skip $@)
 
-#rule/overide/configure-conf: rule/configure-conf
-#	ls -l ${conf_file}
+rule/overide/configure-conf: rule/configure-conf
+	ls -l ${conf_file}
 
 #rule/overide/pre: rule/overide/bsps rule/pre
