@@ -2,7 +2,9 @@
 <manifest>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <remote fetch="http://github.com/" name="github"/>
+  <remote fetch="git://git.openembedded.org" name="openembedded" />
   <project name="poky" remote="yocto" revision="jethro"/>
   <project name="tizenteam/meta-artik" path="meta-artik" remote="github" revision="sandbox/pcoval/for/master"/>
   <project name="meta-oic" remote="yocto" revision="master"/>
+  <project name="meta-openembedded" remote="openembedded" revision="jethro"/>
 </manifest>
