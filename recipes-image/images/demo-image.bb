@@ -14,3 +14,4 @@ IMAGE_INSTALL += " iotivity-service-samples "
 IMAGE_INSTALL += " iotivitymap "
 
 IMAGE_INSTALL += " bluez5 "
+
