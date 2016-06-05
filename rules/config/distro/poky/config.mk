@@ -28,6 +28,6 @@ images?=${image} \
 
 sources_name?=sources-${MACHINE}
 sources_layers_conf?=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
-
-sources_layers_conf+=
+sources_layers_conf+=${sources_name}/meta-openembedded/meta-oe/conf/layer.conf
+sources_layers_conf+=${sources_name}/meta-openembedded/meta-efl/conf/layer.conf
 branch?=master
