@@ -15,3 +15,4 @@ IMAGE_INSTALL += " iotivitymap "
 
 IMAGE_INSTALL += " bluez5 "
 
+IMAGE_INSTALL += "python-smartpm"
