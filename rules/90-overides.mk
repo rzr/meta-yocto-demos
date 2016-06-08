@@ -50,8 +50,12 @@ rule/overide/packages: \
  rule/bitbake/build/weston \
 	@echo "success: $@" 
 
-rule/local/clean: rule/bitbake/cleanall/tizen-platform-wrapper \
- rule/bitbake/cleanall/tizen-platform-config
+rule/local/clean: \
+ rule/bitbake/cleanall/config-image \
+ rule/bitbake/cleanall/tizen-platform-config \
+ rule/bitbake/cleanall/tizen-platform-wrapper \
+ rule/bitbake/cleanall/weston-init \
+ #eol
 
 #rule/overide/image: rule/overide/packages rule/image
 
