@@ -1,13 +1,12 @@
 SUMMARY = "Iotivity Example"
-DESCRIPTION = "Minimalist Iotivity Client/Server application that controle single LED resource using GPIO"
-HOMEPAGE = "https://notabug.org/tizen/iotivity-example"
+DESCRIPTION = "Minimalist Iotivity Client/Server application that share a line of text"
+HOMEPAGE = "https://github.com/TizenTeam/iotivity-example"
 SECTION = "apps"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://COPYING;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
-
-SRCREV = "a6cfe830830ab07711fbf5267c341eec165a49f3"
-SRC_URI = "git://notabug.org/tizen/iotivity-example/;branch=master;;protocol=http"
+SRCREV = "sandbox/pcoval/line"
+SRC_URI = "git://github.com/TizenTeam/iotivity-example.git/;protocol=http;nobranch=1"
 
 S = "${WORKDIR}/git"
 
@@ -15,10 +14,6 @@ LOCAL_OPT_DIR = "/opt"
 LOCAL_OPT_DIR_D = "${D}${LOCAL_OPT_DIR}"
 
 DEPENDS += "iotivity"
-
-config_mraa="1"
-DEPENDS += "mraa"
-RDEPENDS_${PN} += "mraa"
 
 DEPENDS_${PN} += "iotivity-resource-dev iotivity-resource-thin-staticdev iotivity-service-dev iotivity-service-staticdev"
 
@@ -37,8 +32,7 @@ do_compile() {
  unset DISPLAY
  LD_AS_NEEDED=1; export LD_AS_NEEDED ;
  
- oe_runmake all \
-  config_mraa=${config_mraa} 
+ oe_runmake all
 }
 
 do_install() {
@@ -52,7 +46,6 @@ do_install() {
  oe_runmake \
   install \
   DESTDIR=${LOCAL_OPT_DIR_D} \
-  config_mraa=${config_mraa} \
   #eol
 }
 
