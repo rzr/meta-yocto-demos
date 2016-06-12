@@ -6,9 +6,15 @@ EXTRANATIVEPATH += "chrpath-native"
 SECTION = "libs"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE.md;md5=22bf216f3077c279aed7b36b1fa9e6d1"
-SRCREV = "sandbox/pcoval/for/master"
+
+SRCREV = "sandbox/pcoval/tmp/on/master/jethro"
+SRCREV ?= "master"
+
+TINYCBOR_SRCREV = "1d00c48afecb0369ab3cfdfc2bac4962b21c2f2c"
+TINYCBOR_SRCREV ?= "master"
+
 SRC_URI = "git://github.com/TizenTeam/iotivity.git;protocol=http;nobranch=1;destsuffix=${S} \
-           https://github.com/01org/tinycbor/archive/master.zip;name=tinycbor;destsuffix=${S}  \
+           https://github.com/01org/tinycbor/archive/${TINYCBOR_SRCREV}.zip;name=tinycbor;destsuffix=${S}  \
            https://googletest.googlecode.com/files/gtest-1.7.0.zip;name=gtest \
            https://github.com/dascandy/hippomocks/archive/2f40aa11e31499432283b67f9d3449a3cd7b9c4d.zip;name=hippomocks \
            http://www.sqlite.org/2015/sqlite-amalgamation-3081101.zip;name=sqlite3 \
@@ -16,8 +22,9 @@ SRC_URI = "git://github.com/TizenTeam/iotivity.git;protocol=http;nobranch=1;dest
 SRC_URI[gtest.md5sum] = "2d6ec8ccdf5c46b05ba54a9fd1d130d7"
 SRC_URI[gtest.sha256sum] = "247ca18dd83f53deb1328be17e4b1be31514cedfc1e3424f672bf11fd7e0d60d"
 
-SRC_URI[tinycbor.md5sum] = "4a7c43121f31f4090f91eaa80d0aee33"
-SRC_URI[tinycbor.sha256sum] = "bf04ee2d8c3ff170995cfcffc920af8fbd332368a1111ecf47658e8cb0c2404a"
+
+SRC_URI[tinycbor.md5sum] = "75a209a452023aaabd28bb9fd591930e"
+SRC_URI[tinycbor.sha256sum] = "be7fb3102f791b21310bd30e840142efe3b1877021cda9184e7f72e985002f0b"
 
 SRC_URI[hippomocks.md5sum] = "d54eb32ea45d6d2b624c87e117f6c0cf"
 SRC_URI[hippomocks.sha256sum] = "0f57fa8cc1e2f76f1769891a266f2715295baf2333d504f628c674767646ac48"
@@ -52,7 +59,7 @@ do_compile_prepend() {
     fi
 
     if [ ! -d "${S}/extlibs/tinycbor/tinycbor" ] ; then
-        cp -rf ${WORKDIR}/tinycbor-master ${S}/extlibs/tinycbor/tinycbor
+        cp -rf ${WORKDIR}/tinycbor-* ${S}/extlibs/tinycbor/tinycbor
     fi 
 
 
@@ -104,8 +111,7 @@ do_install() {
 
     #Resource C++ Apps
     make_dir ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
-    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/oic_svr_db_client.json ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
-    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/oic_svr_db_server.json ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
+    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/*.dat ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
     copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/presenceclient ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
     copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/presenceserver ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
     copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/examples/groupclient ${IOTIVITY_BIN_DIR_D}/examples/resource/cpp
@@ -145,14 +151,13 @@ do_install() {
     copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/secure/ocamsservice ${IOTIVITY_BIN_DIR_D}/examples/resource/c/secure
     copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/secure/ocserverbasicops ${IOTIVITY_BIN_DIR_D}/examples/resource/c/secure
     copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/secure/occlientbasicops ${IOTIVITY_BIN_DIR_D}/examples/resource/c/secure
-    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/secure/oic_svr_db_client.json ${IOTIVITY_BIN_DIR_D}/examples/resource/c/secure
-    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/secure/oic_svr_db_server.json ${IOTIVITY_BIN_DIR_D}/examples/resource/c/secure
+    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/samples/linux/secure/*.dat ${IOTIVITY_BIN_DIR_D}/examples/resource/c/secure
 
     #Resource Tests
     make_dir ${IOTIVITY_BIN_DIR_D}/tests/resource
     copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/c_common/ocrandom/test/randomtests ${IOTIVITY_BIN_DIR_D}/tests/resource/ocrandom_tests
     copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/unittests/unittests ${IOTIVITY_BIN_DIR_D}/tests/resource/oc_unittests
-    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/unittests/oic_svr_db_client.json ${IOTIVITY_BIN_DIR_D}/tests/resource
+    copy_file ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/unittests/*.dat ${IOTIVITY_BIN_DIR_D}/tests/resource
     copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/stack/test/stacktests ${IOTIVITY_BIN_DIR_D}/tests/resource/octbstack_tests
     copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/csdk/connectivity/test/catests ${IOTIVITY_BIN_DIR_D}/tests/resource/ca_tests
     copy_exec ${S}/out/yocto/${IOTIVITY_TARGET_ARCH}/release/resource/oc_logger/examples/examples_cpp ${IOTIVITY_BIN_DIR_D}/tests/resource/logger_test_cpp
@@ -500,4 +505,3 @@ RDEPENDS_${PN}-tests += "iotivity-resource iotivity-service glib-2.0"
 RDEPENDS_${PN}-service-samples += "iotivity-service iotivity-resource glib-2.0"
 RDEPENDS_${PN}-service += "iotivity-resource glib-2.0"
 BBCLASSEXTEND = "native nativesdk"
-
