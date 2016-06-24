@@ -19,7 +19,7 @@ distro?=poky
 extra?=
 init_name?=${os}
 base_image?=core-image-minimal
-image?=${base_image}
+image=agl-demo-platform
 images?=${image} \
  ${base_image} \
  core-image-minimal \
