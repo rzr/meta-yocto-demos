@@ -33,6 +33,10 @@ rule/print/package/%: rule/done/configure ${build_dir}/conf ${sources_dir}
 rule/print-image: rule/print/package/${image}
 	sync
 
+rule/print-all: ${build_dir}/${image}-env.log
+	cat $<
+	sync
+
 rule/list-images:
 	find ${build_dir}/tmp*/deploy/images/${MACHINE}/ -type l
 
