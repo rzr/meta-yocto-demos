@@ -5,7 +5,8 @@
   <remote fetch="https://github.com/" name="github"/>
   <remote fetch="git://git.openembedded.org/" name="openembedded"/>
   <remote fetch="git://git.yoctoproject.org/" name="yocto"/>
-  
+  <remote fetch="http://git.s-osg.org/" name="s-osg" />
+ 
   <default remote="agl" revision="master" sync-j="4"/>
   
   <project name="AGL/meta-agl" path="meta-agl" revision="8bfa5542dbd7cb014401113080ef22bc3abd80a6" upstream="master"/>
@@ -25,4 +26,5 @@
   <project name="meta-ti" remote="yocto" revision="d2cc0238c33a4835c545cecc7cb7c1511edf53dd" upstream="master"/>
   <project name="poky" remote="yocto" revision="118380bc5d01e52b5edc574abb4176f6e70a54a6" upstream="jethro"/>
   <project name="tripzero/meta-amb" path="meta-amb" remote="github" revision="ef3495bb8d6543709f6d1f7b657cb894d32c1757" upstream="master"/>
+  <project name="meta-ocf-automotive" path="meta-ocf-automotive" remote="s-osg" revision="master" upstream="master" />
 </manifest>
