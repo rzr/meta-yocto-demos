@@ -48,7 +48,6 @@ rule/overide/configure-bblayers: ${sources_name}/meta-agl-demo/templates/${MACHI
 	sed -e "s|##OEROOT##|\$${RELATIVE_DIR}|g"  < $< >> ${bblayers_file}.mine
 	echo "BBLAYERS += \" \$${RELATIVE_DIR}/../.. \"" >> ${bblayers_file}.mine
 	echo "BBLAYERS += \" \$${RELATIVE_DIR}/../meta-ocf-automotive \"" >> ${bblayers_file}.mine
-	echo "BBLAYERS += \" \$${RELATIVE_DIR}/../meta-ocf-automotive/meta-agl/ \"" >> ${bblayers_file}.mine
 	cp -av ${bblayers_file}.mine ${bblayers_file}
 	ln -fs ../${sources_name} ${build_dir}/sources
 	ls ${build_dir}/conf/${project_relative_dir}
