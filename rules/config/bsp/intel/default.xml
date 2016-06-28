@@ -5,25 +5,24 @@
   <remote fetch="https://github.com/" name="github"/>
   <remote fetch="git://git.openembedded.org/" name="openembedded"/>
   <remote fetch="git://git.yoctoproject.org/" name="yocto"/>
-  <remote fetch="http://git.s-osg.org/" name="s-osg" />
- 
+  
   <default remote="agl" revision="master" sync-j="4"/>
   
-  <project name="AGL/meta-agl" path="meta-agl" revision="8bfa5542dbd7cb014401113080ef22bc3abd80a6" upstream="master"/>
-  <project name="AGL/meta-agl-demo" path="meta-agl-demo" revision="1c43b18b339038ece8a36d6c49effcc816214354" upstream="master"/>
-  <project name="AGL/meta-renesas" path="meta-renesas" revision="e3c63f75008f0568f9c5d3d33d36c69915ccc4e9" upstream="agl-1.0-bsp-1.8.0"/>
+  <project name="AGL/meta-agl" path="meta-agl" revision="641df47d096fb559d6f4f444670205e4510d6791" upstream="master"/>
+  <project name="AGL/meta-agl-demo" path="meta-agl-demo" revision="ae65602b0c690fba81ba79b718dfcf5bb83d5d84" upstream="master"/>
+  <project name="AGL/meta-renesas" path="meta-renesas" revision="19a1b149192775e2f5bc55bfc83184747f8b67aa" upstream="agl-1.0-bsp-1.8.0"/>
   <project name="Freescale/meta-fsl-arm-extra" path="meta-fsl-arm-extra" remote="github" revision="dd074c47af53948041f6c5671e519fbf815b0980" upstream="jethro"/>
   <project name="konsulko/meta-rust" path="meta-rust" remote="github" revision="395cde581938d862abb6a9219c0118c81cf01da2" upstream="jethro"/>
   <project name="meta-fsl-arm" remote="yocto" revision="c9e576bdae8c481f5a836531c7865fe8b8a5a36f" upstream="jethro"/>
-  <project name="meta-intel" remote="yocto" revision="2397181e99d3155c7a00e1756cec92b568d9a9eb" upstream="jethro"/>
+  <project name="meta-intel" remote="yocto" revision="0513c36afcd955bcb24600ef60f412bc821064b8" upstream="jethro"/>
   <project name="meta-intel-iot-security" remote="01org" revision="c5906a1553513ef192a58231700357c5f14f4ae4"/>
   <project name="meta-oic" remote="yocto" revision="69146eaf8bc05c74c377e731b7e16d82854a4659" upstream="1.0.1"/>
-  <project name="meta-openembedded" remote="openembedded" revision="cb7e68f2a39fa6f24add48fc7b8d38fb7291bb44" upstream="jethro"/>
-  <project name="meta-qcom" remote="yocto" revision="505f490caf66deeb8ae4e8038a2546a8e0c7aca4" upstream="jethro"/>
+  <project name="meta-openembedded" remote="openembedded" revision="8ab04afbffb4bc5184cfe0655049de6f44269990" upstream="jethro"/>
+  <project name="meta-qcom" remote="yocto" revision="22fc0697b69096aac602e70be67049626fa62ec7" upstream="jethro"/>
   <project name="meta-qt5/meta-qt5" path="meta-qt5" remote="github" revision="ea37a0bc987aa9484937ad68f762b4657c198617" upstream="jethro"/>
   <project name="meta-raspberrypi" remote="yocto" revision="8a21c1dda6150ae2596f3932ffbc6cb317ebcdf8" upstream="master"/>
   <project name="meta-security-isafw" remote="01org" revision="d6db6a103b381aebac1a4e7dae41813aec735628" upstream="jethro"/>
-  <project name="meta-ti" remote="yocto" revision="d2cc0238c33a4835c545cecc7cb7c1511edf53dd" upstream="master"/>
+  <project name="meta-ti" remote="yocto" revision="a33fcfe570f07383ac1acb9c494480c0d1cda2f3" upstream="master"/>
   <project name="poky" remote="yocto" revision="118380bc5d01e52b5edc574abb4176f6e70a54a6" upstream="jethro"/>
   <project name="tripzero/meta-amb" path="meta-amb" remote="github" revision="ef3495bb8d6543709f6d1f7b657cb894d32c1757" upstream="master"/>
   <project name="meta-ocf-automotive" path="meta-ocf-automotive" remote="s-osg" revision="master" upstream="master" />
