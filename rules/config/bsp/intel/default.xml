@@ -5,7 +5,8 @@
   <remote fetch="https://github.com/" name="github"/>
   <remote fetch="git://git.openembedded.org/" name="openembedded"/>
   <remote fetch="git://git.yoctoproject.org/" name="yocto"/>
-  
+  <remote fetch="http://git.s-osg.org/" name="s-osg" />
+ 
   <default remote="agl" revision="master" sync-j="4"/>
   
   <project name="AGL/meta-agl" path="meta-agl" revision="641df47d096fb559d6f4f444670205e4510d6791" upstream="master"/>
