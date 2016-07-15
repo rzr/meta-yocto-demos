@@ -1,0 +1,14 @@
+# Package Information for pkg-config
+
+prefix=@PREFIX@
+exec_prefix=@EXEC_PREFIX@
+libdir=@LIB_INSTALL_DIR@
+includedir=@INCLUDEDIR@
+
+Name: appsvc
+Description: new application utility library 
+Version: @VERSION@
+Requires: sqlite3 bundle ail glib-2.0 xdgmime aul
+Libs: -L${libdir} -lappsvc
+Cflags: -I${includedir}
+
