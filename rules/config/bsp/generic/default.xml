@@ -3,7 +3,6 @@
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <remote fetch="https://git.tizen.org/cgit/" review="git://review.tizen.org/" name="tizen"/>
   <remote fetch="http://git.s-osg.org/" name="s-osg" />
-  <project name="poky" remote="yocto" revision="dizzy"/>
   <project name="scm/bb/tizen-distro.git" path="tizen-distro" remote="tizen" revision="tizen-ivi"/>
   <project name="meta-oic" remote="yocto" revision="69146eaf8bc05c74c377e731b7e16d82854a4659" upstream="1.0.1"/>
   <project name="meta-ocf-automotive" path="meta-ocf-automotive" remote="s-osg" revision="master" upstream="master" />
