@@ -26,5 +26,5 @@ S = "${WORKDIR}/libsoup-${PV}"
 inherit autotools gettext pkgconfig
 
 # glib-networking is needed for SSL, proxies, etc.
-RRECOMMENDS_${PN} = "glib-networking"
+DEPENDS += "glib-networking"
 BBCLASSEXTEND += "native"
