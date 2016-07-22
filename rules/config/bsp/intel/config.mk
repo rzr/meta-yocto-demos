@@ -9,9 +9,15 @@ bsp_family?=intel
 bsp_variant?=
 bsp?=${bsp_family}${bsp_variant}
 
-board_family?=${bsp}-corei7
+board_vendor?=${bsp_family}
+board_family?=${board_vendor}-corei7
 board_variant?=-64
+board_alias?=${board_vendor}${board_variant}
+
 MACHINE?=${board_family}${board_variant}
 
+bsp_machines_dir?=${distro_machines_dir}
+
 machine?=${MACHINE}
-machines+=${machine}
+machine_list+=${machine}
+machine_list+=${board_family}
