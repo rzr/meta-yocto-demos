@@ -10,11 +10,17 @@ bsp_variant?=
 bsp?=${bsp_family}${bsp_variant}
 
 board_vendor?=qemu
-board_family?=${board_vendor}x86
+board_family?=x86
 board_variant?=
 board_alias?=${board_vendor}${board_variant}
 
-MACHINE?=${board_family}${board_variant}
+MACHINE?=${board_vendor}${board_family}${board_variant}
 
 # Only valid for distros not BSP's config
 bsp_machines_dir?=${distro_machines_dir}
+
+machine?=${MACHINE}
+machine_list+=${machine}
+machine_list+=${board_family}-64
+machine_list+=${bsp_family}${board_family}
+machine_list+=${bsp_family}${board_family}-64
