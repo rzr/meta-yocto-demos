@@ -5,7 +5,7 @@
 SHELL=/bin/bash
 V=1
 
-default: GNUmakefile
+default:
 	${MAKE} rule/overide/default
 
 %: rule/overide/help
