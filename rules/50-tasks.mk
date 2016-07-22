@@ -324,3 +324,11 @@ rules/config/bsp/${bsp}/default.xml:
 
 rule/reset:
 	make GNUmakefile
+
+rules/config/distro/${distro}/config.mk:
+	@echo "#TODO: please add a distro and edit ${config_file}"
+	exit 1
+
+rules/config/bsp/${bsp}/config.mk:
+	@echo "#TODO: please add a bsp and edit ${config_file}"
+	exit 1
