@@ -1,16 +1,9 @@
 #! /usr/bin/make -f
+
+default: GNUmakefile
+
 -include rules/01-global.mk
--include rules/04-machine-local.mk
--include rules/10-config.mk
--include rules/20-include.mk
--include rules/30-default.mk
--include rules/40-implicit.mk
--include rules/45-explicit-local.mk
 -include rules/50-tasks.mk
--include rules/51-repo.mk
--include rules/52-yocto.mk
--include rules/53-bitbake.mk
--include rules/60-aliases.mk
--include rules/70-extra.mk
--include rules/80-phony-local.mk
--include rules/90-overides.mk
+
+default: GNUmakefile
+	${MAKE} ${@F}
