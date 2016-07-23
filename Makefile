@@ -1,9 +1,9 @@
 #! /usr/bin/make -f
 
-default: GNUmakefile
+%: GNUmakefile
+	${MAKE} ${@}
 
 -include rules/01-global.mk
+-include rules/30-default.mk
+-include rules/40-implicit.mk
 -include rules/50-tasks.mk
-
-default: GNUmakefile
-	${MAKE} ${@F}
