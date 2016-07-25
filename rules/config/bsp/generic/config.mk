@@ -16,4 +16,5 @@ board_alias?=${board_family}${board_variant}
 
 MACHINE?=${board_family}${board_variant}
 
+# Only valid for distros not BSP's config
 bsp_machines_dir?=${distro_machines_dir}
