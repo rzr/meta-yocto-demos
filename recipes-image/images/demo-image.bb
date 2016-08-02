@@ -25,4 +25,5 @@ IMAGE_INSTALL += " iotivity-simple-client "
 IMAGE_INSTALL += " iotivity-sensorboard "
 
 IMAGE_INSTALL += " iotivity-example "
+IMAGE_INSTALL += " iotivity-example-stream "
 
