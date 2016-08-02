@@ -20,3 +20,6 @@ IMAGE_INSTALL += " iotivity-resource-dev "
 IMAGE_INSTALL += " iotivity-resource-thin-staticdev "
 IMAGE_INSTALL += " iotivity-service-dev "
 IMAGE_INSTALL += " iotivity-service-staticdev "
+
+IMAGE_INSTALL += " iotivity-simple-client "
+
