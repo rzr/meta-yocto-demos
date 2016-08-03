@@ -80,6 +80,9 @@ rule/env-exec/%: ${init_build_env}
  && ${source} ${<} ${build_dir} \
  && make -C ${CURDIR} rule/exec/${@F} ARGS="${ARGS}"
 
+rule/env-shell: ${init_build_env}
+	cd ${<D}  \
+ && ${source} ${<} ${build_dir} && ${SHELL}
 
 rule/setup-machine/%: rules/config/machine/%/config.mk GNUmakefile
 	@echo "MACHINE?=${@F}" > ${local_file}
