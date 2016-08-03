@@ -22,4 +22,4 @@ IMAGE_INSTALL += " iotivity-service-dev "
 IMAGE_INSTALL += " iotivity-service-staticdev "
 
 IMAGE_INSTALL += " iotivity-simple-client "
-IMAGE_INSTALL += " iotivity-sensorboard "
+
