@@ -4,4 +4,5 @@
   <remote fetch="http://github.com/" name="github"/>
   <project name="poky" remote="yocto" revision="master"/>
   <project name="resin-os/meta-artik" path="meta-artik" remote="github" revision="master"/>
+  <project name="meta-oic" path="meta-oic" remote="yocto" revision="master"/>
 </manifest>
