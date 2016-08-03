@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
+  <remote fetch="https://github.com/TizenTeam/" name="team" />
   <project name="poky" remote="yocto" revision="master"/>
-  <project name="meta-oic" remote="yocto" revision="master"/>
+  <project name="meta-oic" remote="team" revision="master"/>
 </manifest>
