@@ -18,10 +18,10 @@ TINYCBOR_SRCREV = "358a7e42ab1ed421a68e699d8d8359340bcfacbd"
 SQLITE_URL = "http://www.sqlite.org/2015/sqlite-amalgamation-3081101.zip;name=sqlite3"
 
 SRC_URI = "${IOTIVITY_URL} \
-           ${TINYCBOR_URL} \
-           ${GTEST_URL} \
-           ${SQLITE_URL} \
-          "
+        ${TINYCBOR_URL} \
+        ${GTEST_URL} \
+        ${SQLITE_URL} \
+        "
 
 SRC_URI[gtest.md5sum] = "2d6ec8ccdf5c46b05ba54a9fd1d130d7"
 SRC_URI[gtest.sha256sum] = "247ca18dd83f53deb1328be17e4b1be31514cedfc1e3424f672bf11fd7e0d60d"
@@ -377,115 +377,115 @@ do_install() {
 #Tests: iotivity-tests, iotivity-tests-dbg
 
 FILES_${PN}-resource-dev = "\
-                        ${includedir}/iotivity/resource \
-                        ${inclidedir}/iotivity/extlibs"
+        ${includedir}/iotivity/resource \
+        ${inclidedir}/iotivity/extlibs"
 
 FILES_${PN}-resource-thin-staticdev = "\
-                        ${libdir}/libocsrm.a \
-                        ${libdir}/libconnectivity_abstraction.a \
-                        ${libdir}/liboctbstack.a \
-                        ${libdir}/libcoap.a \
-                        ${libdir}/libc_common.a \
-                        ${libdir}/libroutingmanager.a \
-                        ${libdir}/libtimer.a"
+        ${libdir}/libocsrm.a \
+        ${libdir}/libconnectivity_abstraction.a \
+        ${libdir}/liboctbstack.a \
+        ${libdir}/libcoap.a \
+        ${libdir}/libc_common.a \
+        ${libdir}/libroutingmanager.a \
+        ${libdir}/libtimer.a"
 
 FILES_${PN}-plugins-staticdev = "\
-                        ${includedir}/iotivity/plugins \
-                        ${libdir}/libplugin_interface.a \
-                        ${libdir}/libzigbee_wrapper.a \
-                        ${libdir}/libtelegesis_wrapper.a"
+        ${includedir}/iotivity/plugins \
+        ${libdir}/libplugin_interface.a \
+        ${libdir}/libzigbee_wrapper.a \
+        ${libdir}/libtelegesis_wrapper.a"
 
 FILES_${PN}-plugins-dbg = "\
-                        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/plugins"
+        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/plugins"
 
 FILES_${PN}-resource = "\
-                        ${libdir}/liboc.so \
-                        ${libdir}/liboctbstack.so \
-                        ${libdir}/liboc_logger.so \
-                        ${libdir}/liboc_logger_core.so"
+        ${libdir}/liboc.so \
+        ${libdir}/liboctbstack.so \
+        ${libdir}/liboc_logger.so \
+        ${libdir}/liboc_logger_core.so"
 
 FILES_${PN}-resource-dbg = "\
-                        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/resource \
-                        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/extlibs \
-                        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/examples \
-                        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/out \
-                        ${libdir}/.debug/liboc.so \
-                        ${libdir}/.debug/liboctbstack.so \
-                        ${libdir}/.debug/liboc_logger.so \
-                        ${libdir}/.debug/liboc_logger_core.so"
+        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/resource \
+        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/extlibs \
+        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/examples \
+        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/out \
+        ${libdir}/.debug/liboc.so \
+        ${libdir}/.debug/liboctbstack.so \
+        ${libdir}/.debug/liboc_logger.so \
+        ${libdir}/.debug/liboc_logger_core.so"
 
 FILES_${PN}-resource-samples-dbg = "\
-                      ${IOTIVITY_BIN_DIR}/examples/resource/cpp/.debug \
-                      ${IOTIVITY_BIN_DIR}/examples/resource/c/SimpleClientServer/.debug \
-                      ${IOTIVITY_BIN_DIR}/examples/resource/c/secure/.debug"
+        ${IOTIVITY_BIN_DIR}/examples/resource/cpp/.debug \
+        ${IOTIVITY_BIN_DIR}/examples/resource/c/SimpleClientServer/.debug \
+        ${IOTIVITY_BIN_DIR}/examples/resource/c/secure/.debug"
 
 FILES_${PN}-resource-samples = "\
-                      ${IOTIVITY_BIN_DIR}/examples/resource"
+        ${IOTIVITY_BIN_DIR}/examples/resource"
 
 FILES_${PN}-plugins-samples = "\
-                      ${IOTIVITY_BIN_DIR}/examples/plugins"
+        ${IOTIVITY_BIN_DIR}/examples/plugins"
 
 FILES_${PN}-plugins-samples-dbg = "\
-                      ${IOTIVITY_BIN_DIR}/examples/plugins/zigbee/.debug"
+        ${IOTIVITY_BIN_DIR}/examples/plugins/zigbee/.debug"
 
 FILES_${PN}-service-dbg = "\
-                        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/service \
-                        ${libdir}/.debug"
+        ${prefix}/src/debug/${PN}/${EXTENDPE}${PV}-${PR}/${PN}-${PV}/service \
+        ${libdir}/.debug"
 
 FILES_${PN}-service-dev = "\
-                        ${includedir}/iotivity/service"
+        ${includedir}/iotivity/service"
 
 FILES_${PN}-service = "\
-                        ${libdir}/libBMISensorBundle.so \
-                        ${libdir}/libDISensorBundle.so \
-                        ${libdir}/librcs_server.so \
-                        ${libdir}/librcs_common.so \
-                        ${libdir}/librcs_container.so \
-                        ${libdir}/libHueBundle.so \
-			${libdir}/libTGMSDKLibrary.so \
-                        ${libdir}/libESMediatorCSDK.so \
-			${libdir}/libESMediatorRich.so \
-                        ${libdir}/librcs_client.so \
-                        ${libdir}/libTestBundle.so"
+        ${libdir}/libBMISensorBundle.so \
+        ${libdir}/libDISensorBundle.so \
+        ${libdir}/librcs_server.so \
+        ${libdir}/librcs_common.so \
+        ${libdir}/librcs_container.so \
+        ${libdir}/libHueBundle.so \
+	${libdir}/libTGMSDKLibrary.so \
+        ${libdir}/libESMediatorCSDK.so \
+	${libdir}/libESMediatorRich.so \
+        ${libdir}/librcs_client.so \
+        ${libdir}/libTestBundle.so"
 
 FILES_${PN}-service-staticdev = "\
-                        ${libdir}/librcs_client.a \
-                        ${libdir}/librcs_server.a \
-                        ${libdir}/librcs_common.a \
-                        ${libdir}/librcs_container.a \
-                        ${libdir}/libTGMSDKLibrary.a \
-                        ${libdir}/libresource_hosting.a \
-                        ${libdir}/libresource_directory.a \
-                        ${libdir}/libscene_manager.a"
+        ${libdir}/librcs_client.a \
+        ${libdir}/librcs_server.a \
+        ${libdir}/librcs_common.a \
+        ${libdir}/librcs_container.a \
+        ${libdir}/libTGMSDKLibrary.a \
+        ${libdir}/libresource_hosting.a \
+        ${libdir}/libresource_directory.a \
+        ${libdir}/libscene_manager.a"
 
 FILES_${PN}-service-samples-dbg = "\
-                      ${IOTIVITY_BIN_DIR}/examples/service/things-manager/groupaction/.debug \
-                      ${IOTIVITY_BIN_DIR}/examples/service/resource-encapsulation/.debug \
-                      ${IOTIVITY_BIN_DIR}/examples/service/resource-container/.debug \
-                      ${IOTIVITY_BIN_DIR}/examples/service/resource-hosting/.debug \
-                      ${IOTIVITY_BIN_DIR}/examples/service/resource-directory/.debug \
-                      ${IOTIVITY_BIN_DIR}/examples/service/easy-setup/.debug \
-                      ${IOTIVITY_BIN_DIR}/examples/service/things-manager/configuration/.debug \
-                      ${IOTIVITY_BIN_DIR}/examples/service/scene-manager/.debug"
+        ${IOTIVITY_BIN_DIR}/examples/service/things-manager/groupaction/.debug \
+        ${IOTIVITY_BIN_DIR}/examples/service/resource-encapsulation/.debug \
+        ${IOTIVITY_BIN_DIR}/examples/service/resource-container/.debug \
+        ${IOTIVITY_BIN_DIR}/examples/service/resource-hosting/.debug \
+        ${IOTIVITY_BIN_DIR}/examples/service/resource-directory/.debug \
+        ${IOTIVITY_BIN_DIR}/examples/service/easy-setup/.debug \
+        ${IOTIVITY_BIN_DIR}/examples/service/things-manager/configuration/.debug \
+        ${IOTIVITY_BIN_DIR}/examples/service/scene-manager/.debug"
 
 FILES_${PN}-service-samples = "\
-                      ${IOTIVITY_BIN_DIR}/examples/service"
+        ${IOTIVITY_BIN_DIR}/examples/service"
 
 FILES_${PN}-tests-dbg = "\
-                      ${libdir}/.debug/libgtest.so \
-                      ${libdir}/.debug/libgtest_main.so \
-                      ${IOTIVITY_BIN_DIR}/tests/service/easy-setup/.debug \
-                      ${IOTIVITY_BIN_DIR}/tests/resource/.debug \
-                      ${IOTIVITY_BIN_DIR}/tests/service/things-manager/.debug \
-                      ${IOTIVITY_BIN_DIR}/tests/service/resource-container/.debug \
-                      ${IOTIVITY_BIN_DIR}/tests/service/resource-encapsulation/.debug \
-                      ${IOTIVITY_BIN_DIR}/tests/service/scene-manager/.debug \
-                      ${IOTIVITY_BIN_DIR}/tests/plugins/zigbee/.debug"
+        ${libdir}/.debug/libgtest.so \
+        ${libdir}/.debug/libgtest_main.so \
+        ${IOTIVITY_BIN_DIR}/tests/service/easy-setup/.debug \
+        ${IOTIVITY_BIN_DIR}/tests/resource/.debug \
+        ${IOTIVITY_BIN_DIR}/tests/service/things-manager/.debug \
+        ${IOTIVITY_BIN_DIR}/tests/service/resource-container/.debug \
+        ${IOTIVITY_BIN_DIR}/tests/service/resource-encapsulation/.debug \
+        ${IOTIVITY_BIN_DIR}/tests/service/scene-manager/.debug \
+        ${IOTIVITY_BIN_DIR}/tests/plugins/zigbee/.debug"
 
 FILES_${PN}-tests = "\
-                      ${libdir}/libgtest.so \
-                      ${libdir}/libgtest_main.so \
-                      ${IOTIVITY_BIN_DIR}/tests"
+        ${libdir}/libgtest.so \
+        ${libdir}/libgtest_main.so \
+        ${IOTIVITY_BIN_DIR}/tests"
 
 PACKAGES = "${PN}-tests-dbg ${PN}-tests ${PN}-plugins-dbg ${PN}-plugins-staticdev ${PN}-plugins-samples-dbg ${PN}-plugins-samples ${PN}-resource-dbg ${PN}-resource ${PN}-resource-dev ${PN}-resource-thin-staticdev ${PN}-resource-samples-dbg ${PN}-resource-samples ${PN}-service-dbg ${PN}-service ${PN}-service-dev ${PN}-service-staticdev ${PN}-service-samples-dbg ${PN}-service-samples ${PN}-dev ${PN}"
 ALLOW_EMPTY_${PN} = "1"
