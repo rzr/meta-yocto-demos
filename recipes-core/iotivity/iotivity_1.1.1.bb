@@ -442,9 +442,9 @@ FILES_${PN}-service = "\
         ${libdir}/librcs_common.so \
         ${libdir}/librcs_container.so \
         ${libdir}/libHueBundle.so \
-	${libdir}/libTGMSDKLibrary.so \
+        ${libdir}/libTGMSDKLibrary.so \
         ${libdir}/libESMediatorCSDK.so \
-	${libdir}/libESMediatorRich.so \
+        ${libdir}/libESMediatorRich.so \
         ${libdir}/librcs_client.so \
         ${libdir}/libTestBundle.so"
 
