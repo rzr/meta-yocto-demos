@@ -21,7 +21,7 @@ gen_rules_files +=\
 
 phony_rules_files?=$(subst ${phony_file},, ${rules_files})
 welcome_delay?=5
-machine_list_list?=$(shell ls rules/config/machine/ | sed -e 's|.mk||g' | grep -v '~' | sort)
+machines_list?=$(shell ls rules/config/machine/ | sed -e 's|.mk||g' | grep -v '~' | sort)
 bsp_list?=$(shell ls rules/config/bsp/ | sed -e 's|.mk||g' | grep -v '~' | sort)
 
 .PHONY: rule/%
@@ -51,7 +51,7 @@ rule/help: ${rules_files}
 	@echo "#  make \$${MACHINE}"
 	@echo "# "
 	@echo "#  Where \$${MACHINE} is set to name of supported one among those:"
-	@echo "#  ${machine_list_list}"
+	@echo "#  ${machines_list}"
 	@echo "# "
 	@echo "#  Current machine is ${MACHINE}"
 	@echo "# "
@@ -111,7 +111,7 @@ rule/print: ${rules_files} GNUmakefile
 	@echo "# sources_name=${sources_name}"
 	@echo "# sources_layers=${sources_layers}"
 	@echo "# sources_layers_conf=${sources_layers_conf}"
-	@echo "# machine_list=${machine_list}"
+	@echo "# machines_list=${machines_list}"
 	@echo "# bsp_list=${bsp_list}"
 	@echo ""
 	@echo "# More in rules/*.mk"
@@ -214,13 +214,13 @@ rule/images: ${tmp_dir}
 	done ; \
 
 rule/machines: ${tmp_dir}
-	for machine in ${machine_list} ; do \
+	for machine in ${machines_list} ; do \
 	make rule/overide/all MACHINE=$${machine} \
 	|| echo "$${image}/$${machine}" >> ${tmp_dir}/fail.log ; \
 	done ; \
 
 rule/configs: ${tmp_dir}
-	for machine in ${machine_list} ; do \
+	for machine in ${machines_list} ; do \
 	make rule/overide/images MACHINE=$${machine} \
 	|| echo "$${image}/$${machine}" >> ${tmp_dir}/fail.log ; \
 	done ;
