@@ -11,7 +11,7 @@ bsp?=${bsp_family}${bsp_variant}
 
 board_vendor?=raspberrypi
 board_family?=${bsp}
-board_variant?=
+board_variant?=2
 board_alias?=${board_family}${board_variant}
 
 MACHINE?=${board_family}${board_variant}
