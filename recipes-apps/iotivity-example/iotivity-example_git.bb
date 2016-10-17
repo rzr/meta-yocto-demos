@@ -1,28 +1,38 @@
-SUMMARY = "Iotivity Example"
-DESCRIPTION = "Minimalist Iotivity Client/Server application that share a line of text"
+SUMMARY = "IoTivity Switch Example"
+DESCRIPTION = "Minimalist Iotivity Client/Server application that control single ON/OFF resource"
 HOMEPAGE = "https://github.com/TizenTeam/iotivity-example"
 SECTION = "apps"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://COPYING;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
-SRCREV = "sandbox/pcoval/line"
+SRCREV = "master"
+SRCREV = "sandbox/pcoval/switch"
 SRC_URI = "git://github.com/TizenTeam/iotivity-example.git/;protocol=http;nobranch=1"
 
 S = "${WORKDIR}/git"
 
-LOCAL_OPT_DIR = "/opt"
-LOCAL_OPT_DIR_D = "${D}${LOCAL_OPT_DIR}"
+inherit systemd pkgconfig
 
-DEPENDS += "iotivity"
+LOCAL_OPT_DIR = "/opt"
+
+DEPENDS += " iotivity "
+BDEPENDS += " iotivity-dev "
 
 DEPENDS_${PN} += "iotivity-resource-dev iotivity-resource-thin-staticdev iotivity-service-dev iotivity-service-staticdev"
 
 BBCLASSEXTEND = "native nativesdk"
 RDEPENDS_${PN} += " iotivity-resource "
 
-EXTRA_OEMAKE = " "
+SYSTEMD_SERVICE_${PN} = "${PN}.service"
+EXTRA_OEMAKE = " package=${PN} "
 
 do_configure() {
+}
+
+do_compile_prepend() {
+    export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}"
+    export PKG_CONFIG="PKG_CONFIG_SYSROOT_DIR=\"${PKG_CONFIG_SYSROOT_DIR}\" pkg-config"
+    export LD_FLAGS="${LD_FLAGS}"
 }
 
 do_compile() {
@@ -43,10 +53,13 @@ do_install() {
  unset DISPLAY
  rm -rf ${D}
  install -d ${D}
- oe_runmake \
-  install \
-  DESTDIR=${LOCAL_OPT_DIR_D} \
+
+ oe_runmake install \
+  DESTDIR=${D} \
   #eol
+
+  install -d ${D}${base_libdir}/systemd/system
+  install ${S}/extra/iotivity-example.service ${D}${base_libdir}/systemd/system/${PN}.service
 }
 
 FILES_${PN} += "${LOCAL_OPT_DIR}/${PN}/*"
