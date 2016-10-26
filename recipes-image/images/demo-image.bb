@@ -33,3 +33,5 @@ require recipes-image/images/tizen-common-core-image-minimal.bb
 ##! inherit extrausers
 ##! EXTRA_USERS_PARAMS = "usermod -P password user;"
 
+
+IMAGE_INSTALL += " iotivity-example-csdk "
