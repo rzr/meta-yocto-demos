@@ -15,7 +15,7 @@ IMAGE_INSTALL += " python-smartpm "
 
 IMAGE_INSTALL += " iotivity "
 IMAGE_INSTALL += " iotivity-example "
-#IMAGE_INSTALL += " iotivity-example-csdk "
+IMAGE_INSTALL += " iotivity-example-csdk "
 IMAGE_INSTALL += " iotivity-example-gpio "
 IMAGE_INSTALL += " iotivity-example-mraa "
 
