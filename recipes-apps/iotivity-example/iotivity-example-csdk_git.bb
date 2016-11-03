@@ -73,4 +73,4 @@ do_install() {
 }
 
 FILES_${PN} += "${LOCAL_OPT_DIR}/${PN}/*"
-FILES_${PN}-dbg += "${LOCAL_OPT_DIR}/${PN}/.debug"
+FILES_${PN}-dbg += "${LOCAL_OPT_DIR}/${PN}/bin/.debug"
