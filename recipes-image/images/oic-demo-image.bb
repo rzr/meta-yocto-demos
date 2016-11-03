@@ -8,10 +8,10 @@ IMAGE_INSTALL += " \
 
 IMAGE_INSTALL += "mraa"
 
-IMAGE_INSTALL += "iotivity"
-IMAGE_INSTALL += "iotivity-simple-client"
+#IMAGE_INSTALL += "iotivity"
+#IMAGE_INSTALL += "iotivity-simple-client"
 
-IMAGE_INSTALL += "iotivity-example"
+#IMAGE_INSTALL += "iotivity-example"
 
 IMAGE_EXTRA_INSTALL += "systemd-serialgetty util-linux-agetty"
 
