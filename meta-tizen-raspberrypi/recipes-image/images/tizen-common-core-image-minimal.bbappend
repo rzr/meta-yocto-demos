@@ -12,12 +12,15 @@ IMAGE_INSTALL += " strace "
 IMAGE_INSTALL += " deviced "
 IMAGE_INSTALL += " sensord "
 IMAGE_INSTALL += " python-smartpm "
+IMAGE_INSTALL += " os-release "
 
 IMAGE_INSTALL += " iotivity "
 IMAGE_INSTALL += " iotivity-example "
 IMAGE_INSTALL += " iotivity-example-csdk "
 IMAGE_INSTALL += " iotivity-example-gpio "
 IMAGE_INSTALL += " iotivity-example-mraa "
+IMAGE_INSTALL += " iotivity-simple-client "
+IMAGE_INSTALL += " iotivity-sensorboard "
 
 #This package doesn't have any files for the rootfs in it, option needed to create an empty 
 # package so when the rootfs image is made it finds the mksd_xxx.deb package and doesn't complain
