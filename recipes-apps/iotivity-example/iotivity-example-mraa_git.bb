@@ -3,7 +3,7 @@ DESCRIPTION = "Minimalist Iotivity Client/Server application that share a resour
 HOMEPAGE = "https://github.com/TizenTeam/iotivity-example"
 SECTION = "apps"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
+LIC_FILES_CHKSUM = "file://COPYING;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
 SRCREV = "master"
 SRCREV = "sandbox/pcoval/mraa"
