@@ -1,3 +1,4 @@
+PR = "r0"
 SUMMARY = "IoTivity Switch Example"
 DESCRIPTION = "Minimalist Iotivity Client/Server application that share a resource"
 HOMEPAGE = "https://github.com/TizenTeam/iotivity-example"
@@ -24,7 +25,12 @@ RDEPENDS_${PN} += " iotivity-resource "
 
 SYSTEMD_SERVICE_${PN} = "${PN}.service"
 EXTRA_OEMAKE = " package=${PN} "
-EXTRA_OEMAKE += " config_pkgconfig=0 "
+EXTRA_OEMAKE += " config_pkgconfig=1 "
+
+# TODO: remove this workaround for iotivity-1.1.1
+EXTRA_OEMAKE += " iotivity_dir=${PKG_CONFIG_SYSROOT_DIR}/usr/include/iotivity "
+EXTRA_OEMAKE += " iotivity_out=${PKG_CONFIG_SYSROOT_DIR}/usr/include/iotivity "
+EXTRA_OEMAKE += " iotivity_cppflags=-I${PKG_CONFIG_SYSROOT_DIR}/usr/include/iotivity/resource/stack "
 
 do_configure() {
 }
@@ -33,6 +39,10 @@ do_compile_prepend() {
     export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}"
     export PKG_CONFIG="PKG_CONFIG_SYSROOT_DIR=\"${PKG_CONFIG_SYSROOT_DIR}\" pkg-config"
     export LD_FLAGS="${LD_FLAGS}"
+
+    # TODO: remove this workaround for iotivity-1.1.1
+    # https://gerrit.iotivity.org/gerrit/#/c/13721
+    ln -fs /usr/include/assert.h src/stdassert.h
 }
 
 do_compile() {
@@ -40,7 +50,7 @@ do_compile() {
  LANG=C
  export LANG
  unset DISPLAY
- LD_AS_NEEDED=1; export LD_AS_NEEDED ;
+ LD_AS_NEEDED=1; export LD_AS_NEEDED;
  
  oe_runmake all
 }
