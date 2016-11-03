@@ -34,4 +34,4 @@ require recipes-image/images/tizen-common-core-image-minimal.bb
 ##! EXTRA_USERS_PARAMS = "usermod -P password user;"
 
 
-IMAGE_INSTALL += " iotivity-example-csdk "
+IMAGE_INSTALL += " iotivity-example-gpio "
