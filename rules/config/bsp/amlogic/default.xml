@@ -2,6 +2,6 @@
 <manifest>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <remote fetch="http://github.com/linux-meson/" name="amlogic"/>
-  <project name="poky" remote="yocto" revision="master"/>
-  <project name="meta-amlogic" remote="amlogic" revision="master"/>
+  <project name="poky" remote="yocto" revision="dizzy"/>
+  <project name="meta-amlogic" remote="amlogic" revision="dizzy"/>
 </manifest>
