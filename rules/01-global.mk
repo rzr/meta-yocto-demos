@@ -6,6 +6,6 @@ SHELL=/bin/bash
 V=1
 
 default: GNUmakefile
-	${MAKE} rule/overide/default
+	${MAKE} rule/override/default
 
-%: rule/overide/help
+%: rule/override/help
