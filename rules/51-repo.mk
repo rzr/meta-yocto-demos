@@ -45,7 +45,7 @@ rule/scm-repo/%: ${repo_dir}/.repo/manifest.xml ${repo}
 	cd ${<D} && time ${repo} ${@F} && ${repo} list
 
 rule/configure-scm-repo: ${repo_file} rule/overide/scm-repo/init rule/overide/scm-repo/sync
-	date
+	@echo "log: $@: $^"
 
 ${repo}:
 	mkdir -p ${@D}
@@ -64,7 +64,10 @@ rule/scm-repo-sync: ${repo_dir}/.repo/manifest.xml
 	cd ${<D}/.. && time ${repo} sync --force-sync
 	touch ${<D}/..
 
-${sources_dir}: rule/rules ${repo_file} rule/done/scm-repo-sync
+rule/sources_dir: ${sources_dir}
+	@echo "log: $@: $^"
+
+${sources_dir}:
 	@ls -l ${@}/.repo/manifest.xml || ${MAKE} rule/done/scm-repo-sync
 	touch ${@}
 
@@ -73,4 +76,3 @@ rule/scm-repo-clean:
 
 rule/scm-repo-cleanall:
 	rm -rfv repo ${repo_dir}/.repo
-
