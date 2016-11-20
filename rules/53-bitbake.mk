@@ -18,7 +18,7 @@ rule/bitbake/clean/%:
 	${MAKE} rule/env-exec/bitbake ARGS="-c clean ${@F}"
 
 rule/bitbake/rebuild/%: rule/bitbake/cleanall/% rule/bitbake/build/%
-	date
+	@echo "log: $@: $^"
 
 rule/print/package/%: rule/done/configure ${build_dir}/conf ${sources_dir}
 	rm -f ${build_dir}/${@F}-depends.dot
@@ -31,19 +31,19 @@ rule/print/package/%: rule/done/configure ${build_dir}/conf ${sources_dir}
 	cat ${build_dir}/${@F}-env.log | grep "${@F}"
 
 rule/print-image: rule/print/package/${image}
-	sync
+	@echo "log: $@: $^"
 
 rule/list-images:
 	find ${build_dir}/tmp*/deploy/images/${MACHINE}/ -type l
 
-rule/image: rule/done/print-image rule/bitbake/build/${image} rule/overide/list-images
-	date
+rule/image: rule/done/print-image rule/bitbake/build/${image} rule/override/list-images
+	@echo "log: $@: $^"
 
-${build_dir}/${package}-depends.dot: ${build_dir}/conf rule/overide/sources
+${build_dir}/${package}-depends.dot: ${build_dir}/conf rule/override/sources_dir
 	${MAKE} rule/env-exec/bitbake ARGS="-g ${package}"
 	mv ${build_dir}/pn-depends.dot "$@"
 
-${build_dir}/${package}-env.log: ${build_dir}/conf rule/overide/sources
+${build_dir}/${package}-env.log: ${build_dir}/conf rule/override/sources_dir
 	${MAKE} rule/env-exec/bitbake ARGS="-e ${package}" > $@
 
 rule/print-layers: ${build_dir}/conf ${sources_dir}
@@ -52,13 +52,12 @@ rule/print-layers: ${build_dir}/conf ${sources_dir}
 rule/cleanall-image: rule/bitbake/cleanall/${image}
 	$(info image=${image})
 
-rule/print-images: ${build_dir}/conf ${sources_dir}
+rule/print-images: ${conf_file}
 	${MAKE} rule/env-exec/bitbake-layers ARGS='show-recipes \"*-image-*\"'
 	${MAKE} rule/env-exec/bitbake-layers ARGS='show-recipes \"\*-image\"'
 
 rule/ui-image:
 	${MAKE} rule/env-exec/bitbake ARGS="${image} -g -u depexp ${@F}"
-
 
 rule/ui-args:
 	${MAKE} rule/env-exec/bitbake ARGS="${ARGS} -g -u depexp "
@@ -68,4 +67,3 @@ rule/show-recipes:
 
 rule/run:
 	${MAKE} rule/env-exec/runqemu ARGS="${MACHINE}"
-	sync
