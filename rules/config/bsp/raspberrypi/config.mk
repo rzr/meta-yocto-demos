@@ -11,12 +11,12 @@ bsp?=${bsp_family}${bsp_variant}
 
 board_vendor?=raspberrypi
 board_family?=${bsp}
-board_variant?=2
+board_variant?=3
 board_alias?=${board_family}${board_variant}
 
 MACHINE?=${board_family}${board_variant}
 
 machine?=${MACHINE}
-machines?=${machine} ${bsp} ${bsp}2 ${bsp}0
+machines?=${machine} ${bsp} ${bsp}2 ${bsp}0 ${bsp}3
 
 base_image?=rpi-hwup-image
