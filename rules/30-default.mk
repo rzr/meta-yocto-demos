@@ -26,7 +26,6 @@ MACHINE?=${bsp}x86
 #export MACHINE
 
 machine?=${MACHINE}
-machines?=${MACHINE}
 
 os?=oe
 os_profile?=${os}
