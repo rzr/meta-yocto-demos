@@ -2,14 +2,14 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-rule/overide/%: rule/%
-	$(info log: info: "$<" not overidden)
+rule/override/%: rule/%
+	$(info log: info: "$@: $<" not overridden)
 	@mkdir -p ${tmp_dir}/${@D}
 	@touch ${tmp_dir}/${@}
 
 ${tmp_dir}/rule/done/%:
 	$(warning TODO: must define $@ explicitly else file will be removed )
-	${MAKE} rule/overide/${@F}
+	${MAKE} rule/override/${@F}
 	mkdir -p ${@D}
 	touch $@
 
