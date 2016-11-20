@@ -4,16 +4,16 @@
 
 -include rules/config/bsp/${bsp}/config.mk
 
-#rule/overide/all:
+rule/override/all: ${override_tasks} rule/all
+	$(warning # log: skip building ${@F}: ${ARG})
+
+#rule/override/image:
 #	$(warning # log: skip building ${@F}: ${ARG})
 
-#rule/overide/image:
-#	$(warning # log: skip building ${@F}: ${ARG})
-
-#rule/overide/list-images:
+#rule/override/list-images:
 #	$(info # log: skip $@)
 
-#rule/overide/configure-conf: rule/configure-conf
+#rule/override/configure-conf: rule/configure-conf
 #	ls -l ${conf_file}
 
-#rule/overide/pre: rule/overide/bsps rule/pre
+#rule/override/pre: rule/override/bsps rule/pre
