@@ -21,25 +21,25 @@ gen_rules_files +=\
 
 phony_rules_files?=$(subst ${phony_file},, ${rules_files})
 welcome_delay?=5
-machine_list_list?=$(shell ls rules/config/machine/ | sed -e 's|.mk||g' | grep -v '~' | sort)
+machines_list?=$(shell ls rules/config/machine/ | sed -e 's|.mk||g' | grep -v '~' | sort)
 bsp_list?=$(shell ls rules/config/bsp/ | sed -e 's|.mk||g' | grep -v '~' | sort)
 
 .PHONY: rule/%
 
 rule/default: GNUmakefile
-	${MAKE} rule/overide/build \
- || ${MAKE} rule/done/setup rule/overide/cleanall rule/overide/build
+	${MAKE} rule/override/build \
+ || ${MAKE} rule/done/setup rule/override/cleanall rule/override/build
 
-rule/build: rule/overide/pre rule/overide/all rule/overide/post
+rule/build: rule/override/pre rule/override/all rule/override/post
 
-rule/rebuild: rule/overide/purge rule/overide/build
+rule/rebuild: rule/override/purge rule/override/build
 
 rule/pre: ${explicit_file} ${phony_file} Makefile GNUmakefile
 	@${MAKE} --no-print-directory rule/done/welcome
 	@date
 
 rule/post: GNUmakefile
-	@date
+	@echo "$@: $<"
 
 rule/help: ${rules_files}
 	@echo "# ${project} "
@@ -51,7 +51,7 @@ rule/help: ${rules_files}
 	@echo "#  make \$${MACHINE}"
 	@echo "# "
 	@echo "#  Where \$${MACHINE} is set to name of supported one among those:"
-	@echo "#  ${machine_list_list}"
+	@echo "#  ${machines_list}"
 	@echo "# "
 	@echo "#  Current machine is ${MACHINE}"
 	@echo "# "
@@ -60,25 +60,25 @@ rule/help: ${rules_files}
 rule/welcome: GNUmakefile
 	@echo "# "
 	@echo "# Welcome, this is one time message"
-	@${MAKE} rule/done/longhelp rule/overide/print
+	@${MAKE} rule/done/longhelp rule/override/print
 	@echo "# If you want to build for a different machine than ${MACHINE}"
 	@echo "# Press Crl+C during the next ${welcome_delay} seconds"
-	@${MAKE} rule/overide/pause/${welcome_delay}
+	@${MAKE} rule/override/pause/${welcome_delay}
 	@echo "# Let's build for ${MACHINE}"
 
 rule/pause/%: GNUmakefile
 	sleep ${@F}
 
 rule/force:
-	sync
+	@echo "$@: $<"
 
-rule/longhelp: README.md rule/overide/help
+rule/longhelp: README.md rule/override/help
 	@echo ""
 	@cat $<
 
 GNUmakefile: ${gen_rules_files} ${rules_files} ${SELF}
-	@echo "#! /usr/bin/make -f" > $@
-	@for rule in ${rules_files} ; do echo "-include $${rule}" >> $@ ; done
+	@echo "#! /usr/bin/make -f" > ${@F}
+	@for rule in ${rules_files} ; do echo "-include $${rule}" >> ${@F} ; done
 
 rule/print-val/%:
 	@echo "${@F}=${${@F}}"
@@ -98,6 +98,7 @@ rule/print: ${rules_files} GNUmakefile
 	@echo "# USER=${USER}"
 	@echo "# bsp=${bsp}"
 	@echo "# email=${email}"
+	@echo "# os=${os}"
 	@echo "# version=${version}"
 	@echo "# DL_DIR=${DL_DIR}"
 	@echo "# sources_dir=${sources_dir}"
@@ -111,7 +112,7 @@ rule/print: ${rules_files} GNUmakefile
 	@echo "# sources_name=${sources_name}"
 	@echo "# sources_layers=${sources_layers}"
 	@echo "# sources_layers_conf=${sources_layers_conf}"
-	@echo "# machine_list=${machine_list}"
+	@echo "# machines_list=${machines_list}"
 	@echo "# bsp_list=${bsp_list}"
 	@echo ""
 	@echo "# More in rules/*.mk"
@@ -129,7 +130,7 @@ ${tmp_dir}:
 	mkdir -p $@
 
 
-rule/patch: rule/overide/sources
+rule/patch: rule/override/sources_dir
 	$(info no patch for $@)
 
 rule/phony: ${phony_file}
@@ -146,12 +147,13 @@ ${explicit_file}: ${SELF} $(subst ${explicit_file},, ${phony_rules_files})
 	@grep -o 'rule/done/[^ /\[]*' rules/*.mk \
  | grep -v '%' | grep -v '.*/$$' | cut -d: -f2 | sort | uniq \
  | sed -e 's|\(.*\)$$|$${tmp_dir}/\1 \\|g' >> $@
-	@echo -e ': $${rules_files}\n	@$${MAKE} rule/overide/$${@F}\n	@mkdir -p $${@D}\n	@touch $${@}\n\n' >> $@
+	@echo -e ': $${rules_files}\n	@$${MAKE} rule/override/$${@F}\n	@mkdir -p $${@D}\n	@touch $${@}\n\n' >> $@
 
 rule/explicit: ${explicit_file}
 
 rule/done/%: ${tmp_dir}/rule/done/%
-	$(info log: one shot: ${@} : rm "$<" to do it again)
+	$(info log: ${@}: rm "$<" to do it again)
+	@ls -l $<
 
 rule/make/%:
 	$(info log: sub make to rescan files "$@")
@@ -162,16 +164,15 @@ rule/log/%: ${tmp_dir}
 	script -e -c "${MAKE} rule/${@F}" ${tmp_dir}/$@
 
 rule/all: GNUmakefile
-	${MAKE} rule/done/configure rule/done/print-images rule/overide/image rule/done/list-images
+	${MAKE} rule/done/configure rule/done/print-images rule/override/image rule/done/list-images
 
 rule/rules: ${rules_files}
 
-${sources_dir}/${distro}: ${rules_files} rule/done/patch
+${sources_dir}/${distro}: ${sources_dir} ${rules_files} rule/done/patch
 	@ls -l ${@}/meta || make rule/error ARG="Please set distro var in $<"
 
 rule/distro: ${sources_dir}/${distro}
 	grep ${<F} rules/*.mk
-
 
 ${init_build_env}: ${sources_dir}/${distro}
 	ls -l ${@D}
@@ -192,10 +193,7 @@ rule/init_build_env: ${init_build_env}
 rule/bblayers: ${bblayers_file}
 	ls $<
 
-rule/sources: ${sources_dir}
-	ls $< | wc -l
-
-rule/builddir: ${build_dir}
+rule/build_dir: ${build_dir}
 	ls $<
 
 rule/configure-conf: rule/conf ${rules_files}
@@ -205,22 +203,22 @@ rule/configure-machine: ${conf_file}.mine
 	cp -av $< ${conf_file}
 
 rule/configure-bsp: ${conf_file} ${bblayers_file}
-	sync
+	@echo "$@: $<"
 
 rule/images: ${tmp_dir}
 	for image in ${images} ; do \
-	make rule/overide/all image=$${image} \
+	make rule/override/all image=$${image} \
 	|| echo "$${image}/$${machine}" >> ${tmp_dir}/fail.log ; \
 	done ; \
 
 rule/machines: ${tmp_dir}
-	for machine in ${machine_list} ; do \
+	for machine in ${machines_list} ; do \
 	make rule/overide/all MACHINE=$${machine} \
 	|| echo "$${image}/$${machine}" >> ${tmp_dir}/fail.log ; \
 	done ; \
 
 rule/configs: ${tmp_dir}
-	for machine in ${machine_list} ; do \
+	for machine in ${machines_list} ; do \
 	make rule/overide/images MACHINE=$${machine} \
 	|| echo "$${image}/$${machine}" >> ${tmp_dir}/fail.log ; \
 	done ;
@@ -229,28 +227,29 @@ rule/clean:
 	rm -rfv *~ .#*
 	$(info make rule/{cleanall,distclean,purge} to clean more)
 
-rule/cleanall: rule/overide/clean
+rule/cleanall: rule/override/clean
 	rm -rfv ${build_dir}/conf ${tmp_dir}
 
-rule/scm-setup-bsp: rule/overide/scm-${scm}-setup
+rule/scm-setup-bsp: rule/override/scm-${scm}-setup
+	@echo "# $@: $^"
 
-rule/distclean: rule/overide/cleanall rule/scm-${scm}-clean
+rule/distclean: rule/override/cleanall rule/scm-${scm}-clean
 	rm -rf ${build_dir}/tmp ${sources_dir} ${build_dir} ${tmp_dir}
 
 rule/clean-bsp:
-	$(info to be overiden in include/bsp/${bsp})
+	$(info to be overriden in include/bsp/${bsp})
 
-rule/purge: rule/overide/distclean rule/overide/scm-${scm}-cleanall
+rule/purge: rule/override/distclean rule/override/scm-${scm}-cleanall
 	rm -rf --  build* tmp
 
-rule/build-packages: rule/overide/build-packages
+rule/build-packages: rule/override/build-packages
 	$(info to overloaded $@)
 
-rule/clean-packages: rule/overide/clean-packages
+rule/clean-packages: rule/override/clean-packages
 	$(info to overloaded $@)
 
-rule/rebuild-packages: rule/overide/clean-packages rule/overide/build-packages
-	sync
+rule/rebuild-packages: rule/override/clean-packages rule/override/build-packages
+	@echo "$@: $<"
 
 rules/include/machine/%.mk:
 	$(error please create $@)
