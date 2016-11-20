@@ -2,29 +2,35 @@
 # Author: Philippe Coval <philippe.coval@osg.samsung.com>
 # ex: set tabstop=4 noexpandtab:
 
-configure: rule/overide/configure
+configure: rule/override/configure
+	@echo "log: $@: $^"
 
-rebuild: rule/overide/rebuild
-	date
+rebuild: rule/override/rebuild
+	@echo "log: $@: $^"
 
-all: rule/overide/all
-	date
+all: rule/override/all
+	@echo "log: $@: $^"
 
-clean: rule/overide/clean
+clean: rule/override/clean
+	@echo "log: $@: $^"
 
-cleanall: rule/overide/cleanall
+cleanall: rule/override/cleanall
+	@echo "log: $@: $^"
 
-help: rule/overide/help
+help: rule/override/help
+	@echo "log: $@: $^"
 
-longhelp: rule/overide/longhelp
+longhelp: rule/override/longhelp
+	@echo "log: $@: $^"
 
-print: rule/overide/print
+print: rule/override/print
+	@echo "log: $@: $^"
 
-setup: rule/overide/setup
+setup: rule/override/setup
+	@echo "log: $@: $^"
 
-run: rule/overide/run
+run: rule/override/run
+	@echo "log: $@: $^"
 
 machines: ${machines_list}
 	df -h .
-
-
