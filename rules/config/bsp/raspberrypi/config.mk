@@ -17,7 +17,7 @@ board_alias?=${board_family}${board_variant}
 MACHINE?=${board_family}${board_variant}
 
 machine?=${MACHINE}
-machines?=${machine} ${bsp}
+machines?=${machine} ${bsp} ${bsp}2 ${bsp}0 ${bsp}3
 
 base_image?=rpi-hwup-image
 sources_name?=sources-${MACHINE}
