@@ -30,7 +30,7 @@ rule/setup-os/debian: /etc/debian_version
  xterm \
  #eol
 
-rule/overide/setup-os/debian: rule/setup-os/debian
+rule/override/setup-os/debian: rule/setup-os/debian
 	${sudo} apt-get install aptitude
 	${sudo} aptitude install \
  nodejs-legacy \
@@ -122,6 +122,7 @@ rule/setup-os/lsb: /etc/os-release
 	${source} $< && export ID && ${MAKE} rule/setup-os/$${ID}
 
 rule/setup-os: rule/setup-os/lsb
+	@echo "log: $@: $^"
 
 rule/setup-git:
 	  git config --global user.email "${email}"
