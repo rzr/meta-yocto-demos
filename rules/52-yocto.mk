@@ -62,8 +62,8 @@ rule/sub-configure-rescan: rule/done/sources_dir rule/done/configure-machine rul
 
 rule/configure:
 	${MAKE} rule/done/sub-configure-rescan rule/done/configure-conf rule/done/configure-bblayers rule/bblayers
-	ln -fs ${sources_name} ${CURDIR}/sources_dir
-	ln -fs ${build_dir} ${CURDIR}/build
+	ln -fs ${sources_name} sources
+	ln -fs ${build_dir} build
 
 rule/conf: ${conf_file}
 	grep '^MACHINE.*' $<
