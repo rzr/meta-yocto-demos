@@ -41,7 +41,7 @@ rule/image: rule/done/print-image rule/bitbake/build/${image} rule/override/list
 
 ${build_dir}/${package}-depends.dot: ${build_dir}/conf rule/override/sources_dir
 	${MAKE} rule/env-exec/bitbake ARGS="-g ${package}"
-	mv ${build_dir}/pn-depends.dot "$@"
+	mv ${build_dir}/recipe-depends.dot "$@"
 
 ${build_dir}/${package}-env.log: ${build_dir}/conf rule/override/sources_dir
 	${MAKE} rule/env-exec/bitbake ARGS="-e ${package}" > $@
