@@ -24,17 +24,18 @@ rule/override/patch/meta-oic/master:  ${sources_name}/meta-oic/
 	-mv -v $</recipes-kernel/linux/linux-yocto_3.19.bbappend \
 	$</recipes-kernel/linux/linux-yocto_3.17.bbappend
 
+
+rule/override/patch/tizen-distro: ${sources_name}
+	-find "$</" -type f -exec sed -e 's/review.tizen.org/git.tizen.org/g' -i "{}" \;
+
 rule/override/patch: rule/sources rule/override/patch/tizen-distro rule/override/patch/meta-oic/master rule/override/patch/meta-${bsp}/master
+	echo "# $@: $^"
 
 rule/override/sources: rule/sources rule/done/patch
 
 rule/override/configure-conf: rule/configure-conf rule/override/configure-bsp rule/override/sources
 	ls -l ${conf_file}
 #	ls -l ${sources_name}/meta-*${bsp}/conf/machine/${MACHINE}.conf
-
-
-rule/override/patch/tizen-distro: ${sources_name}
-	-find $< -type -f -exec sed -e 's/review.tizen.org/git.tizen.org/g' -i "{}" \;
 
 rule/override/packages: \
  rule/bitbake/build/cairo \
