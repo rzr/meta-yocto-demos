@@ -65,7 +65,7 @@ local/todo:
 rule/wip/patch: rule/overide/patch/meta-raspberrypi
 	mv ${sources_name}/tizen-distro/meta-tizen ${sources_name}/tizen-distro/meta-tizen.orig
 	ln -fs \
- /home/philippe/var/cache/url/git/ssh/review.tizen.org/scm/bb/meta-tizen/src/meta-tizen \
+ /home/philippe/var/cache/url/git/ssh/git.tizen.org/scm/bb/meta-tizen/src/meta-tizen \
  ${sources_name}/tizen-distro/meta-tizen
 
 machines_list?=$(shell ls rules/config/machine/ | sed -e 's|.mk||g' | grep -v '~' | sort) 
