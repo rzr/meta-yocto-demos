@@ -33,11 +33,11 @@ rule/list/images:
 rule/image: rule/print/image rule/bitbake/build/${image} rule/list/images
 	date
 
-${build_dir}/${package}-depends.dot: ${build_dir}/conf rule/overide/sources
+${build_dir}/${package}-depends.dot: ${build_dir}/conf rule/override/sources
 	${MAKE} rule/env-exec/bitbake ARGS="-g ${package}"
 	mv ${build_dir}/pn-depends.dot "$@"
 
-${build_dir}/${package}-env.log: ${build_dir}/conf rule/overide/sources
+${build_dir}/${package}-env.log: ${build_dir}/conf rule/override/sources
 	${MAKE} rule/env-exec/bitbake ARGS="-e ${package}" > $@
 
 rule/print/layers: ${build_dir}/conf ${sources_dir}
