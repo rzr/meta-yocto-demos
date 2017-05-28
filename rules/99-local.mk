@@ -1,5 +1,5 @@
 
-rule/overide/clean-packages: \
+rule/override/clean-packages: \
  rule/bitbake/cleanall/bluetooth-tools \
  rule/bitbake/cleanall/config-image \
  rule/bitbake/cleanall/desktop-skin \
@@ -18,7 +18,7 @@ rule/overide/clean-packages: \
  rule/bitbake/cleanall/wpa-supplicant \
  #eol
 
-rule/overide/clean-packages/generic: \
+rule/override/clean-packages/generic: \
  rule/bitbake/cleanall/initramfs-live-boot \
  rule/bitbake/cleanall/initramfs-live-install \
  rule/bitbake/cleanall/initramfs-live-install-efi \
@@ -62,7 +62,7 @@ local/todo:
 	cd  ${sources_name}/meta-raspberrypi/ && \
 	git cherry-pick	1949a0d5ba134036a590a41fd414f3bdd7ecee9e
 
-rule/wip/patch: rule/overide/patch/meta-raspberrypi
+rule/wip/patch: rule/override/patch/meta-raspberrypi
 	mv ${sources_name}/tizen-distro/meta-tizen ${sources_name}/tizen-distro/meta-tizen.orig
 	ln -fs \
  /home/philippe/var/cache/url/git/ssh/git.tizen.org/scm/bb/meta-tizen/src/meta-tizen \
@@ -70,7 +70,7 @@ rule/wip/patch: rule/overide/patch/meta-raspberrypi
 
 machines_list?=$(shell ls rules/config/machine/ | sed -e 's|.mk||g' | grep -v '~' | sort) 
 
-rule/overide/help: 
+rule/override/help: 
 	@echo "# "
 	@echo "# Usage: make \$${MACHINE}"
 	@echo "# Where \$${MACHINE} is set to name of supported ones:"
