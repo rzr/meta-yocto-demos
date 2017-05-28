@@ -41,14 +41,14 @@ ${repo_dir}/.repo/manifest.xml: ${repo_file} ${repo}
 
 ${tmp_dir}/done/scm-repo-sync: ${repo_file} ${repo}
 	-git commit -m 'WIP: update ${project} ($@)' $<
-	make rule/overide/${@F}
+	make rule/override/${@F}
 	mkdir -p ${@D}
 	touch ${sources_name} $@
 
 rule/scm-repo/%: ${repo_dir}/.repo/manifest.xml ${repo}
 	cd ${<D} && time ${repo} ${@F} && ${repo} list
 
-rule/configure-scm-repo: ${repo_file} rule/overide/scm-repo/init rule/overide/scm-repo/sync
+rule/configure-scm-repo: ${repo_file} rule/override/scm-repo/init rule/override/scm-repo/sync
 	date
 
 ${repo}:
