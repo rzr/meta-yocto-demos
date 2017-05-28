@@ -22,7 +22,7 @@ images?=${base_image}
 
 sources_layers_conf+=$(sort $(wildcard sources/meta-*/conf/layer.conf))
 
-rule/overide/configure-bsp: ${conf_file}
+rule/override/configure-bsp: ${conf_file}
 	ls $<
 	echo "TODO: display EULA"
 	echo "ACCEPT_FSL_EULA = \"1\"" >> ${conf_file}
