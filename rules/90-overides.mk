@@ -13,7 +13,6 @@ todo/rule/overide/patch/tizen-distro: ${sources_name}/tizen-distro/
 
 #	-cd $< && git diff
 
-
 rule/overide/patch/tizen-distro/todo: ${sources_name}/tizen-distro/
 	install -d ${sources_name}/tizen-distro/meta-tizen/meta-tizen-micro/meta-tizen-micro-raspberrypi/recipes-image/
 	-mv -fv \
@@ -32,6 +31,10 @@ rule/overide/sources: rule/sources rule/done/patch
 rule/overide/configure-conf: rule/configure-conf rule/overide/configure-bsp rule/overide/sources
 	ls -l ${conf_file}
 #	ls -l ${sources_name}/meta-*${bsp}/conf/machine/${MACHINE}.conf
+
+
+rule/overide/patch/tizen-distro: ${sources_name}
+	-find $< -type -f -exec sed -e 's/review.tizen.org/git.tizen.org/g' -i "{}" \;
 
 rule/overide/packages: \
  rule/bitbake/build/cairo \
