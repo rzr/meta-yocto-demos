@@ -38,8 +38,8 @@ sources_layers_conf+=$(sort $(wildcard sources/meta-*/conf/layer.conf))
 #	echo "DISTRO_FEATURES_remove = \" x11 wayland \"" >> $<
 
 
-rule/overide/packages: \
+rule/override/packages: \
 	rule/bitbake/build/libdrm
 
-rule/overide/clean-packages: \
+rule/override/clean-packages: \
 	rule/bitbake/cleanall/libdrm
