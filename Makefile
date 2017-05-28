@@ -9,5 +9,5 @@ include rules/53-bitbake.mk
 include rules/60-aliases.mk
 include rules/70-extra.mk
 include rules/80-phony.mk
-include rules/90-overides.mk
+include rules/90-overrides.mk
 include rules/99-local.mk
