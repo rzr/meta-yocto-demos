@@ -42,6 +42,7 @@ rule/overide/help \
 rule/overide/packages \
 rule/overide/patch \
 rule/overide/patch/meta-oic/master \
+rule/overide/patch/tizen-distro \
 rule/overide/patch/tizen-distro/todo \
 rule/overide/sources \
 rule/patch \
