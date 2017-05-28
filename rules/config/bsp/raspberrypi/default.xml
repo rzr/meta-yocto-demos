@@ -3,7 +3,9 @@
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <remote fetch="git://git.tizen.org/" name="tizen"/>
   <remote fetch="http://github.com" name="github"/>
+  <remote fetch="http://git.s-osg.org" name="s-osg"/>
   <project name="scm/bb/tizen-distro" path="sources/tizen-distro" remote="tizen" revision="tizen"/>
   <project name="meta-raspberrypi" path="sources/meta-raspberrypi" remote="yocto" revision="370e0f68e65d36f64a4e77700fd5cd3044c74cdc"/>
   <project name="tizenteam/meta-oic" path="sources/meta-oic" remote="github" revision="master"/>
+  <project name="meta-ocf-automotive" path="sources/meta-ocf-automotive" remote="s-osg" revision="master"/>
 </manifest>
