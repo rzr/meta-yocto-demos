@@ -4,18 +4,18 @@
 SELF?=${CURDIR}/rules/60-tasks.mk
 
 
-configure: rule/overide/configure
+configure: rule/override/configure
 
-rebuild: rule/overide/rebuild
+rebuild: rule/override/rebuild
 	date
 
-all: rule/overide/all
+all: rule/override/all
 	date
 
-clean: rule/overide/clean
+clean: rule/override/clean
 
-cleanall: rule/overide/cleanall
+cleanall: rule/override/cleanall
 
-help: rule/overide/help
+help: rule/override/help
 
-setup: rule/overide/setup
+setup: rule/override/setup
