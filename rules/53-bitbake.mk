@@ -36,7 +36,7 @@ rule/print-image: rule/print/package/${image}
 rule/list-images:
 	find ${build_dir}/tmp*/deploy/images/${MACHINE}/ -type l
 
-rule/image: rule/done/print-image rule/bitbake/build/${image} rule/override/list-images
+rule/image: rule/bitbake/build/${image} rule/override/list-images
 	@echo "log: $@: $^"
 
 ${build_dir}/${package}-depends.dot: ${build_dir}/conf rule/override/sources_dir
