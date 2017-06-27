@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
-  <project name="poky" remote="yocto" revision="master"/>
+  <remote fetch="https://github.com/" name="github"/>
+  <remote fetch="http://git.s-osg.org/" name="s-osg" />
+  <remote fetch="https://github.com/tizenteam" name="team"/>
+
+  <project name="poky" remote="yocto" revision="morty"/>
   <project name="meta-raspberrypi" path="meta-raspberrypi" remote="yocto" revision="master"/>
+  <project name="meta-oic" path="meta-oic" remote="yocto" revision="master"/>
+  <project name="tizenteam/meta-iot-web" path="meta-iot-web" remote="github" revision="sandbox/pcoval/on/master/open"/>
+  <project name="meta-ocf-automotive" remote="team" revision="sandbox/pcoval/on/master/devel" upstream="master" />
 </manifest>
