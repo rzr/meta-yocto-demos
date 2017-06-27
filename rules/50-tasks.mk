@@ -164,7 +164,9 @@ rule/log/%: ${tmp_dir}
 	script -e -c "${MAKE} rule/${@F}" ${tmp_dir}/$@
 
 rule/all: GNUmakefile
-	${MAKE} rule/done/configure rule/done/print-images rule/override/image rule/done/list-images
+	${MAKE} rule/done/configure
+	-${MAKE} rule/done/print-images
+	${MAKE} rule/override/image rule/done/list-images
 
 rule/rules: ${rules_files}
 
