@@ -230,13 +230,13 @@ rule/clean:
 	$(info make rule/{cleanall,distclean,purge} to clean more)
 
 rule/cleanall: rule/override/clean
-	rm -rfv ${build_dir}/conf ${tmp_dir}
+	rm -rfv ${build_dir}/conf ${tmp_dir} ${sources_dir}
 
 rule/scm-setup-bsp: rule/override/scm-${scm}-setup
 	@echo "# $@: $^"
 
 rule/distclean: rule/override/cleanall rule/scm-${scm}-clean
-	rm -rf ${build_dir}/tmp ${sources_dir} ${build_dir} ${tmp_dir}
+	rm -rf ${build_dir}/tmp ${build_dir} ${tmp_dir}
 
 rule/clean-bsp:
 	$(info to be overriden in include/bsp/${bsp})
