@@ -2,8 +2,9 @@
 <manifest>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <remote fetch="http://git.s-osg.org/" name="s-osg" />
+  <remote fetch="http://github.com" name="github" />
   <project name="poky" remote="yocto" revision="daisy"/>
   <project name="meta-fsl-arm" remote="yocto" revision="daisy"/>
   <project name="meta-oic" remote="yocto" revision="master"/>
-  <project name="meta-ocf-automotive" remote="s-osg" revision="master" upstream="master" />
+  <project name="tizenteam/meta-ocf-automotive" path="meta-ocf-automotive" remote="github" revision="master" upstream="master" />
 </manifest>
