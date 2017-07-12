@@ -5,16 +5,13 @@
 SHELL=/bin/bash
 V=1
 
-bsp_family?=generic
-bsp_variant?=
+bsp_family?=fsl
+bsp_variant?=-arm
 bsp?=${bsp_family}${bsp_variant}
 
-board_vendor?=qemu
-board_family?=${board_vendor}x86
-board_variant?=
+board_vendor?=imx6q
+board_family?=${board_vendor}sabre
+board_variant?=sd
 board_alias?=${board_vendor}${board_variant}
 
 MACHINE?=${board_family}${board_variant}
-
-# Only valid for distros not BSP's config
-bsp_machines_dir?=${distro_machines_dir}
