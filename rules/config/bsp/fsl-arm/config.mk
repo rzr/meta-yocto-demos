@@ -9,9 +9,9 @@ bsp_family?=fsl
 bsp_variant?=-arm
 bsp?=${bsp_family}${bsp_variant}
 
-board_vendor?=imx6q
-board_family?=${board_vendor}sabre
-board_variant?=sd
+board_vendor?=imx6
+board_family?=${board_vendor}dl
+board_variant?=sabreauto
 board_alias?=${board_vendor}${board_variant}
 
 MACHINE?=${board_family}${board_variant}
