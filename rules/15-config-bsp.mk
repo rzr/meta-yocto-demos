@@ -1,1 +1,1 @@
-bsp?=raspberrypi
+bsp?=generic
