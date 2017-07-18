@@ -7,5 +7,5 @@
   <project name="poky" remote="yocto" revision="master"/>
   <project name="meta-oic" remote="yocto" revision="master"/>
   <project name="meta-ocf-automotive" remote="tizenteam" revision="sandbox/pcoval/on/master/devel" upstream="master" />
-  <project name="ostroproject/meta-iot-web" path="meta-iot-web" remote="github" revision="master"/>
+  <project name="meta-iot-web" path="meta-iot-web" remote="tizenteam" revision="master"/>
 </manifest>
