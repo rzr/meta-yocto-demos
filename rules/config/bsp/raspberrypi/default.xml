@@ -2,6 +2,7 @@
 <manifest>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <remote fetch="https://git.tizen.org/cgit/" review="git://review.tizen.org/" name="tizen"/>
-  <project name="scm/bb/tizen-distro" path="tizen-distro" remote="tizen" revision="tizen"/>
+  <remote fetch="https://github.com/" review="ssh://github.com/" name="github"/>
+  <project name="tizenteam/tizen-distro" path="tizen-distro" remote="tizen" revision="sandbox/pcoval/on/tizen/review"/>
   <project name="meta-raspberrypi" path="meta-raspberrypi" remote="yocto" revision="krogoth"/>
 </manifest>
