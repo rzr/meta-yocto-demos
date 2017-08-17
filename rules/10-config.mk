@@ -3,6 +3,6 @@
 # ex: set tabstop=4 noexpandtab:
 
 #bsp?=generic
-#MACHINE?=qemux86
+MACHINE?=raspberrypi0
 distro?=tizen-distro
 image?=demo-image
