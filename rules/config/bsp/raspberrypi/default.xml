@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
+  <remote fetch="git://git.openembedded.org/" name="oe"/>
   <remote fetch="http://git.s-osg.org/" name="s-osg" />
   <remote fetch="https://github.com/" name="github"/>
   <remote fetch="https://github.com/tizenteam" name="tizenteam"/>
   <project name="poky" remote="tizenteam" revision="sandbox/pcoval/on/master/devel"/>
   <project name="meta-raspberrypi" path="meta-raspberrypi" remote="yocto" revision="master"/>
+  <project name="meta-openembedded" path="meta-openembedded" remote="oe" revision="master"/>
   <project name="meta-oic" remote="tizenteam" revision="sandbox/pcoval/on/master/review"/>
   <project name="meta-ocf-automotive" remote="tizenteam" revision="sandbox/pcoval/on/master/devel" upstream="master" />
   <project name="meta-iot-web" path="meta-iot-web" remote="tizenteam" revision="sandbox/pcoval/on/master/devel"/>
