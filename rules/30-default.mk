@@ -46,7 +46,7 @@ build_file?=${tmp_dir}/build.log
 sources_layers_conf?=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
 sources_layers_conf+=./conf/layer.conf
 sources_layers_dirs?=$(dir ${sources_layers_conf})
-sources_layers?=$(sort $(shell dirname $(sources_layers_dirs)))
+sources_layers?=$(shell dirname $(sources_layers_dirs))
 
 init_name?=oe
 init_build_env?=${sources_dir}/${distro}/${init_name}-init-build-env
