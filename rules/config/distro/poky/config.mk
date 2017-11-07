@@ -28,6 +28,5 @@ images?=${image} \
 
 sources_name?=sources-${MACHINE}
 sources_layers_conf?=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
-
-sources_layers_conf+=
+sources_layers_conf+=$(sort $(wildcard ${sources_name}/meta-*/meta-*/conf/layer.conf))
 branch?=master
