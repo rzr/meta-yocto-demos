@@ -17,6 +17,7 @@ name?=${USER} ${project_name} user
 
 #branch?=master
 branch?=$(shell git rev-parse --abbrev-ref HEAD)
+export branch
 
 generic?=generic
 bsp?=${generic}
