@@ -1,6 +1,7 @@
 #! /usr/bin/make -f
 docker?=$(shell which docker || echo TODO/docker)
 docker_build+=${docker} build --rm
+branch?=$(shell git symbolic-ref --short HEAD || echo 'HEAD')
 
 default: all
 	pwd
