@@ -4,6 +4,9 @@
 
 SHELL=/bin/bash
 V=1
+#branch?=master
+branch?=$(shell git rev-parse --abbrev-ref HEAD)
+export branch
 
 default: GNUmakefile
 	${MAKE} rule/override/default
