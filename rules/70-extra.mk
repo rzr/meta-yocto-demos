@@ -177,7 +177,7 @@ rule/docker: docker/build
 	pwd
 
 docker/%: Dockerfile
-	echo ${docker_build} \
+	${docker_build} \
  --build-arg "branch=${branch}" \
  --build-arg "bsp=${bsp}" \
  --build-arg "MACHINE=${MACHINE}" \
@@ -185,7 +185,7 @@ docker/%: Dockerfile
 
 
 docker/build/url:
-	${docker} build \
+	${docker_build} \
  --build-arg "branch=${branch}" \
  --build-arg "bsp=${bsp}" \
  --build-arg "MACHINE=${MACHINE}" \
