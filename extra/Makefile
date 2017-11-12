@@ -1,11 +1,13 @@
 #! /usr/bin/make -f
 docker?=$(shell which docker || echo TODO/docker)
+docker_build+=${docker} build --rm
+
 default: all
 	pwd
 
 branch?=meta/meta-ocf-automotive/devel
 bsp?=raspberrypi
-MACHINE?=${bsp}2
+MACHINE?=${bsp}3
 url?=http://github.com/tizenteam/meta-yocto-demos.git
 
 export branch
@@ -16,7 +18,7 @@ all: docker/build
 	pwd
 
 docker/%: Dockerfile
-	${docker} ${@F} \
+	${docker_build} \
  --build-arg "branch=${branch}" \
  --build-arg "bsp=${bsp}" \
  --build-arg "MACHINE=${MACHINE}" \
