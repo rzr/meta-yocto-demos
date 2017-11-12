@@ -1,4 +1,5 @@
 #! /usr/bin/make -f
+docker?=$(shell which docker || echo TODO/docker)
 default: all
 	pwd
 
@@ -15,17 +16,20 @@ all: docker/build
 	pwd
 
 docker/%: Dockerfile
-	${@D} ${@F} \
+	${docker} ${@F} \
  --build-arg "branch=${branch}" \
- --build-arg "bsp=${bsp}"\
+ --build-arg "bsp=${bsp}" \
  --build-arg "MACHINE=${MACHINE}" \
   ${<D}
 
 
 docker-build:
-	docker build \
+	${docker} build \
  --build-arg "branch=${branch}" \
- --build-arg "bsp=${bsp}#devel"\
+ --build-arg "bsp=${bsp}" \
  --build-arg "MACHINE=${MACHINE}" \
- ${url}\
+ "${url}#devel" \
  #eol
+
+TODO/%:
+	@echo "#$@"
