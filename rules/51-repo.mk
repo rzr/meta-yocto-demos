@@ -38,7 +38,7 @@ ${repo_dir}/.git:
 ${repo_dir}/.repo/manifest.xml: ${repo_file} ${repo}
 	mkdir -p ${@D}
 	cd ${@D}/.. && ls sources || ln -fs . sources 
-	cd ${@D}/.. && ${repo} init -q -u "${local_url}" -m "${<F}" -b "${branch}"
+	cd ${@D}/.. && ${repo} init -q -u "${local_url}" -m "${<F}"
 	grep project $@
 
 rule/scm-repo/%: ${repo_dir}/.repo/manifest.xml ${repo}
