@@ -164,7 +164,6 @@ rule/install: deploy-${MACHINE}
 #TODO
 docker?=$(shell which docker || echo "TODO/docker")
 docker_build+=${docker} build --rm
-branch?=$(shell git symbolic-ref --short HEAD || echo 'HEAD')
 url?=http://github.com/tizenteam/meta-yocto-demos.git
 
 default: all
