@@ -40,7 +40,7 @@ RUN date \
  && cd meta-yocto-demos && pwd
 
 USER root
-RUN make setup -C /home/user/meta-yocto-demos  apt_get="apt-get -f"
+RUN make setup -C /home/user/meta-yocto-demos  apt_get="apt-get -f" aptitude="aptitude -f"
 
 USER user
 RUN pwd \
