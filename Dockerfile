@@ -11,9 +11,9 @@ ENV LANG en_US.UTF-8
 RUN date \
  && df -h . | tee df-pre.log \
  && apt-get update \
- && apt-get install -y sudo locales git make bash \
- && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
- && locale-gen en_US.UTF-8 \
+ && apt-get install -y sudo locales git make bash rsync \
+ && echo "${LC_ALL} UTF-8" > /etc/locale.gen \
+ && locale-gen ${LC_ALL} \
  && dpkg-reconfigure locales
 
 RUN useradd -ms /bin/bash user -G sudo
@@ -24,31 +24,32 @@ ENV URL http://github.com/tizenteam/meta-yocto-demos
 ARG branch
 ENV branch ${branch:-meta/poky/master}
 
+ENV EMAIL ${EMAIL:-nobody@localhost}
 ARG GIT_AUTHOR_EMAIL
 ENV GIT_AUTHOR_EMAIL ${EMAIL:-nobody@localhost}
-ENV EMAIL ${EMAIL:-nobody@localhost}
 ARG GIT_AUTHOR_NAME
 ENV GIT_AUTHOR_NAME ${NAME:-Nobody}
+ENV project_dir /home/${USER}/meta-yocto-demos
 
 RUN set \
  && git config --global user.name "${GIT_AUTHOR_NAME}" \
- && git config --global user.email "${EMAIL}" \
+ && git config --global user.email "${GIT_AUTHOR_NAME}" \
  && git clone "${URL}" -b "${branch}" \
  && make -C meta-yocto-demos help
 
 USER root
-RUN yes | make -C /home/user/meta-yocto-demos setup apt_get="apt-get -f" aptitude="aptitude -f"
+RUN yes | make -C ${project_dir} setup apt_get="apt-get -f" aptitude="aptitude -f"
 
 ARG bsp
 ENV bsp ${bsp:-generic}
 ARG MACHINE
 ENV MACHINE ${MACHINE:-qemux86}
 
-WORKDIR /home/user/meta-yocto-demos
+WORKDIR ${project_dir}
 USER user
 RUN pwd \
- && make -C /home/user/meta-yocto-demos bsp="${bsp}" MACHINE="${MACHINE}" \
+ && make -C ${project_dir} bsp="${bsp}" MACHINE="${MACHINE}" \
  && df -h . | tee df-post.log \
  && cat df-pre.log
 
-COPY /home/user/meta-yocto-demos/build/tmp*/deploy/images ./
+COPY ${project_dir}/build/tmp*/deploy/images ./
