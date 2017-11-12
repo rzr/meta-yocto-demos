@@ -37,10 +37,11 @@ RUN set \
  && git config --global user.email "${GIT_AUTHOR_NAME}" \
  && git clone "${URL}" -b "${branch}" \
  && make -C meta-yocto-demos help \
- && cd meta-yocto-demos && find *
+ && cd meta-yocto-demos && find * -type f
 
 USER root
-RUN yes | make -C ${project_dir} setup apt_get="apt-get -f" aptitude="aptitude -f"
+RUN yes | make -C ${project_dir} setup apt_get="apt-get -f" aptitude="aptitude -f" \
+ && chown -R user ${project_dir}
 
 ARG bsp
 ENV bsp ${bsp:-generic}
