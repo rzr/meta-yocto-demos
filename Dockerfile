@@ -3,10 +3,11 @@
 
 FROM debian:stable
 MAINTAINER Philippe Coval (philippe.coval@osg.samsung.com)
+ENV project meta-yocto-demos
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL en_US.UTF-8
-ENV LANG en_US.UTF-8
+ENV LANG ${LC_ALL}
 
 RUN date \
  && df -h . | tee df-pre.log \
@@ -19,7 +20,7 @@ RUN date \
 RUN useradd -ms /bin/bash user -G sudo
 USER user
 WORKDIR /home/user/
-ENV project_dir /home/user/meta-yocto-demos
+ENV project_dir /home/user/${project}
 
 ENV URL http://github.com/tizenteam/meta-yocto-demos
 ARG branch
@@ -31,13 +32,12 @@ ENV GIT_AUTHOR_EMAIL ${EMAIL:-nobody@localhost}
 ARG GIT_AUTHOR_NAME
 ENV GIT_AUTHOR_NAME ${NAME:-Nobody}
 
-
 RUN set \
  && git config --global user.name "${GIT_AUTHOR_NAME}" \
  && git config --global user.email "${GIT_AUTHOR_NAME}" \
  && git clone "${URL}" -b "${branch}" \
  && make -C meta-yocto-demos help \
- && cd meta-yocto-demos && find * -type f
+ && cd ${project} && find * -type f
 
 USER root
 RUN yes | make -C ${project_dir} setup apt_get="apt-get -f" aptitude="aptitude -f" \
