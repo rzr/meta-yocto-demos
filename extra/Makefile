@@ -20,7 +20,7 @@ docker/%: Dockerfile
  --build-arg "branch=${branch}" \
  --build-arg "bsp=${bsp}" \
  --build-arg "MACHINE=${MACHINE}" \
-  ${<D}
+ ${<D}
 
 
 docker-build:
