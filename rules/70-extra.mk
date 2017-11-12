@@ -7,8 +7,11 @@
 
 rule/setup-os/%: /etc/os-release /etc/%-release
 
+apt_get?=apt-get
+aptitude?=aptitude
+
 rule/setup-os/debian: /etc/debian_version
-	${sudo} apt-get install \
+	${sudo} ${apt_get} install \
  binutils-gold \
  build-essential \
  ccache \
@@ -22,6 +25,7 @@ rule/setup-os/debian: /etc/debian_version
  libattr1-dev \
  libsdl1.2-dev \
  libwayland-dev \
+ python \
  quilt \
  sudo \
  texinfo \
@@ -31,8 +35,8 @@ rule/setup-os/debian: /etc/debian_version
  #eol
 
 rule/override/setup-os/debian: rule/setup-os/debian
-	${sudo} apt-get install aptitude
-	${sudo} aptitude install \
+	${sudo} ${apt_get} install aptitude
+	${sudo} ${aptitude} install \
  nodejs-legacy \
  qemu-system-x86 \
  qemu-utils \
@@ -156,3 +160,38 @@ DESTDIR?=${CURDIR}/out
 rule/install: deploy-${MACHINE}
 	install -d ${DESTDIR}/$<
 	cp -rf $</* ${DESTDIR}/$</
+
+#TODO
+docker?=$(shell which docker || echo "TODO/docker")
+docker_build+=${docker} build --rm
+branch?=$(shell git symbolic-ref --short HEAD || echo 'HEAD')
+url?=http://github.com/tizenteam/meta-yocto-demos.git
+
+default: all
+	pwd
+
+export branch
+export bsp
+export MACHINE
+
+rule/docker: docker/build
+	pwd
+
+docker/%: Dockerfile
+	${docker_build} \
+ --build-arg "branch=${branch}" \
+ --build-arg "bsp=${bsp}" \
+ --build-arg "MACHINE=${MACHINE}" \
+ ${<D}
+
+
+docker/build/url:
+	${docker} build \
+ --build-arg "branch=${branch}" \
+ --build-arg "bsp=${bsp}" \
+ --build-arg "MACHINE=${MACHINE}" \
+ "${url}#${branch}" \
+ #eol
+
+TODO/%:
+	@echo "#$@"
