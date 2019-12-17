@@ -3,5 +3,5 @@
   <remote fetch="https://git.yoctoproject.org/git/" name="yocto"/>
   <remote fetch="https://github.com/STMicroelectronics" name="STMicroelectronics"/>
   <project name="poky" remote="yocto" revision="master"/>
-  <project name="meta-st-stm32mp" remote="STMicroelectronics" revision="master"/>
+  <project name="meta-st-stm32mp" remote="STMicroelectronics" revision="thud"/>
 </manifest>
