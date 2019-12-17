@@ -2,6 +2,6 @@
 <manifest>
   <remote fetch="https://git.yoctoproject.org/git/" name="yocto"/>
   <remote fetch="https://github.com/STMicroelectronics" name="STMicroelectronics"/>
-  <project name="poky" remote="yocto" revision="thud"/>
-  <project name="meta-st-stm32mp" remote="STMicroelectronics" revision="thud"/>
+  <project name="poky" remote="yocto" revision="warrior"/>
+  <project name="meta-st-stm32mp" remote="STMicroelectronics" revision="warrior"/>
 </manifest>
