@@ -6,11 +6,11 @@ SHELL=/bin/bash
 V=1
 
 bsp_family?=stm32
-bsp_variant?=-mp
-bsp?=${bsp_family}${bsp_variant}
+bsp_variant?=mp
+bsp?=${bsp_family}-${bsp_variant}
 
 board_vendor?=${bsp_family}
-board_family?=mp
+board_family?=${board_vendor}${bsp_variant}
 board_variant?=1
 board_alias?=${board_vendor}${board_variant}
 
