@@ -8,7 +8,7 @@
 rule/setup-os/%: /etc/os-release /etc/%-release
 
 rule/setup-os/debian: /etc/debian_version
-	${sudo} apt-get install \
+	${sudo} apt-get install -y \
  binutils-gold \
  build-essential \
  ccache \
