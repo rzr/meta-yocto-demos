@@ -1,0 +1,27 @@
+# .dockerignore
+.git/
+# .gitignore
+.#*
+*~
+*#
+build
+build-*
+build*
+*.cache
+cache*
+deploy-*
+.fuse_hidden????????????????
+GNUmakefile
+*-local.mk
+*.log
+project*
+repo
+.repo
+sources
+sources-*
+*-tmp
+*.tmp
+tmp-**
+tmp*
+*.ZILESAVE
+
