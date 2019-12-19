@@ -40,7 +40,7 @@ ${bblayers_file}.mine: ${bblayers_file}.orig
 	cat $< >> $@
 	make rule/done/sub-configure-layers
 	cat "${bblayers_file}.tmp" >> $@
-	sed -e "s|${CURDIR}|\$${RELATIVE_DIR}|g" -i $@
+	sed -e "s|${write_dir}|\$${RELATIVE_DIR}|g" -i $@
 	grep BBLAYERS $@ | wc -l
 
 rule/sub-rule/layer/%: %
@@ -153,7 +153,7 @@ rule/bsp/%:
 	-rm -v ${local_file}
 	${MAKE} ${@D} bsp=${@F}
 
-rule/bsps: ${tmp_dir}
+rule/bsps: ${task_dir}
 	for bsp in ${bsp_list} ; do \
 	${MAKE} rule/bsp/$${bsp} ; \
 	done

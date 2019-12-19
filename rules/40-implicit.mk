@@ -4,10 +4,10 @@
 
 rule/override/%: rule/%
 	$(info log: info: "$@: $<" not overridden)
-	@mkdir -p ${tmp_dir}/${@D}
-	@touch ${tmp_dir}/${@}
+	@mkdir -p ${task_dir}/${@D}
+	@touch ${task_dir}/${@}
 
-${tmp_dir}/rule/done/%:
+${task_dir}/rule/done/%:
 	$(warning TODO: must define $@ explicitly else file will be removed )
 	${MAKE} rule/override/${@F}
 	mkdir -p ${@D}
