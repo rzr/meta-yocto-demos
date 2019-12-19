@@ -28,7 +28,8 @@ bsp_list?=$(shell ls rules/config/bsp/ | sed -e 's|.mk||g' | grep -v '~' | sort)
 
 rule/default: GNUmakefile
 	${MAKE} rule/override/build \
- || ${MAKE} rule/done/setup rule/override/cleanall rule/override/build
+ || echo ${MAKE} rule/done/setup rule/override/cleanall rule/override/build
+	${MAKE} rule/override/build
 
 rule/build: rule/override/pre rule/override/all rule/override/post
 
