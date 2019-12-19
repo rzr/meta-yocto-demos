@@ -7,6 +7,7 @@ SHELL?=/bin/bash
 
 project_name?=meta-yocto-demos
 remote?=tizenteam
+# TODO
 url?=https://github.com/TizenTeam/meta-yocto-demos
 
 user?=$(shell echo ${USER})
@@ -32,18 +33,21 @@ os?=oe
 os_profile?=${os}
 distro?=poky
 
-project_dir?=${CURDIR}
-cache_dir?=${project_dir}/
-build_dir?=${cache_dir}build-${machine}
+# TODO: rename to tmp_dir
+write_dir?=${CURDIR}
+project_dir?=${write_dir}
+cache_dir?=${write_dir}
+build_dir?=${cache_dir}/build-${machine}
 project_relative_dir?=../../
 sources_name?=sources-${MACHINE}
-sources_dir?=${project_dir}/${sources_name}
-tmp_dir?=tmp-${MACHINE}
+sources_dir?=${write_dir}/${sources_name}
+machine_tmp_dir?=tmp-${MACHINE}
+task_dir?=${machine_tmp_dir}
 
 image_dir?=${build_dir}/tmp/deploy/images/${machine}
 conf_file?=${build_dir}/conf/local.conf
 bblayers_file?=${build_dir}/conf/bblayers.conf
-build_file?=${tmp_dir}/build.log
+build_file?=${task_dir}/build.log
 sources_layers_conf?=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
 sources_layers_conf+=./conf/layer.conf
 sources_layers_dirs?=$(dir ${sources_layers_conf})

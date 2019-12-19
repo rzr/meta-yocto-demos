@@ -7,7 +7,7 @@ SHELL?=/bin/bash
 
 repo_file_url?=https://raw.githubusercontent.com/TizenTeam/meta-yocto-demos/master/default.xml
 repo_filename=default.xml
-repo_src_file?=rules/config/bsp/${bsp}/${repo_filename}
+repo_src_file?=${CURDIR}/rules/config/bsp/${bsp}/${repo_filename}
 repo_dir?=${project_dir}/${sources_name}
 repo_file?=${repo_dir}/${repo_filename}
 local_url?=file://${repo_dir}
@@ -25,8 +25,8 @@ rule/repo_file: ${repo_file}
 ${repo_file}: ${repo_src_file} ${repo_dir}/.git
 	mkdir -p ${@D}
 	@echo "TODO: ln?"
-	ls $@ || ln -fs ${CURDIR}/$< $@
-#	cp -av ./$< ${@} # TODO
+	#ls $@ || ln -fs $< $@
+	cp -av $< ${@} # TODO
 	grep "project" "${@}"
 	-cd ${@D} && git add ${@F} && git commit -m 'WIP: update ${project}' ${@F}
 
@@ -37,9 +37,13 @@ ${repo_dir}/.git:
 
 ${repo_dir}/.repo/manifest.xml: ${repo_file} ${repo}
 	mkdir -p ${@D}
-	cd ${@D}/.. && ls sources || ln -fs . sources 
+	cd ${@D}/.. && ls sources || ln -fs . sources
+	cd ${@D}/.. && ln -fs sources ${sources_name}
 	cd ${@D}/.. && ${repo} init -q -u ${local_url} -b ${branch} -m ${<F}
 	grep project $@
+	@echo "# TODO: remove those confusing links"
+	ls "${sources_name}" || ln -fs "${@D}/.." "${sources_name}"
+	ls sources || ln -fs "${sources_name}" sources
 
 rule/scm-repo/%: ${repo_dir}/.repo/manifest.xml ${repo}
 	cd ${<D} && time ${repo} ${@F} && ${repo} list
@@ -68,7 +72,9 @@ rule/sources_dir: ${sources_dir}
 	@echo "log: $@: $^"
 
 ${sources_dir}:
-	@ls -l ${@}/.repo/manifest.xml || ${MAKE} rule/done/scm-repo-sync
+	@ls -l ${@}/.repo/manifest.xml \
+|| ${MAKE} rule/done/scm-repo-sync
+	@ls -l ${@}/.repo/manifest.xml
 	touch ${@}
 
 rule/scm-repo-clean:
