@@ -22,6 +22,7 @@ rule/setup-os/debian: /etc/debian_version
  libattr1-dev \
  libsdl1.2-dev \
  libwayland-dev \
+ python \
  quilt \
  sudo \
  texinfo \
