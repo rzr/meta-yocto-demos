@@ -9,10 +9,10 @@ bsp_family?=generic
 bsp_variant?=
 bsp?=${bsp_family}${bsp_variant}
 
-board_vendor?=
-board_family?=${bsp}x86
+board_vendor?=qemu
+board_family?=${board_vendor}x86
 board_variant?=
-board_alias?=${board_family}${board_variant}
+board_alias?=${board_vendor}${board_variant}
 
 MACHINE?=${board_family}${board_variant}
 
