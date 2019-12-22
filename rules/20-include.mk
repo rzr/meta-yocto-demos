@@ -9,6 +9,6 @@ endif
 bsp?=generic
 include rules/config/bsp/${bsp}/config.mk
 
-distro?=poky
+distro?=openembedded-core
 include rules/config/distro/${distro}/config.mk
 
