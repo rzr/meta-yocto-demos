@@ -18,8 +18,7 @@ name?=${USER} ${project_name} user
 branch?=master
 branch?=$(shell git rev-parse --abbrev-ref HEAD)
 
-generic?=generic
-bsp?=${generic}
+bsp?=qemu
 MACHINE?=${bsp}x86
 
 # Don't export it could break sub makes
