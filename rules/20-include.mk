@@ -6,7 +6,7 @@ ifneq ("${MACHINE}","")
 include rules/config/machine/${MACHINE}/config.mk
 endif
 
-bsp?=generic
+bsp?=qemu
 include rules/config/bsp/${bsp}/config.mk
 
 distro?=openembedded-core
