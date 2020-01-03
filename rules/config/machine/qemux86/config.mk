@@ -1,2 +1,2 @@
-bsp?=generic
-MACHINE?=qemux86
+bsp?=qemu
+MACHINE?=${bsp}x86
