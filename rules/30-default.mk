@@ -7,8 +7,7 @@ SHELL?=/bin/bash
 
 project_name?=meta-yocto-demos
 remote?=tizenteam
-# TODO
-url?=https://github.com/TizenTeam/meta-yocto-demos
+url?=https://github.com/rzr/meta-yocto-demos
 
 user?=$(shell echo ${USER})
 log_file?=tmp/build.log
