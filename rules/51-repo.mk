@@ -27,8 +27,7 @@ ${repo_file}: ${repo_src_file} ${repo_dir}/.git
 	@echo "TODO: ln?"
 	#ls $@ || ln -fs $< $@
 	cp -av $< ${@} # TODO
-	grep "project" "${@}"
-	-cd ${@D} && git add ${@F} && git commit -m 'WIP: update ${project}' ${@F}
+	-cd ${@D} && git add . && git commit -m 'WIP: update ${project}' .
 
 ${repo_dir}/.git:
 	@echo "log: tmp repo : $@"
@@ -39,8 +38,7 @@ ${repo_dir}/.repo/manifest.xml: ${repo_file} ${repo}
 	mkdir -p ${@D}
 	cd ${@D}/.. && ls sources || ln -fs . sources
 	cd ${@D}/.. && ln -fs sources ${sources_name}
-	cd ${@D}/.. && ${repo} init -q -u ${local_url} -b ${branch} -m ${<F}
-	grep project $@
+	cd ${@D}/.. && printf "\n\ny" | ${repo} init -q -u ${local_url} -b ${branch} -m ${<F}
 	@echo "# TODO: remove those confusing links"
 	ls "${sources_name}" || ln -fs "${@D}/.." "${sources_name}"
 	ls sources || ln -fs "${sources_name}" sources
