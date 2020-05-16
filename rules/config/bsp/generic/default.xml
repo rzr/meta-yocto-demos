@@ -2,7 +2,7 @@
 <manifest>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <remote fetch="http://github.com/" name="github" />
-  <project name="poky" remote="yocto" revision="zeus"/>
+  <project name="poky" remote="yocto" revision="dunfell"/>
   <project name="meta-oic" remote="yocto" revision="master"/>
   <project name="rzr/meta-ocf-automotive"
 	   path="meta-ocf-automotive" remote="github"
