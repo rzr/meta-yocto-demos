@@ -1,0 +1,4 @@
+#!/bin/sh
+# XPDX-License-Identifier: GPL-2.0+"
+
+exec /usr/bin/pinball
