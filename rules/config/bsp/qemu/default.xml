@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   <remote fetch="https://git.openembedded.org/" name="oe"/>
+  <remote fetch="https://github.com/" name="github" />
+  <remote fetch="https://github.com/cazfi" name="cazfi" />
   <project name="bitbake" remote="oe" revision="master"/>
   <project name="openembedded-core" remote="oe" revision="master"/>
   <project name="meta-openembedded" remote="oe" revision="master"/>
+  <project name="meta-games" remote="cazfi" revision="master"/>
+  <project name="meta-qt5/meta-qt5" path="meta-qt5" remote="github" revision="master"/>
 </manifest>
