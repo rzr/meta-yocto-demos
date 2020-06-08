@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote fetch="https://git.openembedded.org/" name="oe"/>
+  <remote fetch="https://github.com" name="github"/>
+  <remote fetch="https://github.com/STMicroelectronics" name="STMicroelectronics"/>
+  <project name="bitbake" remote="oe" revision="1.40"/>
+  <project name="meta-st-openstlinux" remote="STMicroelectronics" revision="thud"/>  <project name="meta-openembedded" remote="oe" revision="thud"/>
+  <project name="meta-st-stm32mp" remote="STMicroelectronics" revision="thud"/>
+  <project name="meta-qt5/meta-qt5" path="meta-qt5" remote="github" revision="thud"/>
+</manifest>
