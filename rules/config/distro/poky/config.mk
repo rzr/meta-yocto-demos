@@ -28,6 +28,10 @@ images?=${image} \
 
 sources_name?=sources-${MACHINE}
 sources_layers_conf?=$(sort $(wildcard ${sources_name}/meta-*/conf/layer.conf))
-
-sources_layers_conf+=
+sources_layers_conf+=$(sort $(wildcard ${sources_name}/meta-*/meta-*/conf/layer.conf))
 branch?=master
+
+rule/override/configure-conf: rule/configure-conf
+	ls -l -- "${conf_file}"
+	echo "DISTRO_FEATURES += ' opengl'" | tee -a -- "${conf_file}"
+	echo "DISTRO_FEATURES += ' x11'" | tee -a -- "${conf_file}"
