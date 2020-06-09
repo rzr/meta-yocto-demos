@@ -115,6 +115,7 @@ rule/print: ${rules_files} GNUmakefile
 	@echo "# sources_layers_conf=${sources_layers_conf}"
 	@echo "# machines_list=${machines_list}"
 	@echo "# bsp_list=${bsp_list}"
+	@echo "# write_dir=${write_dir}"
 	@echo ""
 	@echo "# More in rules/*.mk"
 
