@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+  <remote fetch="https://git.openembedded.org/" name="oe"/>
   <remote fetch="http://git.yoctoproject.org/git/" name="yocto"/>
   <project name="poky" remote="yocto" revision="master"/>
   <remote fetch="https://github.com/" name="github" />
