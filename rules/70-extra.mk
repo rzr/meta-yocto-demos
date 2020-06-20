@@ -157,3 +157,12 @@ DESTDIR?=${CURDIR}/out
 rule/install: deploy-${MACHINE}
 	install -d ${DESTDIR}/$<
 	cp -rf $</* ${DESTDIR}/$</
+
+rule/kvm: build-${MACHINE}
+	cd $</tmp*/deploy/images/${MACHINE} && pwd && ls \
+  && kvm \
+    -kernel bzImage \
+    -append 'root=/dev/hda ip=dhcp' \
+    -device e1000,netdev=net0 \
+    -netdev user,id=net0,hostfwd=tcp::5555-:22 \
+    ${image}-${MACHINE}.ext4 
